@@ -1,0 +1,44 @@
+body {
+    background: #A2D2FF;
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+#quiz-container {
+    border: 10px solid #BDE0FE;
+    box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 2 - CSS for Chat Page */
+#logo-container {
+    max-height: 50px;
+}
+
+#app-logo {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    left: 0px;
+    top: 20px;
+    z-index: 3;
+}
+
+#chat-form {
+    background-color: #BDE0FE;
+    box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+#submit-btn {
+    font-weight: bold;
+    min-width: 160px;
+    color: #CAF0F8;
+    margin-top: 20px;
+    background-color: #0077B6;
+    padding: 10px;
+    border-radius: 30px
+}
+
+label {
+    color: #0077B6;
+}

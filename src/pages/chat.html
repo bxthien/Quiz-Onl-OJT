@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat AI</title>
+    <link href="../assets/css/custom.css" rel="stylesheet">
+    <link href="../output.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen p-4">
+    <div id="logo-container" class="flex justify-center items-center">
+        <img id="app-logo" src="../assets/images/logo.png" alt="Quiz Genie" />
+    </div>
+    <div id="form-container" class="flex justify-center items-center">
+        <div id="chat-form" class="w-full mx-2 md:w-md p-8">
+            <div class="flex flex-col mb-2">
+                <label class="mb-2 font-bold">Topic</label>
+                <textarea id="topic" name="topic" title="Topic of Quiz" rows="5"
+                    class="bg-white border rounded-sm">Testing</textarea>
+            </div>
+            <div class="flex flex-col mb-2">
+                <label class="mb-2 font-bold">Level</label>
+                <div class="flex justify-between">
+                    <button class="bg-white p-2 rounded-sm" id="easy-level" type="button">Easy</button>
+                    <button class="bg-white p-2 rounded-sm" id=" medium-level" type="button">Medium</button>
+                    <button class="bg-white p-2 rounded-sm" id="Difficult" type="button">Difficult</button>
+                </div>
+            </div>
+            <div class="flex flex-col mb-2">
+                <label class="mb-2 font-bold">Language</label>
+                <select id="language-input" title="Language" class="bg-white p-2 rounded-sm">
+                    <option>English</option>
+                    <option>Vietnamese</option>
+                    <option>France</option>
+                </select>
+            </div>
+            <div class="flex flex-col mb-2">
+                <label class="mb-2 font-bold">Amount of Questions</label>
+                <input id="number-input" class="bg-white p-2 rounded-sm" type="number" title="Number" min="1"
+                    max="10" />
+            </div>
+            <div class="flex justify-center items-center">
+                <button type="button" id="submit-btn">Render</button>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/chat.js"></script>
+</body>
+
+</html>
