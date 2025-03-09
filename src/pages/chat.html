@@ -9,44 +9,68 @@
     <link href="../output.css" rel="stylesheet">
 </head>
 
-<body class="min-h-screen p-4">
-    <div id="logo-container" class="flex justify-center items-center">
-        <img id="app-logo" src="../assets/images/logo.png" alt="Quiz Genie" />
-    </div>
-    <div id="form-container" class="flex justify-center items-center">
-        <div id="chat-form" class="w-full mx-2 md:w-md p-8">
-            <div class="flex flex-col mb-2">
-                <label class="mb-2 font-bold">Topic</label>
-                <textarea id="topic" name="topic" title="Topic of Quiz" rows="5"
-                    class="bg-white border rounded-sm">Testing</textarea>
+<body class="flex justify-center items-center min-h-screen mt-4">
+    <div
+        class="container flex flex-col md:flex-row justify-center items-center space-x-0 md:space-x-10 space-y-6 md:space-y-0">
+        <div id="formContainer" class="form-container w-full md:w-1/3 quiz-card transition-transform transform">
+            <div id="logo-container" class="flex justify-center mb-4">
+                <img src="../assets/images/logo.png" alt="Quiz Logo" class="w-24">
             </div>
-            <div class="flex flex-col mb-2">
-                <label class="mb-2 font-bold">Level</label>
-                <div class="flex justify-between">
-                    <button class="bg-white p-2 rounded-sm" id="easy-level" type="button">Easy</button>
-                    <button class="bg-white p-2 rounded-sm" id=" medium-level" type="button">Medium</button>
-                    <button class="bg-white p-2 rounded-sm" id="Difficult" type="button">Difficult</button>
+
+            <form id="quizForm">
+                <div class="mb-3">
+                    <label class="block font-bold mb-2">Topic:</label>
+                    <textarea id="topic" class="border p-2 w-full rounded bg-white"
+                        placeholder="Enter topic..."></textarea>
                 </div>
-            </div>
-            <div class="flex flex-col mb-2">
-                <label class="mb-2 font-bold">Language</label>
-                <select id="language-input" title="Language" class="bg-white p-2 rounded-sm">
-                    <option>English</option>
-                    <option>Vietnamese</option>
-                    <option>France</option>
-                </select>
-            </div>
-            <div class="flex flex-col mb-2">
-                <label class="mb-2 font-bold">Amount of Questions</label>
-                <input id="number-input" class="bg-white p-2 rounded-sm" type="number" title="Number" min="1"
-                    max="10" />
-            </div>
-            <div class="flex justify-center items-center">
-                <button type="button" id="submit-btn">Render</button>
-            </div>
+
+                <div class="mb-3">
+                    <label class="block font-bold mb-2">Levels:</label>
+                    <div class="flex justify-between">
+                        <button type="button" class="px-4 py-2 border rounded bg-white">Easy</button>
+                        <button type="button" class="px-4 py-2 border rounded bg-white">Medium</button>
+                        <button type="button" class="px-4 py-2 border rounded bg-white">Hard</button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="block font-bold mb-2">Language:</label>
+                    <select title="language" id="language" class="border p-2 w-full rounded bg-white">
+                        <option value="English" selected>English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="block font-bold mb-2">Number:</label>
+                    <input title="number" type="number" id="amount" min="1" max="10"
+                        class="border p-2 w-full rounded bg-white">
+                </div>
+
+                <button type="button" onclick="generateQuiz()"
+                    class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700 flex items-center justify-center">Render
+                    <span class="ml-2">⏳</span></button>
+            </form>
+        </div>
+
+        <div id="quizOutput" class="quiz-container w-full md:w-2/3 quiz-card hidden fixed-height fade-in">
+            <div class="loading"><img src="../assets/images/loading.png" alt="Loading" /></div>
         </div>
     </div>
-    <script src="../scripts/chat.js"></script>
+
+    <script>
+        function generateQuiz() {
+            document.getElementById("formContainer").classList.add("shift-left");
+            const quizOutput = document.getElementById("quizOutput");
+            quizOutput.classList.remove("hidden");
+            setTimeout(() => {
+                quizOutput.classList.add("show");
+                quizOutput.innerHTML = `<h2 class='text-xl font-bold mb-4 text-center'>Generated Quiz</h2>`;
+            }, 500);
+        }
+    </script>
+    <!-- <script src="../scripts/chat.js"></script> -->
 </body>
 
 </html>

@@ -1,0 +1,222 @@
+[
+  {
+    "question": "Ai là người lãnh đạo phong trào Cần Vương?",
+    "answers": {
+      "A": "Vua Hàm Nghi và Tôn Thất Thuyết",
+      "B": "Trương Định",
+      "C": "Nguyễn Trung Trực",
+      "D": "Phan Bội Châu"
+    },
+    "correct_answer": "A",
+    "short_explain_for_answer": "Vua Hàm Nghi ban hịch Cần Vương, kêu gọi văn thân sĩ phu và nhân dân đứng lên chống Pháp, cùng Tôn Thất Thuyết lãnh đạo phong trào."
+  },
+  {
+    "question": "Cuộc kháng chiến chống quân Mông - Nguyên lần thứ nhất diễn ra vào năm nào?",
+    "answers": {
+      "A": "1257",
+      "B": "1258",
+      "C": "1285",
+      "D": "1287"
+    },
+    "correct_answer": "B",
+    "short_explain_for_answer": "Cuộc kháng chiến chống quân Mông - Nguyên lần thứ nhất diễn ra vào năm 1258, dưới sự lãnh đạo của vua Trần Thái Tông và Thái sư Trần Thủ Độ."
+  },
+  {
+    "question": "Ai là người sáng lập ra nhà Trần?",
+    "answers": {
+      "A": "Lý Công Uẩn",
+      "B": "Trần Thủ Độ",
+      "C": "Trần Thái Tông",
+      "D": "Lê Hoàn"
+    },
+    "correct_answer": "C",
+    "short_explain_for_answer": "Trần Thái Tông là vị vua đầu tiên của nhà Trần, lên ngôi sau khi Lý Chiêu Hoàng nhường ngôi."
+  },
+  {
+    "question": "Vị tướng nào chỉ huy quân đội nhà Trần đánh tan quân Nguyên - Mông?",
+    "answers": {
+      "A": "Lê Lợi",
+      "B": "Trần Quốc Tuấn",
+      "C": "Quang Trung",
+      "D": "Lý Thường Kiệt"
+    },
+    "correct_answer": "B",
+    "short_explain_for_answer": "Trần Quốc Tuấn (Hưng Đạo Vương) là vị tướng tài ba chỉ huy quân đội nhà Trần đánh tan quân Nguyên - Mông xâm lược."
+  },
+  {
+    "question": "Ai là người sáng lập ra nhà Hồ?",
+    "answers": {
+      "A": "Hồ Quý Ly",
+      "B": "Trần Khát Chân",
+      "C": "Lê Thánh Tông",
+      "D": "Mạc Đăng Dung"
+    },
+    "correct_answer": "A",
+    "short_explain_for_answer": "Hồ Quý Ly phế truất vua Trần, lập ra nhà Hồ vào năm 1400."
+  },
+  {
+    "question": "Cuộc khởi nghĩa Lam Sơn do ai lãnh đạo?",
+    "answers": {
+      "A": "Trần Quốc Tuấn",
+      "B": "Lê Lợi",
+      "C": "Nguyễn Huệ",
+      "D": "Trương Định"
+    },
+    "correct_answer": "B",
+    "short_explain_for_answer": "Lê Lợi là người lãnh đạo cuộc khởi nghĩa Lam Sơn chống lại quân Minh xâm lược."
+  },
+  {
+    "question": "Vị vua nào đã cho ban hành bộ luật Hồng Đức?",
+    "answers": {
+      "A": "Lê Thái Tổ",
+      "B": "Lê Thánh Tông",
+      "C": "Lê Nhân Tông",
+      "D": "Lê Hiến Tông"
+    },
+    "correct_answer": "B",
+    "short_explain_for_answer": "Lê Thánh Tông là vị vua tài giỏi của triều Lê, đã cho ban hành bộ luật Hồng Đức, một bộ luật quan trọng trong lịch sử Việt Nam."
+  },
+  {
+    "question": "Ai là người lãnh đạo nghĩa quân Tây Sơn?",
+    "answers": {
+      "A": "Nguyễn Trãi",
+      "B": "Lê Lợi",
+      "C": "Nguyễn Huệ",
+      "D": "Trương Định"
+    },
+    "correct_answer": "C",
+    "short_explain_for_answer": "Nguyễn Huệ (Quang Trung) là người lãnh đạo nghĩa quân Tây Sơn, đánh tan quân Thanh xâm lược."
+  },
+  {
+    "question": "Trận chiến nào Nguyễn Huệ (Quang Trung) đánh tan quân Thanh?",
+    "answers": {
+      "A": "Chi Lăng - Xương Giang",
+      "B": "Rạch Gầm - Xoài Mút",
+      "C": "Ngọc Hồi - Đống Đa",
+      "D": "Điện Biên Phủ"
+    },
+    "correct_answer": "C",
+    "short_explain_for_answer": "Quân Tây Sơn do Nguyễn Huệ (Quang Trung) chỉ huy đã đánh tan quân Thanh trong trận Ngọc Hồi - Đống Đa vào năm 1789."
+  },
+  {
+    "question": "Triều đại nào đặt kinh đô ở Phú Xuân (Huế ngày nay)?",
+    "answers": {
+      "A": "Nhà Lý",
+      "B": "Nhà Trần",
+      "C": "Nhà Nguyễn",
+      "D": "Nhà Lê"
+    },
+    "correct_answer": "C",
+    "short_explain_for_answer": "Nhà Nguyễn đặt kinh đô ở Phú Xuân (Huế) từ thời vua Gia Long."
+  },
+  {
+    "question": "Ai là người viết Bình Ngô Đại Cáo?",
+    "answers": {
+      "A": "Lê Lợi",
+      "B": "Nguyễn Trãi",
+      "C": "Trần Quốc Tuấn",
+      "D": "Lý Thường Kiệt"
+    },
+    "correct_answer": "B",
+    "short_explain_for_answer": "Nguyễn Trãi là người soạn thảo Bình Ngô Đại Cáo, bản tuyên ngôn độc lập của dân tộc Việt Nam sau khi đánh đuổi quân Minh."
+  },
+  {
+    "question": "Chiến thắng Bạch Đằng năm 938 gắn liền với tên tuổi của vị tướng nào?",
+    "answers": {
+      "A": "Lý Thường Kiệt",
+      "B": "Ngô Quyền",
+      "C": "Trần Hưng Đạo",
+      "D": "Lê Hoàn"
+    },
+    "correct_answer": "B",
+    "short_explain_for_answer": "Ngô Quyền đã đánh tan quân Nam Hán trên sông Bạch Đằng năm 938, chấm dứt hơn 1000 năm Bắc thuộc."
+  },
+  {
+    "question": "Nhà Lý dời đô từ Hoa Lư về Thăng Long (Hà Nội ngày nay) vào năm nào?",
+    "answers": {
+      "A": "1009",
+      "B": "1010",
+      "C": "1075",
+      "D": "1077"
+    },
+    "correct_answer": "B",
+    "short_explain_for_answer": "Năm 1010, vua Lý Thái Tổ dời đô từ Hoa Lư (Ninh Bình) về Thăng Long (Hà Nội ngày nay)."
+  },
+  {
+    "question": "Ai là tác giả của bài thơ 'Nam quốc sơn hà'?",
+    "answers": {
+      "A": "Lý Thường Kiệt",
+      "B": "Trần Quốc Tuấn",
+      "C": "Nguyễn Trãi",
+      "D": "Hồ Chí Minh"
+    },
+    "correct_answer": "A",
+    "short_explain_for_answer": "Bài thơ 'Nam quốc sơn hà' thường được cho là của Lý Thường Kiệt, thể hiện ý chí độc lập, tự chủ của dân tộc."
+  },
+  {
+    "question": "Cuộc kháng chiến chống Pháp xâm lược bắt đầu vào năm nào?",
+    "answers": {
+      "A": "1858",
+      "B": "1884",
+      "C": "1930",
+      "D": "1945"
+    },
+    "correct_answer": "A",
+    "short_explain_for_answer": "Năm 1858, Pháp nổ súng tấn công Đà Nẵng, mở đầu cuộc kháng chiến chống Pháp xâm lược của nhân dân Việt Nam."
+  },
+  {
+    "question": "Đảng Cộng sản Việt Nam được thành lập vào năm nào?",
+    "answers": {
+      "A": "1925",
+      "B": "1930",
+      "C": "1941",
+      "D": "1945"
+    },
+    "correct_answer": "B",
+    "short_explain_for_answer": "Đảng Cộng sản Việt Nam được thành lập vào ngày 3 tháng 2 năm 1930."
+  },
+  {
+    "question": "Ai là người đọc Tuyên ngôn độc lập khai sinh ra nước Việt Nam Dân chủ Cộng hòa?",
+    "answers": {
+      "A": "Hồ Chí Minh",
+      "B": "Lê Duẩn",
+      "C": "Trường Chinh",
+      "D": "Phạm Văn Đồng"
+    },
+    "correct_answer": "A",
+    "short_explain_for_answer": "Hồ Chí Minh là người đọc Tuyên ngôn độc lập vào ngày 2 tháng 9 năm 1945 tại Quảng trường Ba Đình, Hà Nội."
+  },
+  {
+    "question": "Chiến thắng Điện Biên Phủ diễn ra vào năm nào?",
+    "answers": {
+      "A": "1945",
+      "B": "1954",
+      "C": "1975",
+      "D": "1979"
+    },
+    "correct_answer": "B",
+    "short_explain_for_answer": "Chiến thắng Điện Biên Phủ diễn ra vào năm 1954, kết thúc cuộc kháng chiến chống Pháp của nhân dân Việt Nam."
+  },
+  {
+    "question": "Ngày giải phóng miền Nam, thống nhất đất nước là ngày nào?",
+    "answers": {
+      "A": "30 tháng 4 năm 1975",
+      "B": "2 tháng 9 năm 1945",
+      "C": "7 tháng 5 năm 1954",
+      "D": "22 tháng 12 năm 1944"
+    },
+    "correct_answer": "A",
+    "short_explain_for_answer": "Ngày 30 tháng 4 năm 1975 là ngày giải phóng miền Nam, thống nhất đất nước, kết thúc chiến tranh Việt Nam."
+  },
+  {
+    "question": "Vị vua nào được mệnh danh là 'Vua Lê Thánh Tông'?",
+    "answers": {
+      "A": "Lê Thái Tổ",
+      "B": "Lê Nhân Tông",
+      "C": "Lê Thánh Tông",
+      "D": "Lê Hiến Tông"
+    },
+    "correct_answer": "C",
+    "short_explain_for_answer": "Lê Thánh Tông là một vị vua nổi tiếng của triều đại nhà Lê, có nhiều đóng góp quan trọng trong việc xây dựng và phát triển đất nước."
+  }
+]
