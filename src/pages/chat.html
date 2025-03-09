@@ -102,7 +102,11 @@
             z-index: 3;
         }
 
-        #submit-btn {
+        .levelBtn {
+            border-radius: 8px;
+        }
+
+        #generateBtn {
             font-weight: bold;
             min-width: 160px;
             color: #CAF0F8;
@@ -137,9 +141,9 @@
                 <div class="mb-3">
                     <label class="block font-bold mb-2">Levels:</label>
                     <div class="flex justify-between">
-                        <button type="button" class="px-4 py-2 border rounded bg-white">Easy</button>
-                        <button type="button" class="px-4 py-2 border rounded bg-white">Medium</button>
-                        <button type="button" class="px-4 py-2 border rounded bg-white">Hard</button>
+                        <button type="button" class="px-4 py-2 bg-white levelBtn">Easy</button>
+                        <button type="button" class="px-4 py-2 bg-white levelBtn">Medium</button>
+                        <button type="button" class="px-4 py-2 bg-white levelBtn">Hard</button>
                     </div>
                 </div>
 
@@ -147,20 +151,25 @@
                     <label class="block font-bold mb-2">Language:</label>
                     <select title="language" id="language" class="border p-2 w-full rounded bg-white">
                         <option value="English" selected>English</option>
-                        <option value="Spanish">Spanish</option>
+                        <option value="Spanish">Vietnamese</option>
+                        <option value="Spanish">Chinese</option>
                         <option value="French">French</option>
                     </select>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-1">
                     <label class="block font-bold mb-2">Number:</label>
                     <input title="number" type="number" id="amount" min="1" max="10"
                         class="border p-2 w-full rounded bg-white">
                 </div>
 
-                <button type="button" onclick="generateQuiz()"
-                    class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700 flex items-center justify-center">Render
-                    <span class="ml-2"><img src="../assets/images/render.png" alt="Render" width="25" /></span></button>
+                <div class="flex justify-center">
+                    <button type="button" id="generateBtn" onclick="generateQuiz()"
+                        class="flex items-center justify-center font-bold">Render
+                        <span class="ml-2"><img src="../assets/images/render.png" alt="Render"
+                                width="25" /></span></button>
+
+                </div>
             </form>
         </div>
 
