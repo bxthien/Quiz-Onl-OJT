@@ -47,7 +47,7 @@ const quizData = JSON.parse(localStorage.getItem("quiz"));
 const quizAnswer = JSON.parse(localStorage.getItem("quiz-answers"));
 let selectedAnswers = quizAnswer || [];
 let currentQuestionIndex = localStorage.getItem("quiz-current")
-  ? JSON.parse(localStorage.getItem("quiz-current"))
+  ? localStorage.getItem("quiz-current")
   : selectedAnswers.length;
 const questionText = document.getElementById("question-text");
 
@@ -68,10 +68,11 @@ function toggleButtonsVisibility() {
   }
 }
 function showQuestion() {
+  toggleButtonsVisibility();
   if (currentQuestionIndex < quizData.length) {
     document.getElementById("number-of-answer").textContent =
       quizData[currentQuestionIndex].correct_answer.length;
-    toggleButtonsVisibility();
+
     console.log(back.id + next.id);
     back.classList.toggle("hidden", currentQuestionIndex <= 0);
     next.classList.toggle(
@@ -259,7 +260,18 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "pages/quiz-review.html";
   });
 });
+function saveToLocal() {
+  if (selectedAnswers && currentQuestionIndex) {
+    localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers) || []);
+    localStorage.setItem("quiz-current", currentQuestionIndex || 0);
+  }
+}
 
+setInterval(saveToLocal, 3000);
+
+window.addEventListener("beforeunload", () => {
+  saveToLocal();
+});
 document.getElementById("total-text").textContent = quizData.length;
 
 document.getElementById("character").addEventListener("click", function () {
