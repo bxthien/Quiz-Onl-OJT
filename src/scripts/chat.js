@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const genAI = new GoogleGenerativeAI("AIzaSyAchUc_ifLB0eDwpAIP9eDmzFA_KRxXnSg"); // Use env variable for security
+const genAI = new GoogleGenerativeAI("AIzaSyAchUc_ifLB0eDwpAIP9eDmzFA_KRxXnSg");
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 const topic = "History";
