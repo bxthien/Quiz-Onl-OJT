@@ -110,11 +110,16 @@
             border-radius: 8px;
         }
 
+        .selected-button {
+            background-color: #0077B6;
+            color: #CAF0F8;
+        }
+
         #generateBtn {
             font-weight: bold;
             min-width: 160px;
             color: #CAF0F8;
-            margin-top: 20px;
+            margin-top: 5px;
             background-color: #0077B6;
             padding: 10px;
             border-radius: 30px
@@ -123,11 +128,16 @@
         label {
             color: #0077B6;
         }
+
+
+        #amountSlider {
+            background-color: #54535F;
+        }
     </style>
     <link href="../output.css" rel="stylesheet">
 </head>
 
-<body class="flex justify-center items-center min-h-screen my-4">
+<body class="flex justify-center items-center min-h-screen mt-5">
     <div
         class="container flex flex-col md:flex-row justify-center items-center space-x-0 md:space-x-10 space-y-6 md:space-y-0">
         <div id="formContainer" class="form-container w-full md:w-1/3 quiz-card transition-transform transform">
@@ -154,22 +164,26 @@
                 <div class="mb-3">
                     <label class="block font-bold mb-2">Language:</label>
                     <select title="language" id="language" class="border p-2 w-full rounded bg-white">
-                        <option value="English" selected>English</option>
-                        <option value="Spanish">Vietnamese</option>
-                        <option value="Spanish">Chinese</option>
+                        <option value="English">English</option>
+                        <option value="Vietnamese">Vietnamese</option>
+                        <option value="Chinese">Chinese</option>
                         <option value="French">French</option>
                     </select>
                 </div>
 
                 <div class="mb-1">
-                    <label class="block font-bold mb-2">Number:</label>
-                    <input title="number" type="number" id="amount" min="1" max="10"
-                        class="border p-2 w-full rounded bg-white">
+
+                    <label for="amountSlider" class="font-bold text-gray-700">Number</lable>
+                        <input type="number" id="amountInput" min="1" max="40"
+                            class="border p-2 w-full rounded bg-white" disabled>
+
+
+                        <input type="range" id="amountSlider" min="1" max="40" step="1"
+                            class="w-full appearance-none h-2 rounded-lg cursor-pointer" />
                 </div>
 
                 <div class="flex justify-center">
-                    <button type="button" id="generateBtn" onclick="generateQuiz()"
-                        class="flex items-center justify-center font-bold">Render
+                    <button type="submit" id="generateBtn" class="flex items-center justify-center font-bold">Render
                         <span class="ml-2"><img src="../assets/images/render.png" alt="Render"
                                 width="25" /></span></button>
 
@@ -178,22 +192,10 @@
         </div>
 
         <div id="quizOutput" class="quiz-container w-full md:w-2/3 quiz-card hidden fixed-height fade-in">
-            <div class="loading"><img src="../assets/images/loading.png" alt="Loading" /></div>
         </div>
     </div>
 
-    <script>
-        function generateQuiz() {
-            document.getElementById("formContainer").classList.add("shift-left");
-            const quizOutput = document.getElementById("quizOutput");
-            quizOutput.classList.remove("hidden");
-            setTimeout(() => {
-                quizOutput.classList.add("show");
-                quizOutput.innerHTML = `<h2 class='text-xl font-bold mb-4 text-center'>Generated Quiz</h2>`;
-            }, 500);
-        }
-    </script>
-    <!-- <script src="../scripts/chat.js"></script> -->
+    <script src="../scripts/chat.js"></script>
 </body>
 
 </html>
