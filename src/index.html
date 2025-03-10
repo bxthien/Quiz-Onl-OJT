@@ -1,82 +1,18 @@
-<!doctype html>
-<html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Helpers.js</title>
-  </head>
-  <body>
-    <h1>Test Helper Functions</h1>
-    <button onclick="testHelpers()">Chạy Test</button>
-    <script type="module">
-      import {
-        formatQuizData,
-        shuffleArray,
-        isCorrectAnswer,
-        formatDateTime,
-        calculateProgress,
-        isQuizCompleted,
-        gradeQuiz,
-        generateFeedback,
-        formatScore,
-        formatDate,
-        formatTime,
-      } from "./utils/helpers.js";
+<!DOCTYPE html>
+<html lang="en">
 
-      function testHelpers() {
-        console.log("=== Test formatQuizData ===");
-        const aiResponse = {
-          questions: [
-            {
-              text: "What is 2 + 2?",
-              options: ["3", "4", "5", "6"],
-              answer: "4",
-            },
-            {
-              text: "What is the capital of France?",
-              options: ["London", "Berlin", "Paris", "Rome"],
-              answer: "Paris",
-            },
-          ],
-        };
-        console.log(formatQuizData(aiResponse));
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Genie</title>
+    <link href="./output.css" rel="stylesheet">
+</head>
 
-        console.log("\n=== Test shuffleArray ===");
-        console.log(shuffleArray([1, 2, 3, 4, 5]));
+<body>
+    <h1 class="text-3xl font-bold text-center">
+        Quiz Genie Application
+        Test dev
+    </h1>
+</body>
 
-        console.log("\n=== Test isCorrectAnswer ===");
-        console.log(isCorrectAnswer("4", "4")); // true
-        console.log(isCorrectAnswer("3", "4")); // false
-
-        console.log("\n=== Test calculateProgress ===");
-        const userAnswers = { 1: "4", 2: "Paris" };
-        console.log(calculateProgress(userAnswers, 5)); // 40% (2/5)
-
-        console.log("\n=== Test isQuizCompleted ===");
-        console.log(isQuizCompleted(userAnswers, 5)); // false
-        console.log(isQuizCompleted(userAnswers, 2)); // true
-
-        console.log("\n=== Test gradeQuiz ===");
-        const correctAnswers = { 1: "4", 2: "Paris" };
-        console.log(gradeQuiz(userAnswers, correctAnswers)); // 2
-
-        console.log("\n=== Test generateFeedback ===");
-        console.log(generateFeedback(2, 2)); // 🌟 Xuất sắc!
-        console.log(generateFeedback(1, 2)); // 👍 Tốt lắm!
-
-        console.log("\n=== Test formatScore ===");
-        console.log(formatScore(2, 3)); // 2/3 (66.7%)
-
-        console.log("\n=== Test formatDate ===");
-        console.log(formatDate("10/3/2025 14:00")); // Ngày giờ hiện tại
-        console.log("\n=== Test formatDateTime ===");
-        console.log(formatDateTime("10/3/2025 14:00")); // 2:05
-
-        console.log("\n=== Test formatTime ===");
-        console.log(formatTime(125)); // 2:05
-      }
-
-      window.testHelpers = testHelpers; // Đưa vào scope global để gọi từ button
-    </script>
-  </body>
 </html>
