@@ -107,9 +107,9 @@ document.addEventListener("click", (event) => {
 // Gọi hàm này để xoá quiz theo ID
 async function handleDeleteQuiz(quizId) {
   try {
-    await deleteQuiz(quizId);
+    await deleteQuiz(Number(quizId)); // Đảm bảo ID là số
     console.log(`Quiz ${quizId} deleted!`);
-    renderQuizzes(); // Cập nhật UI sau khi xoá
+    await renderQuizzes(); // Đợi render hoàn tất
   } catch (error) {
     console.error("Error deleting quiz:", error);
   }
