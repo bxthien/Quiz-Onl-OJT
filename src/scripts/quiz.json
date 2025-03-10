@@ -1,222 +1,172 @@
 [
   {
-    "question": "Ai là vị vua đầu tiên của nhà nước Văn Lang?",
+    "question": "Nhân vật nào đóng vai trò quan trọng trong việc gây ra Chiến tranh Thế giới thứ hai?",
     "answers": {
-      "A": "An Dương Vương",
-      "B": "Hùng Vương",
-      "C": "Thục Phán",
-      "D": "Triệu Đà"
+      "A": "Adolf Hitler",
+      "B": "Joseph Stalin",
+      "C": "Benito Mussolini",
+      "D": "Franklin D. Roosevelt"
     },
-    "correct_answer": "B",
-    "short_explain_for_answer": "Hùng Vương là vị vua đầu tiên theo truyền thuyết của nhà nước Văn Lang."
+    "correct_answers": [
+      "A",
+      "B",
+      "C"
+    ],
+    "short_explain_for_answer": {
+      "A": "Hitler và chủ nghĩa phát xít Đức là động lực chính gây chiến.",
+      "B": "Stalin và Liên Xô có vai trò trong việc gây ra căng thẳng quốc tế.",
+      "C": "Mussolini và chủ nghĩa phát xít Ý là đồng minh quan trọng của Đức."
+    }
   },
   {
-    "question": "Chiến thắng Điện Biên Phủ diễn ra vào năm nào?",
+    "question": "Sự kiện nào đánh dấu sự bắt đầu của Chiến tranh Thế giới thứ hai?",
     "answers": {
-      "A": "1950",
-      "B": "1954",
-      "C": "1960",
-      "D": "1975"
+      "A": "Cuộc xâm lược Ba Lan của Đức",
+      "B": "Vụ tấn công Trân Châu Cảng",
+      "C": "Sự kiện ám sát Tổng thống Áo-Hung Franz Ferdinand",
+      "D": "Hiệp ước Versailles được ký kết"
     },
-    "correct_answer": "B",
-    "short_explain_for_answer": "Chiến thắng Điện Biên Phủ diễn ra năm 1954, kết thúc cuộc kháng chiến chống Pháp."
+    "correct_answers": [
+      "A"
+    ],
+    "short_explain_for_answer": {
+      "A": "Đức xâm lược Ba Lan ngày 1 tháng 9 năm 1939, dẫn đến việc Anh và Pháp tuyên chiến với Đức."
+    }
   },
   {
-    "question": "Ai là người lãnh đạo cuộc khởi nghĩa Lam Sơn?",
+    "question": "Những quốc gia nào thuộc phe Đồng Minh trong Chiến tranh Thế giới thứ hai?",
     "answers": {
-      "A": "Trần Hưng Đạo",
-      "B": "Lê Lợi",
-      "C": "Quang Trung",
-      "D": "Ngô Quyền"
+      "A": "Đức",
+      "B": "Liên Xô",
+      "C": "Hoa Kỳ",
+      "D": "Anh"
     },
-    "correct_answer": "B",
-    "short_explain_for_answer": "Lê Lợi là người lãnh đạo cuộc khởi nghĩa Lam Sơn đánh đuổi quân Minh."
+    "correct_answers": [
+      "B",
+      "C",
+      "D"
+    ],
+    "short_explain_for_answer": {
+      "B": "Liên Xô tham gia phe Đồng Minh sau khi bị Đức tấn công.",
+      "C": "Hoa Kỳ tham gia sau vụ tấn công Trân Châu Cảng.",
+      "D": "Anh là một trong những quốc gia đầu tiên tham gia chiến tranh chống lại Đức."
+    }
   },
   {
-    "question": "Ngô Quyền đánh tan quân Nam Hán trên sông nào?",
+    "question": "Trận đánh nào được coi là bước ngoặt quan trọng trong Chiến tranh Thế giới thứ hai ở châu Âu?",
     "answers": {
-      "A": "Sông Hồng",
-      "B": "Sông Bạch Đằng",
-      "C": "Sông Cửu Long",
-      "D": "Sông Mã"
+      "A": "Trận Stalingrad",
+      "B": "Trận Normandy",
+      "C": "Trận Midway",
+      "D": "Trận Dunkirk"
     },
-    "correct_answer": "B",
-    "short_explain_for_answer": "Ngô Quyền đã đánh tan quân Nam Hán trên sông Bạch Đằng năm 938."
+    "correct_answers": [
+      "A"
+    ],
+    "short_explain_for_answer": {
+      "A": "Trận Stalingrad đánh dấu sự thất bại lớn của quân Đức trên mặt trận phía Đông, làm thay đổi cục diện chiến tranh ở châu Âu."
+    }
   },
   {
-    "question": "Ai là vị vua cuối cùng của nhà Nguyễn?",
+    "question": "Vũ khí nào sau đây được sử dụng lần đầu tiên trong Chiến tranh Thế giới thứ hai?",
     "answers": {
-      "A": "Gia Long",
-      "B": "Minh Mạng",
-      "C": "Bảo Đại",
-      "D": "Tự Đức"
+      "A": "Bom nguyên tử",
+      "B": "Tàu ngầm",
+      "C": "Máy bay phản lực",
+      "D": "Súng trường"
     },
-    "correct_answer": "C",
-    "short_explain_for_answer": "Bảo Đại là vị vua cuối cùng của triều đại nhà Nguyễn."
+    "correct_answers": [
+      "A"
+    ],
+    "short_explain_for_answer": {
+      "A": "Bom nguyên tử được sử dụng tại Hiroshima và Nagasaki vào cuối chiến tranh."
+    }
   },
   {
-    "question": "Hồ Chí Minh đọc Tuyên ngôn Độc lập vào ngày tháng năm nào?",
+    "question": "Hậu quả nào sau đây là kết quả trực tiếp của Chiến tranh Thế giới thứ hai?",
     "answers": {
-      "A": "2/9/1945",
-      "B": "30/4/1975",
-      "C": "19/8/1945",
-      "D": "7/5/1954"
+      "A": "Sự hình thành Liên Hợp Quốc",
+      "B": "Sự sụp đổ của chủ nghĩa phát xít",
+      "C": "Chiến tranh Lạnh",
+      "D": "Sự chia cắt nước Đức"
     },
-    "correct_answer": "A",
-    "short_explain_for_answer": "Hồ Chí Minh đọc Tuyên ngôn Độc lập vào ngày 2 tháng 9 năm 1945 tại Quảng trường Ba Đình."
+    "correct_answers": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "short_explain_for_answer": {
+      "A": "Liên Hợp Quốc được thành lập để ngăn chặn chiến tranh tương lai.",
+      "B": "Chủ nghĩa phát xít bị đánh bại hoàn toàn.",
+      "C": "Chiến tranh Lạnh bắt đầu giữa các cường quốc thắng trận.",
+      "D": "Nước Đức bị chia cắt thành hai quốc gia: Đông Đức và Tây Đức."
+    }
   },
   {
-    "question": "Ai là người lãnh đạo Đảng Cộng sản Việt Nam?",
+    "question": "Ai là tổng thống Hoa Kỳ trong suốt phần lớn thời gian của Chiến tranh Thế giới thứ hai?",
     "answers": {
-      "A": "Hồ Chí Minh",
-      "B": "Lê Duẩn",
-      "C": "Trường Chinh",
-      "D": "Tất cả đều đúng ở các thời kỳ khác nhau"
+      "A": "Harry S. Truman",
+      "B": "Dwight D. Eisenhower",
+      "C": "Franklin D. Roosevelt",
+      "D": "John F. Kennedy"
     },
-    "correct_answer": "D",
-    "short_explain_for_answer": "Nhiều người đã lãnh đạo Đảng Cộng sản Việt Nam qua các giai đoạn lịch sử."
+    "correct_answers": [
+      "C"
+    ],
+    "short_explain_for_answer": {
+      "C": "Franklin D. Roosevelt là tổng thống Hoa Kỳ khi chiến tranh bắt đầu và qua đời trước khi chiến tranh kết thúc."
+    }
   },
   {
-    "question": "Năm 1930, Đảng Cộng sản Việt Nam được thành lập ở đâu?",
+    "question": "Chiến dịch nào sau đây là một phần của chiến lược của quân Đồng Minh ở châu Âu?",
     "answers": {
-      "A": "Hà Nội",
-      "B": "Sài Gòn",
-      "C": "Hương Cảng (Hong Kong)",
-      "D": "Moskva"
+      "A": "Chiến dịch Barbarossa",
+      "B": "Chiến dịch Normandy",
+      "C": "Chiến dịch Market Garden",
+      "D": "Chiến dịch Overlord"
     },
-    "correct_answer": "C",
-    "short_explain_for_answer": "Đảng Cộng sản Việt Nam được thành lập tại Hương Cảng (Hong Kong)."
+    "correct_answers": [
+      "B",
+      "D"
+    ],
+    "short_explain_for_answer": {
+      "B": "Chiến dịch Normandy là cuộc đổ bộ của quân Đồng Minh vào Normandy.",
+      "D": "Chiến dịch Overlord là tên mã của chiến dịch Normandy."
+    }
   },
   {
-    "question": "Ai là tác giả của bài thơ \"Nam quốc sơn hà\"?",
+    "question": "Ngày nào được coi là ngày kết thúc Chiến tranh Thế giới thứ hai?",
     "answers": {
-      "A": "Lý Thường Kiệt",
-      "B": "Trần Hưng Đạo",
-      "C": "Nguyễn Trãi",
-      "D": "Hồ Xuân Hương"
+      "A": "Ngày 2 tháng 9 năm 1939",
+      "B": "Ngày 6 tháng 8 năm 1945",
+      "C": "Ngày 2 tháng 9 năm 1945",
+      "D": "Ngày 8 tháng 5 năm 1945"
     },
-    "correct_answer": "A",
-    "short_explain_for_answer": "\"Nam quốc sơn hà\" thường được cho là của Lý Thường Kiệt."
+    "correct_answers": [
+      "C"
+    ],
+    "short_explain_for_answer": {
+      "C": "Ngày 2 tháng 9 năm 1945, Nhật Bản chính thức đầu hàng không điều kiện, đánh dấu sự kết thúc của Chiến tranh Thế giới thứ hai."
+    }
   },
   {
-    "question": "Thành phố Sài Gòn được đổi tên thành Thành phố Hồ Chí Minh vào năm nào?",
+    "question": "Những quốc gia nào thuộc phe Trục trong Chiến tranh Thế giới thứ hai?",
     "answers": {
-      "A": "1945",
-      "B": "1954",
-      "C": "1975",
-      "D": "1986"
+      "A": "Đức",
+      "B": "Nhật Bản",
+      "C": "Ý",
+      "D": "Liên Xô"
     },
-    "correct_answer": "C",
-    "short_explain_for_answer": "Sài Gòn chính thức đổi tên thành Thành phố Hồ Chí Minh sau ngày thống nhất đất nước năm 1975."
-  },
-  {
-    "question": "Triều đại nào xây dựng Văn Miếu - Quốc Tử Giám?",
-    "answers": {
-      "A": "Nhà Lý",
-      "B": "Nhà Trần",
-      "C": "Nhà Lê",
-      "D": "Nhà Nguyễn"
-    },
-    "correct_answer": "A",
-    "short_explain_for_answer": "Nhà Lý cho xây dựng Văn Miếu - Quốc Tử Giám, trường đại học đầu tiên của Việt Nam."
-  },
-  {
-    "question": "Ai là anh hùng dân tộc đã dời đô từ Hoa Lư về Thăng Long?",
-    "answers": {
-      "A": "Đinh Bộ Lĩnh",
-      "B": "Lê Hoàn",
-      "C": "Lý Thái Tổ",
-      "D": "Trần Thái Tông"
-    },
-    "correct_answer": "C",
-    "short_explain_for_answer": "Lý Thái Tổ (Lý Công Uẩn) là người dời đô từ Hoa Lư về Thăng Long (Hà Nội)."
-  },
-  {
-    "question": "Cuộc kháng chiến chống quân Mông - Nguyên diễn ra dưới triều đại nào?",
-    "answers": {
-      "A": "Nhà Lý",
-      "B": "Nhà Trần",
-      "C": "Nhà Lê",
-      "D": "Nhà Nguyễn"
-    },
-    "correct_answer": "B",
-    "short_explain_for_answer": "Cuộc kháng chiến chống quân Mông - Nguyên diễn ra dưới triều đại nhà Trần."
-  },
-  {
-    "question": "Ai là người chỉ huy quân đội nhà Trần đánh tan quân Nguyên lần thứ nhất?",
-    "answers": {
-      "A": "Trần Hưng Đạo",
-      "B": "Trần Quốc Tuấn",
-      "C": "Trần Thái Tông",
-      "D": "Lê Thánh Tông"
-    },
-    "correct_answer": "B",
-    "short_explain_for_answer": "Trần Quốc Tuấn hay còn gọi là Trần Hưng Đạo, là người chỉ huy quân đội nhà Trần đánh tan quân Nguyên."
-  },
-  {
-    "question": "Chủ tịch Hồ Chí Minh sinh ngày tháng năm nào?",
-    "answers": {
-      "A": "19/05/1890",
-      "B": "19/05/1891",
-      "C": "19/05/1892",
-      "D": "19/05/1893"
-    },
-    "correct_answer": "A",
-    "short_explain_for_answer": "Chủ tịch Hồ Chí Minh sinh ngày 19 tháng 5 năm 1890."
-  },
-  {
-    "question": "Sự kiện Vịnh Bắc Bộ xảy ra vào năm nào?",
-    "answers": {
-      "A": "1964",
-      "B": "1965",
-      "C": "1968",
-      "D": "1972"
-    },
-    "correct_answer": "A",
-    "short_explain_for_answer": "Sự kiện Vịnh Bắc Bộ diễn ra vào năm 1964 và là một trong những lý do Hoa Kỳ leo thang chiến tranh tại Việt Nam."
-  },
-  {
-    "question": "Phong trào Cần Vương bùng nổ sau sự kiện nào?",
-    "answers": {
-      "A": "Hiệp ước Nhâm Tuất",
-      "B": "Hiệp ước Giáp Tuất",
-      "C": "Hiệp ước Quý Mùi",
-      "D": "Cuộc phản công kinh thành Huế"
-    },
-    "correct_answer": "D",
-    "short_explain_for_answer": "Phong trào Cần Vương bùng nổ sau cuộc phản công kinh thành Huế thất bại."
-  },
-  {
-    "question": "Ai là người lãnh đạo cuộc khởi nghĩa Yên Thế?",
-    "answers": {
-      "A": "Hoàng Hoa Thám",
-      "B": "Phan Đình Phùng",
-      "C": "Trương Định",
-      "D": "Nguyễn Trung Trực"
-    },
-    "correct_answer": "A",
-    "short_explain_for_answer": "Hoàng Hoa Thám (Đề Thám) là người lãnh đạo cuộc khởi nghĩa Yên Thế."
-  },
-  {
-    "question": "Phong trào Đồng Khởi diễn ra vào năm nào?",
-    "answers": {
-      "A": "1959 - 1960",
-      "B": "1960 - 1961",
-      "C": "1964 - 1965",
-      "D": "1968"
-    },
-    "correct_answer": "A",
-    "short_explain_for_answer": "Phong trào Đồng Khởi diễn ra mạnh mẽ từ năm 1959 đến 1960, mở đầu cho giai đoạn đấu tranh vũ trang chống Mỹ."
-  },
-  {
-    "question": "Đâu không phải là một trong bốn Tứ bất tử của Việt Nam?",
-    "answers": {
-      "A": "Tản Viên Sơn Thánh",
-      "B": "Thánh Gióng",
-      "C": "Liễu Hạnh",
-      "D": "Hồ Xuân Hương"
-    },
-    "correct_answer": "D",
-    "short_explain_for_answer": "Tứ bất tử của Việt Nam gồm Tản Viên Sơn Thánh, Thánh Gióng, Chử Đồng Tử và Liễu Hạnh."
+    "correct_answers": [
+      "A",
+      "B",
+      "C"
+    ],
+    "short_explain_for_answer": {
+      "A": "Đức là một trong những quốc gia thành lập phe Trục.",
+      "B": "Nhật Bản là một trong những quốc gia thành lập phe Trục.",
+      "C": "Ý là một trong những quốc gia thành lập phe Trục."
+    }
   }
 ]
