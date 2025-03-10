@@ -32,8 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    window.alert(topic + "" + selectedLevel + "" + language + "" + amount);
-
     // Here, you can send these values to your backend or use them as needed
   }
 

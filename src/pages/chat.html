@@ -119,7 +119,7 @@
             font-weight: bold;
             min-width: 160px;
             color: #CAF0F8;
-            margin-top: 20px;
+            margin-top: 5px;
             background-color: #0077B6;
             padding: 10px;
             border-radius: 30px
@@ -127,6 +127,12 @@
 
         label {
             color: #0077B6;
+        }
+
+        #amountInput {}
+
+        #amountSlider {
+            background-color: #54535F;
         }
     </style>
     <link href="../output.css" rel="stylesheet">
@@ -167,9 +173,14 @@
                 </div>
 
                 <div class="mb-1">
-                    <label class="block font-bold mb-2">Number:</label>
-                    <input title="number" type="number" id="amount" min="1" max="10"
-                        class="border p-2 w-full rounded bg-white">
+
+                    <label for="amountSlider" class="font-bold text-gray-700">USD</lable>
+                        <input type="number" id="amountInput" min="100" max="1500"
+                            class="border p-2 w-full rounded bg-white" disabled>
+
+
+                        <input type="range" id="amountSlider" min="1" max="10" step="1"
+                            class="w-full appearance-none h-2 rounded-lg cursor-pointer" />
                 </div>
 
                 <div class="flex justify-center">
@@ -188,18 +199,66 @@
     </div>
 
     <script>
-        function generateQuiz() {
+        async function generateQuiz() {
             document.getElementById("formContainer").classList.add("shift-left");
             const quizOutput = document.getElementById("quizOutput");
+
+            // Show loading animation
+            quizOutput.innerHTML = `<div class="loading"><img src="../assets/images/loading.png" alt="Loading" /></div>`;
             quizOutput.classList.remove("hidden");
-            setTimeout(() => {
-                quizOutput.classList.add("show");
-                quizOutput.innerHTML = `<h2 class='text-xl font-bold mb-4 text-center'>Generated Quiz</h2>`;
-            }, 500);
+
+            try {
+                // Load quiz data from JSON file
+                const response = await fetch("../scripts/quiz.json");
+                if (!response.ok) throw new Error("Failed to load quiz data");
+                const quizData = await response.json();
+
+                // Render quiz
+                renderQuiz(quizData);
+            } catch (error) {
+                quizOutput.innerHTML = `<p class="text-red-500 text-center font-bold">❌ Error loading quiz: ${error.message}</p>`;
+            }
+        }
+
+        function renderQuiz(quizData) {
+            const quizOutput = document.getElementById("quizOutput");
+            quizOutput.innerHTML = ``;
+
+            quizData.forEach((item, index) => {
+                const answersHTML = Object.keys(item.answers)
+                    .map(
+                        (key) => `
+                <p><strong>${key}:</strong> ${item.answers[key]}</p>
+            `
+                    )
+                    .join("");
+
+                quizOutput.innerHTML += `
+                    <div class="mb-4 p-4 bg-blue-200 border border-blue-300 rounded shadow">
+                        <p class="font-bold">${index + 1}. ${item.question}</p>
+                        <div class="mt-2">${answersHTML}</div>
+                    </div>
+                `;
+            });
+
+            quizOutput.classList.add("show");
         }
     </script>
+
+    <script>
+        const slider = document.getElementById("amountSlider");
+        const input = document.getElementById("amountInput");
+
+        slider.addEventListener("input", () => {
+            input.value = slider.value;
+        });
+
+        input.addEventListener("input", () => {
+            slider.value = input.value;
+        });
+    </script>
     <!-- <script src="../scripts/chat.js"></script> -->
-    <script src="../scripts//test.js"></script>
+    <script src="../scripts/test.js"></script>
 </body>
 
 </html>
