@@ -1,0 +1,6 @@
+.card-gradient {
+  background: linear-gradient(to right, #4287f5, #42c7f5);
+}
+.page-gradient {
+  background: linear-gradient(to bottom, #bde0fe 0%, #ffffff 100%);
+}
