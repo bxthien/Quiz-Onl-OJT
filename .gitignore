@@ -1,3 +1,4 @@
 /src/output.css
 /.env
 /src/scripts/quiz.json
+/node_modules
