@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="flex-1">
               <p class="text-lg font-semibold">${question}</p>
               <ul class="mt-2">${answerHtml}</ul>
-              <p class="text-green-600 mt-2 ml-5"><strong>Giải thích:</strong></p>
+              <p class="text-green-600 mt-2 ml-5"><strong>Explain:</strong></p>
               <p class="ml-5">${short_explain_for_answer}</p>
             </div>
             <img src="../assets/svg/${isCorrect ? "good-review-icon.svg" : "bad-review-icon.svg"}" class="ml-4 my-auto md:w-30 md:h-30 sm:w-[5px] sm:h-[5px]" />
