@@ -98,9 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const quizData = JSON.parse(responseText);
 
       // Save quiz data to local storage
-      localStorage.setItem("QuizData", JSON.stringify(quizData));
+      localStorage.setItem("quiz", JSON.stringify(quizData));
 
-      const quizDataString = localStorage.getItem("QuizData");
+      const quizDataString = localStorage.getItem("quiz");
       if (!quizDataString) {
         throw new Error("No quiz data found in local storage");
       }
