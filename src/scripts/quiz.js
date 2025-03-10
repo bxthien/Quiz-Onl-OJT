@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Khi nhấn Sure, lưu dữ liệu vào localStorage và chuyển trang
   confirmBtn.addEventListener("click", () => {
     localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers));
-    window.location.href = "pages/quiz-review.html";
+    window.location.href = "quiz-review.html";
   });
   submitReviewBtn.addEventListener("click", function () {
     this.classList.add("animate-bounce");
@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Khi nhấn Sure, lưu dữ liệu vào localStorage và chuyển trang
   confirmReviewBtn.addEventListener("click", () => {
     localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers));
-    window.location.href = "pages/quiz-review.html";
+    window.location.href = "quiz-review.html";
   });
 });
 
