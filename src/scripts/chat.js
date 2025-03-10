@@ -99,7 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Save quiz data to local storage
       localStorage.setItem("quiz", JSON.stringify(quizData));
-
+      localStorage.removeItem("quiz-answers");
+      localStorage.removeItem("quiz-current");
       const quizDataString = localStorage.getItem("quiz");
       if (!quizDataString) {
         throw new Error("No quiz data found in local storage");

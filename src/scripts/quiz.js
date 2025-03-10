@@ -7,7 +7,7 @@ const quizData = JSON.parse(localStorage.getItem("quiz"));
 const quizAnswer = JSON.parse(localStorage.getItem("quiz-answers"));
 let selectedAnswers = quizAnswer || [];
 let currentQuestionIndex = localStorage.getItem("quiz-current")
-  ? JSON.parse(localStorage.getItem("quiz-current"))
+  ? localStorage.getItem("quiz-current")
   : selectedAnswers.length;
 const questionText = document.getElementById("question-text");
 
@@ -27,11 +27,24 @@ function toggleButtonsVisibility() {
     document.getElementById("next-button").classList.remove("hidden");
   }
 }
+function resizeButton(button) {
+  const sourceButton = document.getElementById("sourceButton");
+  const targetButton = document.getElementById("targetButton");
+
+  if (sourceButton && targetButton) {
+    const height = button.offsetHeight;
+    targetButton.style.height = `${height}px`;
+  }
+}
 function showQuestion() {
+  toggleButtonsVisibility();
+  document.getElementById("progress-bar").style.width =
+    (currentQuestionIndex * 100) / quizData.length + "%";
+  document.getElementById("current-text").textContent = currentQuestionIndex;
   if (currentQuestionIndex < quizData.length) {
     document.getElementById("number-of-answer").textContent =
       quizData[currentQuestionIndex].correct_answers.length;
-    toggleButtonsVisibility();
+
     console.log(back.id + next.id);
     back.classList.toggle("hidden", currentQuestionIndex <= 0);
     next.classList.toggle(
@@ -55,31 +68,25 @@ function showQuestion() {
       }
 
       // Reset tất cả màu trước khi kiểm tra trạng thái
-      button.classList.remove("bg-gray-400", "bg-green-500");
+      button.classList.remove("bg-blue-400", "bg-green-500");
 
       // Nếu câu hỏi đã có câu trả lời trước đó, đổi màu xám bạc
       if (
         selectedAnswers[currentQuestionIndex] != null &&
         selectedAnswers[currentQuestionIndex].includes(key)
       ) {
-        button.classList.add("bg-gray-400");
+        button.classList.add("bg-blue-400");
       }
 
-      // Gỡ bỏ event cũ để tránh trùng lặp
       button.replaceWith(button.cloneNode(true));
       answerButtons[key] = document.getElementById(`answer-${key}`);
 
       answerButtons[key].addEventListener("click", () => {
-        // Reset màu tất cả trước khi chọn mới
-        // Object.values(answerButtons).forEach((btn) =>
-        //   btn.classList.remove("bg-gray-400", "bg-green-500")
-        // );
         if (
           selectedAnswers[currentQuestionIndex] != null &&
           selectedAnswers[currentQuestionIndex].includes(key)
         ) {
-          answerButtons[key].classList.remove("bg-gray-400");
-          answerButtons[key].classList.remove("bg-green-500");
+          answerButtons[key].classList.remove("bg-blue-400", "bg-green-500");
           answerButtons[key].classList.add("bg-blue-200");
         } else {
           answerButtons[key].classList.add("bg-green-500");
@@ -88,9 +95,21 @@ function showQuestion() {
         handleAnswer(key);
       });
     });
+    // Đặt height về auto trước để tính chính xác
+    Object.values(answerButtons).forEach((btn) => (btn.style.height = "auto"));
+
+    // Lấy chiều cao lớn nhất
+    let maxHeight = Math.max(
+      ...Object.values(answerButtons).map((btn) => btn.offsetHeight)
+    );
+
+    // Gán chiều cao lớn nhất cho tất cả button
+    Object.values(answerButtons).forEach(
+      (btn) => (btn.style.height = `${maxHeight}px`)
+    );
   } else {
     questionText.innerHTML =
-      '<div class="text-2xl font-bold text-green-500 animate-bounce">🎉 Bạn đã hoàn thành bài kiểm tra!</div><div class="text-2xl font-bold text-amber-600 animate-bounce">🎉 Cùng xem kết quả nào!!!</div>';
+      '<div class="text-2xl font-bold text-green-500">🎉 Bạn đã hoàn thành bài kiểm tra!</div><div class="text-2xl font-bold text-amber-600">🎉 Cùng xem kết quả nào!!!</div>';
 
     Object.values(answerButtons).forEach((button) =>
       button.classList.add("hidden")
@@ -106,28 +125,24 @@ function showQuestion() {
 function handleAnswer(selected) {
   const correctAnswers = quizData[currentQuestionIndex].correct_answers;
   let selectedList = selectedAnswers[currentQuestionIndex] || [];
-
-  // if (selectedList.includes(selected) && correctAnswers.length > 1) {
-  //   // Nếu đã chọn, bỏ chọn
-  //   selectedList = selectedList.filter((item) => item !== selected);
-  // } else {
-  //   // Nếu chưa chọn, thêm vào danh sách
-  //   selectedList.push(selected);
-  // }
   if (!selectedList.includes(selected) && correctAnswers.length > 1) {
     selectedList.push(selected);
   } else if (correctAnswers.length > 1) {
     selectedList = selectedList.filter((item) => item !== selected);
   } else {
+    if (selectedList[0]) {
+      answerButtons[selectedList[0]].classList.remove("bg-blue-400");
+    }
     selectedList = [selected];
   }
   selectedAnswers[currentQuestionIndex] = selectedList;
+  console.log("Số lượng đáp án:", selectedAnswers[currentQuestionIndex].length);
   console.log("Đáp án đã chọn:", selectedAnswers);
 
-  if (selectedList.length === correctAnswers.length) {
+  if (selectedAnswers[currentQuestionIndex].length === correctAnswers.length) {
     Object.values(answerButtons).forEach((btn) => (btn.disabled = true));
     selectedList.forEach((key) => {
-      answerButtons[key].classList.remove("animate-pulse");
+      // answerButtons[key].classList.remove("animate-pulse");
 
       answerButtons[key].classList.add(
         "animate-[wiggle_1s_ease-in-out_infinite]"
@@ -136,7 +151,7 @@ function handleAnswer(selected) {
         answerButtons[key].classList.remove(
           "animate-[wiggle_1s_ease-in-out_infinite]"
         );
-        answerButtons[key].classList.add("animate-pulse");
+        // answerButtons[key].classList.add("animate-pulse");
       }, 1000);
     });
     setTimeout(() => {
@@ -144,7 +159,7 @@ function handleAnswer(selected) {
       document.getElementById("progress-bar").style.width =
         (selectedAnswers.length * 100) / quizData.length + "%";
       document.getElementById("current-text").textContent =
-        selectedAnswers.length;
+        currentQuestionIndex;
       showQuestion();
       Object.values(answerButtons).forEach((btn) => (btn.disabled = false));
     }, 1000);
@@ -152,17 +167,19 @@ function handleAnswer(selected) {
     next.classList.toggle(
       "hidden",
       selectedAnswers.length <= currentQuestionIndex ||
-        selectedAnswers[currentQuestionIndex]?.length <
+        selectedAnswers[currentQuestionIndex]?.length !==
           quizData[currentQuestionIndex].correct_answers.length
     );
   }
 }
 document.addEventListener("DOMContentLoaded", () => {
+  if (!quizData) {
+    window.location.href = "../index.html";
+  }
   showQuestion();
-
   document.getElementById("progress-bar").style.width =
-    (selectedAnswers.length * 100) / quizData.length + "%";
-  document.getElementById("current-text").textContent = selectedAnswers.length;
+    (currentQuestionIndex * 100) / quizData.length + "%";
+  document.getElementById("current-text").textContent = currentQuestionIndex;
   document
     .getElementById("back-from-finish")
     .addEventListener("click", function () {
@@ -185,22 +202,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelReviewBtn = document.getElementById("cancel-review");
   const confirmReviewBtn = document.getElementById("confirm-review");
 
-  // Khi nhấn Submit, hiện modal
   submitBtn.addEventListener("click", function () {
     this.classList.add("animate-bounce");
     setTimeout(() => this.classList.remove("animate-bounce"), 500);
     modal.classList.remove("hidden");
   });
 
-  // Khi nhấn Cancel, ẩn modal
   cancelBtn.addEventListener("click", () => {
     modal.classList.add("hidden");
   });
 
-  // Khi nhấn Sure, lưu dữ liệu vào localStorage và chuyển trang
   confirmBtn.addEventListener("click", () => {
     localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers));
-    window.location.href = "pages/quiz-review.html";
+    localStorage.removeItem("quiz-current");
+    window.location.href = "quiz-review.html";
   });
   submitReviewBtn.addEventListener("click", function () {
     this.classList.add("animate-bounce");
@@ -216,10 +231,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // Khi nhấn Sure, lưu dữ liệu vào localStorage và chuyển trang
   confirmReviewBtn.addEventListener("click", () => {
     localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers));
-    window.location.href = "pages/quiz-review.html";
+    localStorage.removeItem("quiz-current");
+    window.location.href = "quiz-review.html";
   });
 });
+function saveToLocal() {
+  if (selectedAnswers && currentQuestionIndex) {
+    localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers) || []);
+    localStorage.setItem("quiz-current", currentQuestionIndex || 0);
+  }
+}
 
+setInterval(saveToLocal, 3000);
+
+window.addEventListener("beforeunload", () => {
+  saveToLocal();
+});
 document.getElementById("total-text").textContent = quizData.length;
 
 document.getElementById("character").addEventListener("click", function () {
@@ -240,4 +267,7 @@ back.addEventListener("click", () => {
 next.addEventListener("click", () => {
   currentQuestionIndex++;
   showQuestion();
+});
+document.addEventListener("resize", () => {
+  toggleButtonsVisibility();
 });
