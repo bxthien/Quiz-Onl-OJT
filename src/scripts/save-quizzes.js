@@ -95,7 +95,7 @@ document.addEventListener("click", (event) => {
   if (event.target.closest(".delete-btn")) {
     const quizId = event.target.closest(".delete-btn").getAttribute("data-id");
     console.log("Clicked delete for quiz ID:", quizId);
-    handleDeleteQuiz(quizId);
+    showDeletePopup(quizId);
   }
 
   if (event.target.closest(".retake-btn")) {
@@ -112,5 +112,39 @@ async function handleDeleteQuiz(quizId) {
     await renderQuizzes(); // Đợi render hoàn tất
   } catch (error) {
     console.error("Error deleting quiz:", error);
+  }
+}
+
+// 🛠 Hiển thị popup xác nhận xoá từ file delete-popup.html
+async function showDeletePopup(quizId) {
+  try {
+    const response = await fetch("delete-popup.html");
+    if (!response.ok) throw new Error("Failed to load delete-popup.html");
+
+    const popupHtml = await response.text();
+
+    let popupContainer = document.getElementById("popupContainer");
+    if (!popupContainer) {
+      popupContainer = document.createElement("div");
+      popupContainer.id = "popupContainer";
+      document.body.appendChild(popupContainer);
+    }
+
+    popupContainer.innerHTML = popupHtml;
+
+    // Thêm sự kiện cho nút Cancel
+    document.getElementById("cancelDelete").addEventListener("click", () => {
+      popupContainer.innerHTML = ""; // Đóng popup
+    });
+
+    // Thêm sự kiện cho nút Delete
+    document
+      .getElementById("confirmDelete")
+      .addEventListener("click", async () => {
+        await handleDeleteQuiz(quizId);
+        popupContainer.innerHTML = ""; // Xóa popup sau khi xoá quiz
+      });
+  } catch (error) {
+    console.error("❌ Error loading delete-popup:", error);
   }
 }
