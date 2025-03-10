@@ -1,0 +1,7 @@
+[build]
+  base = "/"
+  publish = "dist"  # Thư mục chứa các file sau khi build
+  command = "npm run build"  # Lệnh build của bạn
+
+[build.environment]
+  NODE_VERSION = "20"  # Chọn phiên bản Node.js phù hợp
