@@ -2,36 +2,43 @@ const DB_NAME = "QuizDB";
 const STORE_NAME = "quizzes";
 const DB_VERSION = 1;
 
-function openDB() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, DB_VERSION);
+async function getQuizById(id) {
+  try {
+    const db = await openDB();
+    const transaction = db.transaction(STORE_NAME, "readonly");
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.get(id);
 
-    request.onupgradeneeded = (event) => {
-      const db = event.target.result;
-      if (!db.objectStoreNames.contains(STORE_NAME)) {
-        db.createObjectStore(STORE_NAME, {
-          keyPath: "id",
-          autoIncrement: true,
-        });
-      }
-    };
+    return new Promise((resolve, reject) => {
+      request.onsuccess = () => {
+        if (request.result) {
+          resolve(request.result);
+        } else {
+          reject(`Quiz với ID ${id} không tồn tại.`);
+        }
+      };
 
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject("Failed to open IndexedDB.");
-  });
+      request.onerror = () => reject("Lỗi khi lấy dữ liệu từ IndexedDB.");
+    });
+  } catch (error) {
+    throw new Error("Lỗi khi mở IndexedDB: " + error);
+  }
 }
 
 async function saveQuiz(quiz) {
-  const db = await openDB();
-  return new Promise((resolve, reject) => {
+  try {
+    const db = await openDB();
     const transaction = db.transaction(STORE_NAME, "readwrite");
     const store = transaction.objectStore(STORE_NAME);
     const request = store.add(quiz);
 
-    request.onsuccess = () =>
-      resolve("Quiz saved successfully with autoIncrement ID!");
-    request.onerror = () => reject("Failed to save quiz.");
-  });
+    return new Promise((resolve, reject) => {
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject("Lỗi khi lưu quiz vào IndexedDB.");
+    });
+  } catch (error) {
+    throw new Error("Lỗi khi mở IndexedDB: " + error);
+  }
 }
 
 async function getSavedQuizzes() {
