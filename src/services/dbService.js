@@ -1,5 +1,5 @@
-const DB_NAME = "quizDB";
-const STORE_NAME = "saved_quizzes";
+const DB_NAME = "QuizDB";
+const STORE_NAME = "quizzes";
 const DB_VERSION = 1;
 // Mở database (tạo nếu chưa có)
 function openDB() {

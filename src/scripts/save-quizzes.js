@@ -26,13 +26,19 @@ async function renderQuizzes() {
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <!-- Quiz Title Section -->
                 <div class="card-gradient p-4">
-                    <h2 class="text-white text-lg font-semibold">${quiz.title}</h2>
+                    <h2 class="text-white text-lg font-semibold">${
+                      quiz.title
+                    }</h2>
                 </div>
 
                 <!-- Quiz Details Section -->
                 <div class="p-4">
-                    <p class="text-gray-500">Saved on: ${quiz.savedOn}</p>
-                    <p class="text-gray-500 mt-1">Score: ${quiz.grade}</p>
+                   <p class="text-gray-500">Saved on: ${formatDateTime(
+                     quiz.submitted_at
+                   )}</p>
+                    <p class="text-gray-500 mt-1">Score: ${quiz.score}/${
+        quiz.totalQuestions
+      }</p>
 
                     <!-- Action Buttons -->
                     <div class="mt-4 flex gap-3">
@@ -82,7 +88,6 @@ async function renderQuizzes() {
                     </div>
                 </div>
             </div>
-
             `;
       quizContainer.appendChild(quizCard);
     });
@@ -103,6 +108,34 @@ document.addEventListener("click", (event) => {
     retakeQuiz(quizId);
   }
 });
+async function retakeQuiz(quizId) {
+  if (!quizId) {
+    console.error("Quiz ID is missing!");
+    return;
+  }
+
+  try {
+    // Lấy danh sách quiz từ IndexedDB
+    const quizzes = await getSavedQuizzes();
+    const quizToRetake = quizzes.find((q) => q.id == quizId);
+
+    if (!quizToRetake) {
+      console.error("Quiz not found!");
+      return;
+    }
+
+    // Lưu quiz vào localStorage để làm lại
+    localStorage.setItem("quiz", JSON.stringify(quizToRetake.questions));
+    localStorage.setItem("quiz-title", quizToRetake.title);
+    localStorage.removeItem("quiz-answers"); // Xóa đáp án cũ
+    localStorage.removeItem("quiz-current"); // Reset trạng thái câu hỏi hiện tại
+
+    // Chuyển hướng đến trang quiz
+    window.location.href = `quiz.html?quizId=${quizId}`;
+  } catch (error) {
+    console.error("Error retaking quiz:", error);
+  }
+}
 
 // Gọi hàm này để xoá quiz theo ID
 async function handleDeleteQuiz(quizId) {
@@ -113,6 +146,13 @@ async function handleDeleteQuiz(quizId) {
   } catch (error) {
     console.error("Error deleting quiz:", error);
   }
+}
+
+function formatDateTime(timestamp) {
+  return new Date(timestamp).toLocaleString("vi-VN", {
+    dateStyle: "short",
+    timeStyle: "short",
+  }); // Format ngày giờ dễ đọc
 }
 
 // 🛠 Hiển thị popup xác nhận xoá từ file delete-popup.html
