@@ -7,7 +7,7 @@ const quizDataAdd = [
       C: "Ngô Quyền",
       D: "Lý Thái Tổ",
     },
-    correct_answer: "ABC",
+    correct_answer: ["A", "B", "C"],
     short_explain_for_answer:
       "Hùng Vương là vị vua đầu tiên của nhà nước Văn Lang, mở đầu cho thời kỳ các vua Hùng.",
   },
@@ -19,7 +19,7 @@ const quizDataAdd = [
       C: "Ngô Quyền",
       D: "Lê Lợi",
     },
-    correct_answer: "C",
+    correct_answer: ["C"],
     short_explain_for_answer:
       "Ngô Quyền là người chỉ huy quân ta đánh tan quân Nam Hán trên sông Bạch Đằng năm 938.",
   },
@@ -32,95 +32,9 @@ const quizDataAdd = [
       C: "Lê Hoàn",
       D: "Quang Trung",
     },
-    correct_answer: "B",
+    correct_answer: ["B"],
     short_explain_for_answer:
       "Trần Quốc Tuấn (Trần Hưng Đạo) là vị tướng tài ba, lãnh đạo quân dân Đại Việt kháng chiến chống quân Mông-Nguyên.",
-  },
-  {
-    question: "Vị vua nào đã dời đô từ Hoa Lư về Thăng Long (Hà Nội ngày nay)?",
-    answers: {
-      A: "Đinh Tiên Hoàng",
-      B: "Lê Đại Hành",
-      C: "Lý Thái Tổ",
-      D: "Trần Thái Tông",
-    },
-    correct_answer: "C",
-    short_explain_for_answer:
-      "Lý Thái Tổ quyết định dời đô từ Hoa Lư về Thăng Long năm 1010.",
-  },
-  {
-    question: "Quang Trung là tên của vị vua nào?",
-    answers: {
-      A: "Lê Thánh Tông",
-      B: "Lê Lợi",
-      C: "Nguyễn Huệ",
-      D: "Mạc Đăng Dung",
-    },
-    correct_answer: "C",
-    short_explain_for_answer:
-      "Nguyễn Huệ là tên thật của vua Quang Trung, người có công lớn trong việc đánh tan quân Thanh.",
-  },
-  {
-    question: "Ai là tác giả của bài thơ 'Nam quốc sơn hà'?",
-    answers: {
-      A: "Lý Thường Kiệt Lý Thường Kiệt Lý Thường Kiệt Lý Thường Kiệt Lý Thường Kiệt",
-      B: "Trần Quốc Tuấn",
-      C: "Nguyễn Trãi",
-      D: "Hồ Chí Minh",
-    },
-    correct_answer: "A",
-    short_explain_for_answer:
-      "Lý Thường Kiệt được cho là tác giả của bài thơ 'Nam quốc sơn hà', bản tuyên ngôn độc lập đầu tiên của Việt Nam.",
-  },
-  {
-    question: "Cuộc khởi nghĩa Lam Sơn chống quân Minh do ai lãnh đạo?",
-    answers: {
-      A: "Trần Quốc Tuấn",
-      B: "Lê Lợi",
-      C: "Ngô Quyền",
-      D: "Lý Thường Kiệt",
-    },
-    correct_answer: "B",
-    short_explain_for_answer:
-      "Lê Lợi là người lãnh đạo cuộc khởi nghĩa Lam Sơn đánh đuổi quân Minh xâm lược.",
-  },
-  {
-    question:
-      "Hiệp định Geneve năm 1954 được ký kết sau chiến thắng nào của Việt Nam?",
-    answers: {
-      A: "Điện Biên Phủ",
-      B: "Bạch Đằng",
-      C: "Chi Lăng",
-      D: "Rạch Gầm - Xoài Mút",
-    },
-    correct_answer: "A",
-    short_explain_for_answer:
-      "Chiến thắng Điện Biên Phủ đã buộc Pháp phải ngồi vào bàn đàm phán và ký kết Hiệp định Geneve.",
-  },
-  {
-    question: "Ai là vị chủ tịch đầu tiên của nước Việt Nam Dân chủ Cộng hòa?",
-    answers: {
-      A: "Hồ Chí Minh",
-      B: "Tôn Đức Thắng",
-      C: "Trường Chinh",
-      D: "Phạm Văn Đồng",
-    },
-    correct_answer: "A",
-    short_explain_for_answer:
-      "Hồ Chí Minh là vị chủ tịch đầu tiên của nước Việt Nam Dân chủ Cộng hòa (nay là Cộng hòa Xã hội Chủ nghĩa Việt Nam).",
-  },
-  {
-    question:
-      "Địa danh nào được mệnh danh là 'Hòn ngọc Viễn Đông' thời Pháp thuộc?",
-    answers: {
-      A: "Hà Nội",
-      B: "Huế",
-      C: "Sài Gòn",
-      D: "Hải Phòng",
-    },
-    correct_answer: "C",
-    short_explain_for_answer:
-      "Sài Gòn (TP.HCM ngày nay) được người Pháp gọi là 'Hòn ngọc Viễn Đông' vì sự phát triển và vẻ đẹp của nó.",
   },
 ];
 const isMd = window.matchMedia("(min-width: 768px)").matches;
@@ -130,10 +44,11 @@ let back = document.getElementById(backId);
 let next = document.getElementById(isMd ? "next-button" : "moblie-next");
 localStorage.setItem("quiz", JSON.stringify(quizDataAdd));
 const quizData = JSON.parse(localStorage.getItem("quiz"));
-const quizAnswer = JSON.parse(localStorage.getItem("quiz-answer"));
+const quizAnswer = JSON.parse(localStorage.getItem("quiz-answers"));
 let selectedAnswers = quizAnswer || [];
-let currentQuestionIndex = 0;
-const submitButton = document.getElementById("submitQuiz");
+let currentQuestionIndex = localStorage.getItem("quiz-current")
+  ? JSON.parse(localStorage.getItem("quiz-current"))
+  : selectedAnswers.length;
 const questionText = document.getElementById("question-text");
 
 const answerButtons = {
@@ -154,14 +69,16 @@ function toggleButtonsVisibility() {
 }
 function showQuestion() {
   if (currentQuestionIndex < quizData.length) {
-    document.getElementById("current-text").textContent =
-      selectedAnswers.length + 1;
+    document.getElementById("number-of-answer").textContent =
+      quizData[currentQuestionIndex].correct_answer.length;
     toggleButtonsVisibility();
     console.log(back.id + next.id);
     back.classList.toggle("hidden", currentQuestionIndex <= 0);
     next.classList.toggle(
       "hidden",
-      selectedAnswers.length <= currentQuestionIndex
+      selectedAnswers.length <= currentQuestionIndex ||
+        selectedAnswers[currentQuestionIndex]?.length <
+          quizData[currentQuestionIndex].correct_answer.length
     );
 
     const currentQuestion = quizData[currentQuestionIndex];
@@ -181,7 +98,10 @@ function showQuestion() {
       button.classList.remove("bg-gray-400", "bg-green-500");
 
       // Nếu câu hỏi đã có câu trả lời trước đó, đổi màu xám bạc
-      if (selectedAnswers[currentQuestionIndex] === key) {
+      if (
+        selectedAnswers[currentQuestionIndex] != null &&
+        selectedAnswers[currentQuestionIndex].includes(key)
+      ) {
         button.classList.add("bg-gray-400");
       }
 
@@ -191,45 +111,156 @@ function showQuestion() {
 
       answerButtons[key].addEventListener("click", () => {
         // Reset màu tất cả trước khi chọn mới
-        Object.values(answerButtons).forEach((btn) =>
-          btn.classList.remove("bg-gray-400", "bg-green-500")
-        );
+        // Object.values(answerButtons).forEach((btn) =>
+        //   btn.classList.remove("bg-gray-400", "bg-green-500")
+        // );
+        if (
+          selectedAnswers[currentQuestionIndex] != null &&
+          selectedAnswers[currentQuestionIndex].includes(key)
+        ) {
+          answerButtons[key].classList.remove("bg-gray-400");
+          answerButtons[key].classList.remove("bg-green-500");
+          answerButtons[key].classList.add("bg-blue-200");
+        } else {
+          answerButtons[key].classList.add("bg-green-500");
+        }
 
-        answerButtons[key].classList.add("bg-green-500");
-        setTimeout(() => {
-          handleAnswer(key);
-        }, 1000);
+        handleAnswer(key);
       });
     });
   } else {
-    questionText.textContent = "🎉 Bạn đã hoàn thành bài kiểm tra!";
+    questionText.innerHTML =
+      '<div class="text-2xl font-bold text-green-500 animate-bounce">🎉 Bạn đã hoàn thành bài kiểm tra!</div><div class="text-2xl font-bold text-amber-600 animate-bounce">🎉 Cùng xem kết quả nào!!!</div>';
+
     Object.values(answerButtons).forEach((button) =>
       button.classList.add("hidden")
     );
+    back.classList.add("hidden");
+    next.classList.toggle("hidden");
+    document.getElementById("number-answer-div").classList.add("hidden");
+    document.getElementById("review-quiz").classList.remove("hidden");
+    document.getElementById("back-from-finish").classList.remove("hidden");
+    document.getElementById("submit-quiz").classList.add("hidden");
   }
 }
 function handleAnswer(selected) {
-  selectedAnswers[currentQuestionIndex] = selected;
-  currentQuestionIndex++;
-  console.log(selectedAnswers);
-  console.log(quizData.length);
-  document.getElementById("progress-bar").style.width =
-    (selectedAnswers.length * 100) / quizData.length + "%";
-  showQuestion();
+  const correctAnswers = quizData[currentQuestionIndex].correct_answer;
+  let selectedList = selectedAnswers[currentQuestionIndex] || [];
+
+  // if (selectedList.includes(selected) && correctAnswers.length > 1) {
+  //   // Nếu đã chọn, bỏ chọn
+  //   selectedList = selectedList.filter((item) => item !== selected);
+  // } else {
+  //   // Nếu chưa chọn, thêm vào danh sách
+  //   selectedList.push(selected);
+  // }
+  if (!selectedList.includes(selected) && correctAnswers.length > 1) {
+    selectedList.push(selected);
+  } else if (correctAnswers.length > 1) {
+    selectedList = selectedList.filter((item) => item !== selected);
+  } else {
+    selectedList = [selected];
+  }
+  selectedAnswers[currentQuestionIndex] = selectedList;
+  console.log("Đáp án đã chọn:", selectedAnswers);
+
+  if (selectedList.length === correctAnswers.length) {
+    Object.values(answerButtons).forEach((btn) => (btn.disabled = true));
+    selectedList.forEach((key) => {
+      answerButtons[key].classList.remove("animate-pulse");
+
+      answerButtons[key].classList.add(
+        "animate-[wiggle_1s_ease-in-out_infinite]"
+      );
+      setTimeout(() => {
+        answerButtons[key].classList.remove(
+          "animate-[wiggle_1s_ease-in-out_infinite]"
+        );
+        answerButtons[key].classList.add("animate-pulse");
+      }, 1000);
+    });
+    setTimeout(() => {
+      currentQuestionIndex++;
+      document.getElementById("progress-bar").style.width =
+        (selectedAnswers.length * 100) / quizData.length + "%";
+      document.getElementById("current-text").textContent =
+        selectedAnswers.length;
+      showQuestion();
+      Object.values(answerButtons).forEach((btn) => (btn.disabled = false));
+    }, 1000);
+  } else {
+    next.classList.toggle(
+      "hidden",
+      selectedAnswers.length <= currentQuestionIndex ||
+        selectedAnswers[currentQuestionIndex]?.length <
+          quizData[currentQuestionIndex].correct_answer.length
+    );
+  }
 }
 document.addEventListener("DOMContentLoaded", () => {
   showQuestion();
 
-  submitButton.addEventListener("click", () => {
-    console.log("Bài làm của bạn:", selectedAnswers);
-    alert("Bài làm đã được lưu!");
+  document.getElementById("progress-bar").style.width =
+    (selectedAnswers.length * 100) / quizData.length + "%";
+  document.getElementById("current-text").textContent = selectedAnswers.length;
+  document
+    .getElementById("back-from-finish")
+    .addEventListener("click", function () {
+      this.classList.add("animate-bounce");
+      setTimeout(() => this.classList.remove("animate-bounce"), 500);
+      document.getElementById("number-answer-div").classList.remove("hidden");
+      document.getElementById("review-quiz").classList.add("hidden");
+      document.getElementById("submit-quiz").classList.remove("hidden");
+      this.classList.add("hidden");
+      currentQuestionIndex--;
+      showQuestion();
+    });
+
+  const submitBtn = document.getElementById("submit-quiz");
+  const modal = document.getElementById("submit-modal");
+  const cancelBtn = document.getElementById("cancel-submit");
+  const confirmBtn = document.getElementById("confirm-submit");
+  const submitReviewBtn = document.getElementById("review-quiz");
+  const modalReview = document.getElementById("review-modal");
+  const cancelReviewBtn = document.getElementById("cancel-review");
+  const confirmReviewBtn = document.getElementById("confirm-review");
+
+  // Khi nhấn Submit, hiện modal
+  submitBtn.addEventListener("click", function () {
+    this.classList.add("animate-bounce");
+    setTimeout(() => this.classList.remove("animate-bounce"), 500);
+    modal.classList.remove("hidden");
+  });
+
+  // Khi nhấn Cancel, ẩn modal
+  cancelBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  // Khi nhấn Sure, lưu dữ liệu vào localStorage và chuyển trang
+  confirmBtn.addEventListener("click", () => {
+    localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers));
+    window.location.href = "pages/quiz-review.html";
+  });
+  submitReviewBtn.addEventListener("click", function () {
+    this.classList.add("animate-bounce");
+    setTimeout(() => this.classList.remove("animate-bounce"), 500);
+    modalReview.classList.remove("hidden");
+  });
+
+  // Khi nhấn Cancel, ẩn modal
+  cancelReviewBtn.addEventListener("click", () => {
+    modalReview.classList.add("hidden");
+  });
+
+  // Khi nhấn Sure, lưu dữ liệu vào localStorage và chuyển trang
+  confirmReviewBtn.addEventListener("click", () => {
+    localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers));
+    window.location.href = "pages/quiz-review.html";
   });
 });
+
 document.getElementById("total-text").textContent = quizData.length;
-document.getElementById("submitQuiz").addEventListener("click", function () {
-  this.classList.add("animate-bounce");
-  setTimeout(() => this.classList.remove("animate-bounce"), 500);
-});
 
 document.getElementById("character").addEventListener("click", function () {
   this.classList.add("animate-wiggle");
