@@ -1,162 +1,8 @@
-const quizDataAdd = [
-  {
-    question:
-      "Nhân vật nào đóng vai trò quan trọng trong việc gây ra Chiến tranh Thế giới thứ hai?",
-    answers: {
-      A: "Adolf Hitler",
-      B: "Joseph Stalin",
-      C: "Benito Mussolini",
-      D: "Franklin D. Roosevelt",
-    },
-    correct_answers: ["A", "B", "C"],
-    short_explain_for_answer: {
-      A: "Hitler và chủ nghĩa phát xít Đức là động lực chính gây chiến.",
-      B: "Stalin và Liên Xô có vai trò trong việc gây ra căng thẳng quốc tế.",
-      C: "Mussolini và chủ nghĩa phát xít Ý là đồng minh quan trọng của Đức.",
-    },
-  },
-  {
-    question:
-      "Sự kiện nào đánh dấu sự bắt đầu của Chiến tranh Thế giới thứ hai?",
-    answers: {
-      A: "Cuộc xâm lược Ba Lan của Đức",
-      B: "Vụ tấn công Trân Châu Cảng",
-      C: "Sự kiện ám sát Tổng thống Áo-Hung Franz Ferdinand",
-      D: "Hiệp ước Versailles được ký kết",
-    },
-    correct_answers: ["A"],
-    short_explain_for_answer: {
-      A: "Đức xâm lược Ba Lan ngày 1 tháng 9 năm 1939, dẫn đến việc Anh và Pháp tuyên chiến với Đức.",
-    },
-  },
-  {
-    question:
-      "Những quốc gia nào thuộc phe Đồng Minh trong Chiến tranh Thế giới thứ hai?",
-    answers: {
-      A: "Đức",
-      B: "Liên Xô",
-      C: "Hoa Kỳ",
-      D: "Anh",
-    },
-    correct_answers: ["B", "C", "D"],
-    short_explain_for_answer: {
-      B: "Liên Xô tham gia phe Đồng Minh sau khi bị Đức tấn công.",
-      C: "Hoa Kỳ tham gia sau vụ tấn công Trân Châu Cảng.",
-      D: "Anh là một trong những quốc gia đầu tiên tham gia chiến tranh chống lại Đức.",
-    },
-  },
-  {
-    question:
-      "Trận đánh nào được coi là bước ngoặt quan trọng trong Chiến tranh Thế giới thứ hai ở châu Âu?",
-    answers: {
-      A: "Trận Stalingrad",
-      B: "Trận Normandy",
-      C: "Trận Midway",
-      D: "Trận Dunkirk",
-    },
-    correct_answers: ["A"],
-    short_explain_for_answer: {
-      A: "Trận Stalingrad đánh dấu sự thất bại lớn của quân Đức trên mặt trận phía Đông, làm thay đổi cục diện chiến tranh ở châu Âu.",
-    },
-  },
-  {
-    question:
-      "Vũ khí nào sau đây được sử dụng lần đầu tiên trong Chiến tranh Thế giới thứ hai?",
-    answers: {
-      A: "Bom nguyên tử",
-      B: "Tàu ngầm",
-      C: "Máy bay phản lực",
-      D: "Súng trường",
-    },
-    correct_answers: ["A"],
-    short_explain_for_answer: {
-      A: "Bom nguyên tử được sử dụng tại Hiroshima và Nagasaki vào cuối chiến tranh.",
-    },
-  },
-  {
-    question:
-      "Hậu quả nào sau đây là kết quả trực tiếp của Chiến tranh Thế giới thứ hai?",
-    answers: {
-      A: "Sự hình thành Liên Hợp Quốc",
-      B: "Sự sụp đổ của chủ nghĩa phát xít",
-      C: "Chiến tranh Lạnh",
-      D: "Sự chia cắt nước Đức",
-    },
-    correct_answers: ["A", "B", "C", "D"],
-    short_explain_for_answer: {
-      A: "Liên Hợp Quốc được thành lập để ngăn chặn chiến tranh tương lai.",
-      B: "Chủ nghĩa phát xít bị đánh bại hoàn toàn.",
-      C: "Chiến tranh Lạnh bắt đầu giữa các cường quốc thắng trận.",
-      D: "Nước Đức bị chia cắt thành hai quốc gia: Đông Đức và Tây Đức.",
-    },
-  },
-  {
-    question:
-      "Ai là tổng thống Hoa Kỳ trong suốt phần lớn thời gian của Chiến tranh Thế giới thứ hai?",
-    answers: {
-      A: "Harry S. Truman",
-      B: "Dwight D. Eisenhower",
-      C: "Franklin D. Roosevelt",
-      D: "John F. Kennedy",
-    },
-    correct_answers: ["C"],
-    short_explain_for_answer: {
-      C: "Franklin D. Roosevelt là tổng thống Hoa Kỳ khi chiến tranh bắt đầu và qua đời trước khi chiến tranh kết thúc.",
-    },
-  },
-  {
-    question:
-      "Chiến dịch nào sau đây là một phần của chiến lược của quân Đồng Minh ở châu Âu?",
-    answers: {
-      A: "Chiến dịch Barbarossa",
-      B: "Chiến dịch Normandy",
-      C: "Chiến dịch Market Garden",
-      D: "Chiến dịch Overlord",
-    },
-    correct_answers: ["B", "D"],
-    short_explain_for_answer: {
-      B: "Chiến dịch Normandy là cuộc đổ bộ của quân Đồng Minh vào Normandy.",
-      D: "Chiến dịch Overlord là tên mã của chiến dịch Normandy.",
-    },
-  },
-  {
-    question:
-      "Ngày nào được coi là ngày kết thúc Chiến tranh Thế giới thứ hai?",
-    answers: {
-      A: "Ngày 2 tháng 9 năm 1939",
-      B: "Ngày 6 tháng 8 năm 1945",
-      C: "Ngày 2 tháng 9 năm 1945",
-      D: "Ngày 8 tháng 5 năm 1945",
-    },
-    correct_answers: ["C"],
-    short_explain_for_answer: {
-      C: "Ngày 2 tháng 9 năm 1945, Nhật Bản chính thức đầu hàng không điều kiện, đánh dấu sự kết thúc của Chiến tranh Thế giới thứ hai.",
-    },
-  },
-  {
-    question:
-      "Những quốc gia nào thuộc phe Trục trong Chiến tranh Thế giới thứ hai?",
-    answers: {
-      A: "Đức",
-      B: "Nhật Bản",
-      C: "Ý",
-      D: "Liên Xô",
-    },
-    correct_answers: ["A", "B", "C"],
-    short_explain_for_answer: {
-      A: "Đức là một trong những quốc gia thành lập phe Trục.",
-      B: "Nhật Bản là một trong những quốc gia thành lập phe Trục.",
-      C: "Ý là một trong những quốc gia thành lập phe Trục.",
-    },
-  },
-];
-
 const isMd = window.matchMedia("(min-width: 768px)").matches;
 
 let backId = isMd ? "back-button" : "moblie-prev";
 let back = document.getElementById(backId);
 let next = document.getElementById(isMd ? "next-button" : "moblie-next");
-localStorage.setItem("quiz", JSON.stringify(quizDataAdd));
 const quizData = JSON.parse(localStorage.getItem("quiz"));
 const quizAnswer = JSON.parse(localStorage.getItem("quiz-answers"));
 let selectedAnswers = quizAnswer || [];
@@ -369,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
   confirmBtn.addEventListener("click", () => {
     localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers));
     localStorage.removeItem("quiz-current");
-    window.location.href = "pages/quiz-review.html";
+    window.location.href = "quiz-review.html";
   });
   submitReviewBtn.addEventListener("click", function () {
     this.classList.add("animate-bounce");
@@ -386,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
   confirmReviewBtn.addEventListener("click", () => {
     localStorage.setItem("quiz-answers", JSON.stringify(selectedAnswers));
     localStorage.removeItem("quiz-current");
-    window.location.href = "pages/quiz-review.html";
+    window.location.href = "quiz-review.html";
   });
 });
 function saveToLocal() {
