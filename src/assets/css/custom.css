@@ -1,6 +1,12 @@
 .card-gradient {
   background: linear-gradient(to right, #4287f5, #42c7f5);
 }
+
 .page-gradient {
   background: linear-gradient(to bottom, #bde0fe 0%, #ffffff 100%);
+}
+
+body {
+  background: #A2D2FF;
+  font-family: 'Orbitron', sans-serif;
 }
