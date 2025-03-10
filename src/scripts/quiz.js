@@ -1,48 +1,8 @@
-const quizDataAdd = [
-  {
-    question: "Ai là vị vua đầu tiên của nhà nước Văn Lang?",
-    answers: {
-      A: "Hùng Vương",
-      B: "An Dương Vương",
-      C: "Ngô Quyền",
-      D: "Lý Thái Tổ",
-    },
-    correct_answer: ["A", "B", "C"],
-    short_explain_for_answer:
-      "Hùng Vương là vị vua đầu tiên của nhà nước Văn Lang, mở đầu cho thời kỳ các vua Hùng.",
-  },
-  {
-    question: "Trận Bạch Đằng năm 938 gắn liền với tên tuổi của vị tướng nào?",
-    answers: {
-      A: "Lý Thường Kiệt",
-      B: "Trần Hưng Đạo",
-      C: "Ngô Quyền",
-      D: "Lê Lợi",
-    },
-    correct_answer: ["C"],
-    short_explain_for_answer:
-      "Ngô Quyền là người chỉ huy quân ta đánh tan quân Nam Hán trên sông Bạch Đằng năm 938.",
-  },
-  {
-    question:
-      "Ai là người lãnh đạo cuộc kháng chiến chống quân Mông-Nguyên lần thứ nhất?",
-    answers: {
-      A: "Trần Thủ Độ",
-      B: "Trần Quốc Tuấn (Trần Hưng Đạo)",
-      C: "Lê Hoàn",
-      D: "Quang Trung",
-    },
-    correct_answer: ["B"],
-    short_explain_for_answer:
-      "Trần Quốc Tuấn (Trần Hưng Đạo) là vị tướng tài ba, lãnh đạo quân dân Đại Việt kháng chiến chống quân Mông-Nguyên.",
-  },
-];
 const isMd = window.matchMedia("(min-width: 768px)").matches;
 
 let backId = isMd ? "back-button" : "moblie-prev";
 let back = document.getElementById(backId);
 let next = document.getElementById(isMd ? "next-button" : "moblie-next");
-localStorage.setItem("quiz", JSON.stringify(quizDataAdd));
 const quizData = JSON.parse(localStorage.getItem("quiz"));
 const quizAnswer = JSON.parse(localStorage.getItem("quiz-answers"));
 let selectedAnswers = quizAnswer || [];
@@ -70,7 +30,7 @@ function toggleButtonsVisibility() {
 function showQuestion() {
   if (currentQuestionIndex < quizData.length) {
     document.getElementById("number-of-answer").textContent =
-      quizData[currentQuestionIndex].correct_answer.length;
+      quizData[currentQuestionIndex].correct_answers.length;
     toggleButtonsVisibility();
     console.log(back.id + next.id);
     back.classList.toggle("hidden", currentQuestionIndex <= 0);
@@ -78,7 +38,7 @@ function showQuestion() {
       "hidden",
       selectedAnswers.length <= currentQuestionIndex ||
         selectedAnswers[currentQuestionIndex]?.length <
-          quizData[currentQuestionIndex].correct_answer.length
+          quizData[currentQuestionIndex].correct_answers.length
     );
 
     const currentQuestion = quizData[currentQuestionIndex];
@@ -144,7 +104,7 @@ function showQuestion() {
   }
 }
 function handleAnswer(selected) {
-  const correctAnswers = quizData[currentQuestionIndex].correct_answer;
+  const correctAnswers = quizData[currentQuestionIndex].correct_answers;
   let selectedList = selectedAnswers[currentQuestionIndex] || [];
 
   // if (selectedList.includes(selected) && correctAnswers.length > 1) {
@@ -193,7 +153,7 @@ function handleAnswer(selected) {
       "hidden",
       selectedAnswers.length <= currentQuestionIndex ||
         selectedAnswers[currentQuestionIndex]?.length <
-          quizData[currentQuestionIndex].correct_answer.length
+          quizData[currentQuestionIndex].correct_answers.length
     );
   }
 }
