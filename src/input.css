@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+.bg_light_blue {
+    background-color: #A2D2FF;
+}
+
+.bg_dark_blue {
+    background-color: #0077B6;
+}
+
+.bg_card_blue {
+    background-color: #BDE0FE;
+}
+
+.bg_card_inner {
+    background-color: #CAF0F8;
+}

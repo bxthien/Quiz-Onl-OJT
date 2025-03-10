@@ -1,0 +1,95 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="../output.css"  />
+    <link rel="stylesheet" href="../input.css"  />
+  </head>
+  <body class="flex flex-col items-center bg_light_blue px-2 sm:mt-0 bg-cover bg-no-repeat bg-fixed" 
+    style="background-image: url('../assets/images/background.png');">
+    <div class="w-full md:max-w-2xl sm:max-w-48 md:p-0 sm:p-5">
+        <img
+        alt="Quiz logo"
+        class="mx-auto z-10 absolute inset-x-0 top-0"
+        height="100"
+        src="../assets/svg/logo.svg"
+        width="100"
+      />
+    <div class="bg_card_blue inset-shadow-indigo-500 w-full md:max-w-2xl sm:max-w-48 mt-10 p-6 rounded-lg shadow-xl text-center z-0">
+      
+      <h1 class="md:text-4xl sm:text-xl font-bold mb-2 mt-12" id="total-answer">
+        You answered 5/10 questions correctly! Try again next time.
+      </h1>
+      <div class="flex justify-center space-x-4">
+        <button
+          id="home-btn"
+          class="w-35 h-15 bg-no-repeat bg-contain bg-center transition-transform duration-150 hover:scale-110 active:scale-90 animate-bounce self-center mt-4"
+          style="background-image: url('../assets/svg/home-btn.svg')"
+        ></button>
+        </button>
+        <button
+          id="save-btn"
+          class="w-35 h-15 bg-no-repeat bg-contain bg-center transition-transform duration-150 hover:scale-110 active:scale-90 animate-bounce self-center mt-4"
+          style="background-image: url('../assets/svg/save-btn.svg')"
+        ></button>
+      </div>
+    </div>
+    </div>
+    
+    <div class="bg_card_blue w-full md:max-w-2xl mt-6 mb-6 p-4 rounded-lg shadow-xl">
+        <div class="bg-white p-4 rounded-lg">
+        </div>
+    </div>
+
+    <div id="modal" class="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-opacity-50 hidden z-20">
+        <div class="bg_dark_blue p-1 rounded-lg shadow-lg relative w-96">
+            <div class="relative z-10 p-4 bg_light_blue rounded-lg border-2 border-blue-500">
+                <h1 class="text-2xl font-bold mb-4">Save Quiz</h1>
+                <label class="block text-sm mb-2">Please enter name for this quiz</label>
+                <input id="title" type="text" class="bg-white w-full p-2 border-2 rounded mb-4">
+                <div class="flex flex-row-reverse">
+                    <button id="savedata-btn" class="bg_dark_blue text-white font-bold ml-2 w-28 py-2 px-4 rounded-3xl shadow-md">Save</button>  
+                    <button id="closeModal" class="text-black font-bold w-28 rounded-3xl">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nút Lên Đầu Trang -->
+    <button id="backToTop" 
+        class="w-25 h-25 fixed bottom-6 right-6 bg-no-repeat bg-contain bg-center hidden" 
+        style="background-image: url('../assets/svg/top-btn.svg');">
+    </button>
+
+
+    <script src="../scripts/review.js"></script>
+    <script>
+        const modal = document.getElementById("modal");
+        const openModal = document.getElementById("save-btn");
+        const closeModal = document.getElementById("closeModal");
+    
+        openModal.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+        });
+    
+        closeModal.addEventListener("click", () => {
+            modal.classList.add("hidden");
+        });
+
+
+        const backToTopButton = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+  </body>
+</html>
