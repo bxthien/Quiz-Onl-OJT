@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Create a multiple-choice quiz on the topic of ${topic}.
       The quiz should have ${amount} questions, each with four answer choices (A, B, C, and D).
       - 70% of the questions should have **only one correct answer**.
-      - 30% of the questions should have **exactly three correct answers** (e.g., "A, B, and C" or "B, C, and D").
+      - 30% of the questions should have **exactly three or two answers** (e.g., "A, B, and C" or "B, C, and D").
       
       For each question:
       - Provide four answer choices (A, B, C, and D).
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   startBtn.addEventListener("click", function () {
-    alert("Quiz Started!");
+    window.location.href = "quiz.html";
   });
 
   /** 📌 Attach Form Event Listener */
