@@ -165,7 +165,7 @@
                     <label class="block font-bold mb-2">Language:</label>
                     <select title="language" id="language" class="border p-2 w-full rounded bg-white">
                         <option value="English">English</option>
-                        <option value="Vietnamese">Vietnamese</option>
+                        <option value="Vietnamese" selected>Vietnamese</option>
                         <option value="Chinese">Chinese</option>
                         <option value="French">French</option>
                     </select>
@@ -174,16 +174,16 @@
                 <div class="mb-1">
 
                     <label for="amountSlider" class="font-bold text-gray-700">Number</lable>
-                        <input type="number" id="amountInput" min="1" max="40"
+                        <input type="number" id="amountInput" min="1" max="10" value="10"
                             class="border p-2 w-full rounded bg-white" disabled>
 
 
-                        <input type="range" id="amountSlider" min="1" max="40" step="1"
+                        <input type="range" id="amountSlider" min="1" max="10" step="1" value="10"
                             class="w-full appearance-none h-2 rounded-lg cursor-pointer" />
                 </div>
 
                 <div class="flex justify-center">
-                    <button type="submit" id="generateBtn" class="flex items-center justify-center font-bold">Render
+                    <button type="submit" id="generateBtn" class="flex items-center justify-center font-bold">Generate
                         <span class="ml-2"><img src="../assets/images/render.png" alt="Render"
                                 width="25" /></span></button>
 

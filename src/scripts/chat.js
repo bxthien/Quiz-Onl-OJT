@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Get all input value
-  let selectedLevel = "";
+  let selectedLevel = "Easy";
+
   const levelButtons = document.querySelectorAll(".levelBtn");
+  levelButtons[0].classList.add("selected-button");
   levelButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       levelButtons.forEach((btn) => btn.classList.remove("selected-button"));
@@ -9,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedLevel = event.target.textContent.trim();
     });
   });
+
   const slider = document.getElementById("amountSlider");
   const input = document.getElementById("amountInput");
   slider.addEventListener("input", () => {
