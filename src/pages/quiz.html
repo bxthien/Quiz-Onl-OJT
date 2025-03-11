@@ -7,7 +7,7 @@
     <title>Quiz UI</title>
   </head>
   <body
-    class="flex items-center justify-center min-h-screen bg-[#191a1c] px-2 sm:mt-0 overflow-hidden"
+    class="flex items-center justify-center h-screen w-screen bg-[#191a1c] px-2 sm:mt-0 overflow-hidden"
   >
     <div
       class="sm:mt-0 relative flex items-center max-w-[863px] w-full sm:grid-cols-1"
@@ -32,13 +32,17 @@
         class="z-11 text-center w-full rounded-full absolute top-[-40px] md:top-[-45px] h-2.5 justify-between neon-text"
         id="number-answer-div"
       >
-        <span class="text-white font-bold text-3xl" id="current-text"
+        <span
+          class="text-white font-bold text-2xl md:text-3xl"
+          id="current-text"
           >Choose</span
         >
-        <span class="text-white font-bold text-3xl" id="number-of-answer"
+        <span
+          class="text-white font-bold text-2xl md:text-3xl"
+          id="number-of-answer"
           >/</span
         >
-        <span class="text-white font-bold text-3xl" id="total-text">
+        <span class="text-white font-bold text-2xl md:text-3xl" id="total-text">
           answers
         </span>
       </div>
@@ -71,7 +75,7 @@
       <div id="question-board" class="w-full">
         <div
           id="question"
-          class="z-10 min-w-full sm:mt-4 md:min-w-[800px] bg-white shadow-[6px_6px_10px_rgba(0,0,0,0.2)] rounded-lg border-8 border-[#BDE0FE] flex flex-col justify-center"
+          class="min-w-full sm:mt-4 md:min-w-[800px] bg-white shadow-[6px_6px_10px_rgba(0,0,0,0.2)] rounded-lg border-8 border-[#BDE0FE] px-4 md:px-10 flex flex-col justify-center"
         >
           <p
             class="font-semibold text-center sm:text-xs md:text-2xl md:mb-20 md:mt-15 mb-10 mt-4"
@@ -102,7 +106,7 @@
           >
             <button
               id="answer-A"
-              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[80px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[40px] md:min-h-[80px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
             >
               <span class="absolute top-2 left-2 font-bold text-blue-700"
                 >A</span
@@ -156,12 +160,12 @@
       <img
         alt="robot"
         src="../assets/svg/robot-quiz-right.svg"
-        class="w-24 sm:w-[8vw] md:w-[12vw] h-auto transition-transform duration-300 hover:scale-110 active:scale-90"
+        class="w-20 sm:w-[8vw] md:w-[12vw] h-auto transition-transform duration-300 hover:scale-110 md:scale-120 active:scale-90"
         id="character"
       />
       <!-- Nút Submit -->
       <button
-        class="w-60 h-20 bg-no-repeat bg-contain bg-center mt-[-2px] transition-transform duration-300 hover:scale-110 active:scale-90 rounded-3xl"
+        class="z-10 md:w-60 md:h-20 w-30 ml-[-40] h-10 bg-no-repeat bg-contain bg-center mt-[-2px] transition-transform duration-300 hover:scale-110 active:scale-90 rounded-3xl"
         style="background-image: url('../assets/svg/button-submit.svg')"
         title="Submit"
         id="submit-quiz"
@@ -172,7 +176,7 @@
       <img
         alt="robot quiz left"
         src="../assets/svg/robot-quiz-left.svg"
-        class="w-24 sm:w-[8vw] md:w-[12vw] h-auto transition-transform duration-300 hover:scale-110 active:scale-90 animate-[bounce_4s_ease-in-out_infinite]"
+        class="w-20 sm:w-[8vw] md:w-[12vw] h-auto transition-transform duration-300 hover:scale-110 md:scale-120 active:scale-30 animate-[bounce_4s_ease-in-out_infinite]"
         id="character-left"
       />
     </div>
