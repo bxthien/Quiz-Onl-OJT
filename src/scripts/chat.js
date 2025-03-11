@@ -122,6 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /** 📌 Render Quiz Output */
   function renderQuiz(quizData) {
     const quizOutput = document.getElementById("quizOutput");
+    const startBtn = document.getElementById("startBtn");
+    startBtn.classList.remove("!hidden");
     quizOutput.innerHTML = "";
 
     quizData.forEach((item, index) => {
@@ -142,10 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /** 📌 Handle Generate & Start Button Behavior */
   const generateBtn = document.getElementById("generateBtn");
-  const startBtn = document.getElementById("startBtn");
 
   generateBtn.addEventListener("click", function () {
-    startBtn.classList.remove("!hidden");
     generateBtn.innerHTML = `Regenerate <span class="ml-2"><img src="../assets/images/render.png" alt="Render" width="25" /></span>`;
   });
 
