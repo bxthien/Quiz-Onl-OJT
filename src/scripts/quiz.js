@@ -346,12 +346,26 @@ document.getElementById("total-text").textContent = quizData.length;
 
 document.getElementById("character").addEventListener("click", function () {
   this.classList.add("animate-wiggle");
+  if (this.classList.contains("scale-30")) {
+    this.classList.remove("scale-30");
+    this.classList.add("scale-90");
+  } else {
+    this.classList.remove("scale-90");
+    this.classList.add("scale-30");
+  }
   setTimeout(() => this.classList.remove("animate-wiggle"), 500);
 });
 document
   .getElementById("character-left")
   .addEventListener("click", function () {
     this.classList.add("animate-wiggle");
+    if (this.classList.contains("scale-30")) {
+      this.classList.remove("scale-30");
+      this.classList.add("scale-90");
+    } else {
+      this.classList.remove("scale-90");
+      this.classList.add("scale-30");
+    }
     setTimeout(() => this.classList.remove("animate-wiggle"), 500);
   });
 back.addEventListener("click", () => {
