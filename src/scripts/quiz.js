@@ -1,22 +1,58 @@
 const isMd = window.matchMedia("(min-width: 768px)").matches;
-
+const buttonSound = new Audio("../assets/sounds/funny_button_pressin_quiz.mp3");
+const finishQuizSound = new Audio("../assets/sounds/finish-quiz.mp3");
 let backId = isMd ? "back-button" : "moblie-prev";
 let back = document.getElementById(backId);
 let next = document.getElementById(isMd ? "next-button" : "moblie-next");
 const quizData = JSON.parse(localStorage.getItem("quiz"));
+if (!quizData) {
+  window.location.href = "../index.html";
+}
 const quizAnswer = JSON.parse(localStorage.getItem("quiz-answers"));
 let selectedAnswers = quizAnswer || [];
 let currentQuestionIndex = localStorage.getItem("quiz-current")
-  ? localStorage.getItem("quiz-current")
+  ? parseInt(localStorage.getItem("quiz-current"), 10)
   : selectedAnswers.length;
-const questionText = document.getElementById("question-text");
 
+const questionText = document.getElementById("question-text");
+const questionBoard = document.getElementById("question-board");
 const answerButtons = {
   A: document.getElementById("answer-A"),
   B: document.getElementById("answer-B"),
   C: document.getElementById("answer-C"),
   D: document.getElementById("answer-D"),
 };
+function animOut(direction) {
+  return direction === "next" ? "slide-out-left" : "slide-out-right";
+}
+function animIn(direction) {
+  return direction === "next" ? "slide-in-right" : "slide-in-left";
+}
+let isAnimating = false;
+
+function boardSwipe(direction) {
+  if (isAnimating) return; // Chặn nếu animation đang chạy
+  isAnimating = true;
+
+  questionBoard.classList.add(animOut(direction));
+
+  setTimeout(() => {
+    questionBoard.classList.remove(animOut(direction));
+    questionBoard.classList.add(animIn(direction));
+
+    direction === "next" ? currentQuestionIndex++ : currentQuestionIndex--;
+
+    document.getElementById("progress-bar").style.width =
+      (currentQuestionIndex * 100) / quizData.length + "%";
+
+    showQuestion();
+
+    setTimeout(() => {
+      questionBoard.classList.remove(animIn(direction));
+      isAnimating = false; // Reset flag sau animation
+    }, 500);
+  }, 500);
+}
 function toggleButtonsVisibility() {
   const isSm = window.matchMedia("(max-width: 767px)").matches;
   if (isSm) {
@@ -38,8 +74,6 @@ function resizeButton(button) {
 }
 function showQuestion() {
   toggleButtonsVisibility();
-  document.getElementById("progress-bar").style.width =
-    (currentQuestionIndex * 100) / quizData.length + "%";
   document.getElementById("current-text").textContent = currentQuestionIndex;
   if (currentQuestionIndex < quizData.length) {
     document.getElementById("number-of-answer").textContent =
@@ -68,9 +102,9 @@ function showQuestion() {
       }
 
       // Reset tất cả màu trước khi kiểm tra trạng thái
-      button.classList.remove("bg-blue-400", "bg-green-500");
+      button.classList.remove("bg-blue-400", "bg-green-700");
 
-      // Nếu câu hỏi đã có câu trả lời trước đó, đổi màu xám bạc
+      // Nếu câu hỏi đã có câu trả lời trước đó, đổi m  àu xám bạc
       if (
         selectedAnswers[currentQuestionIndex] != null &&
         selectedAnswers[currentQuestionIndex].includes(key)
@@ -82,14 +116,15 @@ function showQuestion() {
       answerButtons[key] = document.getElementById(`answer-${key}`);
 
       answerButtons[key].addEventListener("click", () => {
+        playButtonSound();
         if (
           selectedAnswers[currentQuestionIndex] != null &&
           selectedAnswers[currentQuestionIndex].includes(key)
         ) {
-          answerButtons[key].classList.remove("bg-blue-400", "bg-green-500");
+          answerButtons[key].classList.remove("bg-blue-400", "bg-green-700");
           answerButtons[key].classList.add("bg-blue-200");
         } else {
-          answerButtons[key].classList.add("bg-green-500");
+          answerButtons[key].classList.add("bg-green-700");
         }
 
         handleAnswer(key);
@@ -109,7 +144,7 @@ function showQuestion() {
     );
   } else {
     questionText.innerHTML =
-      '<div class="text-2xl font-bold text-green-500">🎉 Bạn đã hoàn thành bài kiểm tra!</div><div class="text-2xl font-bold text-amber-600">🎉 Cùng xem kết quả nào!!!</div>';
+      '<div class="text-[35px] font-bold text-green-900 neon-text">🎉 Bạn đã hoàn thành bài kiểm tra!</div><div class="text-sm font-bold text-amber-600 neon-text">🎉 Cùng xem kết quả nào!!!</div>';
 
     Object.values(answerButtons).forEach((button) =>
       button.classList.add("hidden")
@@ -120,6 +155,8 @@ function showQuestion() {
     document.getElementById("review-quiz").classList.remove("hidden");
     document.getElementById("back-from-finish").classList.remove("hidden");
     document.getElementById("submit-quiz").classList.add("hidden");
+    finishQuizSound.play();
+    finishQuizSound.currentTime = 0;
   }
 }
 function handleAnswer(selected) {
@@ -154,13 +191,12 @@ function handleAnswer(selected) {
         // answerButtons[key].classList.add("animate-pulse");
       }, 1000);
     });
+    document.getElementById("progress-bar").style.width =
+      ((currentQuestionIndex + 1) * 100) / quizData.length + "%";
+    document.getElementById("current-text").textContent =
+      currentQuestionIndex + 1;
     setTimeout(() => {
-      currentQuestionIndex++;
-      document.getElementById("progress-bar").style.width =
-        (selectedAnswers.length * 100) / quizData.length + "%";
-      document.getElementById("current-text").textContent =
-        currentQuestionIndex;
-      showQuestion();
+      boardSwipe("next");
       Object.values(answerButtons).forEach((btn) => (btn.disabled = false));
     }, 1000);
   } else {
@@ -172,25 +208,83 @@ function handleAnswer(selected) {
     );
   }
 }
+
+// Hàm phát âm thanh
+function playButtonSound() {
+  buttonSound.currentTime = 0; // Reset thời gian để không bị delay
+  buttonSound.play();
+}
 document.addEventListener("DOMContentLoaded", () => {
   if (!quizData) {
     window.location.href = "../index.html";
   }
+  const audio = document.getElementById("background-music");
+  audio.volume = 0.5; // Set âm lượng (0.0 - 1.0)
+
+  // Bắt buộc user click vào web để phát nhạc (vì autoplay bị chặn trên nhiều trình duyệt)
+  document.body.addEventListener("click", function playAudio() {
+    audio.play();
+    document.body.removeEventListener("click", playAudio); // Chỉ chạy 1 lần
+  });
+  document.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", playButtonSound);
+  });
+  const techDots = document.querySelector(".tech-dots");
+  const chars = "0123456789ABCDEF#%@&$";
+
+  for (let i = 0; i < 120; i++) {
+    const charEl = document.createElement("span");
+    charEl.classList.add("tech-char");
+    charEl.textContent = chars[Math.floor(Math.random() * chars.length)];
+
+    // Random vị trí trên màn hình
+    charEl.style.top = Math.random() * 100 + "vh";
+    charEl.style.left = Math.random() * 100 + "vw";
+
+    // Random tốc độ và kích thước
+    charEl.style.animationDuration = Math.random() * 5 + 5 + "s";
+    charEl.style.fontSize = Math.random() * 1.5 + 0.8 + "rem";
+
+    techDots.appendChild(charEl);
+  }
+  const questionBox = document.getElementById("question");
+  const techDotsScreen = document.createElement("div");
+  techDotsScreen.classList.add("question-tech-dots");
+  questionBox.appendChild(techDotsScreen);
+  // const charsQuest = "Minh";
+  // for (let i = 0; i < 40; i++) {
+  //   const charEl = document.createElement("span");
+  //   charEl.classList.add("question-tech-char");
+  //   charEl.textContent =
+  //     charsQuest[Math.floor(Math.random() * charsQuest.length)];
+
+  //   // Random vị trí bên trong bảng
+  //   charEl.style.top = Math.random() * 100 + "%";
+  //   charEl.style.left = Math.random() * 100 + "%";
+
+  //   // Random tốc độ và kích thước
+  //   charEl.style.animationDuration = Math.random() * 5 + 5 + "s";
+  //   charEl.style.fontSize = Math.random() * 1.2 + 0.8 + "rem";
+
+  //   techDotsScreen.appendChild(charEl);
+  // }
   showQuestion();
-  document.getElementById("progress-bar").style.width =
-    (currentQuestionIndex * 100) / quizData.length + "%";
-  document.getElementById("current-text").textContent = currentQuestionIndex;
+  if (currentQuestionIndex <= quizData.length) {
+    document.getElementById("progress-bar").style.width =
+      (currentQuestionIndex * 100) / quizData.length + "%";
+    document.getElementById("current-text").textContent = currentQuestionIndex;
+  }
+
   document
     .getElementById("back-from-finish")
     .addEventListener("click", function () {
-      this.classList.add("animate-bounce");
-      setTimeout(() => this.classList.remove("animate-bounce"), 500);
-      document.getElementById("number-answer-div").classList.remove("hidden");
-      document.getElementById("review-quiz").classList.add("hidden");
-      document.getElementById("submit-quiz").classList.remove("hidden");
-      this.classList.add("hidden");
-      currentQuestionIndex--;
-      showQuestion();
+      boardSwipe("back");
+      setTimeout(() => {
+        document.getElementById("number-answer-div").classList.remove("hidden");
+        document.getElementById("review-quiz").classList.add("hidden");
+        document.getElementById("submit-quiz").classList.remove("hidden");
+        this.classList.add("hidden");
+      }, 500);
     });
 
   const submitBtn = document.getElementById("submit-quiz");
@@ -225,6 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Khi nhấn Cancel, ẩn modal
   cancelReviewBtn.addEventListener("click", () => {
+    submitReviewBtn.classList.add("animate-bounce");
     modalReview.classList.add("hidden");
   });
 
@@ -260,13 +355,11 @@ document
     setTimeout(() => this.classList.remove("animate-wiggle"), 500);
   });
 back.addEventListener("click", () => {
-  currentQuestionIndex--;
-  showQuestion();
+  boardSwipe("back");
 });
 
 next.addEventListener("click", () => {
-  currentQuestionIndex++;
-  showQuestion();
+  boardSwipe("next");
 });
 document.addEventListener("resize", () => {
   toggleButtonsVisibility();
