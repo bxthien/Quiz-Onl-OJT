@@ -1,5 +1,11 @@
 const isMd = window.matchMedia("(min-width: 768px)").matches;
 const buttonSound = new Audio("../assets/sounds/funny_button_pressin_quiz.mp3");
+const audio = document.getElementById("background-music");
+const toggleBtn = document.getElementById("toggle-music");
+const toggleSoundBtn = document.getElementById("toggle-button-sound");
+audio.volume = 0.5;
+let isBackgroundPlaying = false;
+let isVFXPlaying = false;
 const finishQuizSound = new Audio("../assets/sounds/finish-quiz.mp3");
 let backId = isMd ? "back-button" : "moblie-prev";
 let back = document.getElementById(backId);
@@ -51,6 +57,7 @@ function boardSwipe(direction) {
       questionBoard.classList.remove(animIn(direction));
       isAnimating = false; // Reset flag sau animation
     }, 500);
+    Object.values(answerButtons).forEach((btn) => (btn.disabled = false));
   }, 500);
 }
 function toggleButtonsVisibility() {
@@ -93,6 +100,7 @@ function showQuestion() {
 
     Object.keys(answerButtons).forEach((key) => {
       const button = answerButtons[key];
+      button.disabled = false;
       if (currentQuestion.answers[key]) {
         button.querySelector("p.inline-block").textContent =
           currentQuestion.answers[key];
@@ -116,6 +124,10 @@ function showQuestion() {
       answerButtons[key] = document.getElementById(`answer-${key}`);
 
       answerButtons[key].addEventListener("click", () => {
+        console.log(isVFXPlaying);
+        if (isVFXPlaying) {
+          playButtonSound();
+        }
         if (
           selectedAnswers[currentQuestionIndex] != null &&
           selectedAnswers[currentQuestionIndex].includes(key) &&
@@ -170,6 +182,9 @@ function handleAnswer(selected) {
     if (selectedList[0]) {
       answerButtons[selectedList[0]].classList.remove("bg-blue-400");
     }
+    Object.keys(answerButtons).forEach((key) => {
+      answerButtons[key].disabled = false;
+    });
     selectedList = [selected];
   }
   selectedAnswers[currentQuestionIndex] = selectedList;
@@ -197,7 +212,6 @@ function handleAnswer(selected) {
       currentQuestionIndex + 1;
     setTimeout(() => {
       boardSwipe("next");
-      Object.values(answerButtons).forEach((btn) => (btn.disabled = false));
     }, 1000);
   } else {
     next.classList.toggle(
@@ -215,16 +229,6 @@ function playButtonSound() {
   buttonSound.play();
 }
 document.addEventListener("DOMContentLoaded", () => {
-  if (!quizData) {
-    window.location.href = "../index.html";
-  }
-  const audio = document.getElementById("background-music");
-  const toggleBtn = document.getElementById("toggle-music");
-  const toggleSoundBtn = document.getElementById("toggle-button-sound");
-  audio.volume = 0.5;
-  let isBackgroundPlaying = false;
-  let isVFXPlaying = true;
-
   toggleBtn.addEventListener("click", function () {
     if (isBackgroundPlaying) {
       audio.pause();

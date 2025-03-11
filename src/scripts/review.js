@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const quizData = JSON.parse(localStorage.getItem("quiz")) || [];
-  const userAnswers = JSON.parse(localStorage.getItem("quiz-answers")) || [];
+  const quizData = JSON.parse(localStorage.getItem("quiz")) || null;
+  const userAnswers = JSON.parse(localStorage.getItem("quiz-answers")) || null;
   if (!quizData || !userAnswers) {
     window.location.href = "../index.html";
   }
