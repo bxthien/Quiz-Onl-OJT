@@ -74,67 +74,67 @@ async function deleteQuiz(quizId) {
   }
 }
 // Thêm dữ liệu giả nếu database trống
-async function addFakeData() {
-  const db = await openDB();
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction(STORE_NAME, "readwrite");
-    const store = transaction.objectStore(STORE_NAME);
-    // Kiểm tra nếu database đã có dữ liệu
-    const countRequest = store.count();
-    countRequest.onsuccess = () => {
-      if (countRequest.result > 0) {
-        console.log("Database already has data.");
-        resolve();
-        return;
-      }
-      // Nếu database trống, thêm dữ liệu giả
-      const fakeQuizzes = [
-        {
-          title: "Math Quiz - Grade 10",
-          savedOn: new Date().toISOString().split("T")[0],
-          grade: 8,
-          score: 75, // Điểm số
-          questions: [
-            {
-              question: "5 + 3 = ?",
-              options: ["5", "8", "6", "9"],
-              answer: "8",
-            },
-            {
-              question: "10 / 2 = ?",
-              options: ["4", "5", "6", "2"],
-              answer: "5",
-            },
-          ],
-        },
-        {
-          title: "Science Quiz - Grade 8",
-          savedOn: new Date().toISOString().split("T")[0],
-          grade: 7,
-          score: 90,
-          questions: [
-            {
-              question: "Red Planet?",
-              options: ["Earth", "Mars", "Jupiter"],
-              answer: "Mars",
-            },
-            {
-              question: "Plants absorb?",
-              options: ["Oxygen", "CO2", "Nitrogen"],
-              answer: "CO2",
-            },
-          ],
-        },
-      ];
-      fakeQuizzes.forEach((quiz) => {
-        store.add(quiz); // Không cần ID, tự động tạo
-      });
-      transaction.oncomplete = () => resolve("Fake data added!");
-      transaction.onerror = () => reject("Error adding fake data!");
-    };
-    countRequest.onerror = () => reject("Error checking database count!");
-  });
-}
+// async function addFakeData() {
+//   const db = await openDB();
+//   return new Promise((resolve, reject) => {
+//     const transaction = db.transaction(STORE_NAME, "readwrite");
+//     const store = transaction.objectStore(STORE_NAME);
+//     // Kiểm tra nếu database đã có dữ liệu
+//     const countRequest = store.count();
+//     countRequest.onsuccess = () => {
+//       if (countRequest.result > 0) {
+//         console.log("Database already has data.");
+//         resolve();
+//         return;
+//       }
+//       // Nếu database trống, thêm dữ liệu giả
+//       const fakeQuizzes = [
+//         {
+//           title: "Math Quiz - Grade 10",
+//           savedOn: new Date().toISOString().split("T")[0],
+//           grade: 8,
+//           score: 75, // Điểm số
+//           questions: [
+//             {
+//               question: "5 + 3 = ?",
+//               options: ["5", "8", "6", "9"],
+//               answer: "8",
+//             },
+//             {
+//               question: "10 / 2 = ?",
+//               options: ["4", "5", "6", "2"],
+//               answer: "5",
+//             },
+//           ],
+//         },
+//         {
+//           title: "Science Quiz - Grade 8",
+//           savedOn: new Date().toISOString().split("T")[0],
+//           grade: 7,
+//           score: 90,
+//           questions: [
+//             {
+//               question: "Red Planet?",
+//               options: ["Earth", "Mars", "Jupiter"],
+//               answer: "Mars",
+//             },
+//             {
+//               question: "Plants absorb?",
+//               options: ["Oxygen", "CO2", "Nitrogen"],
+//               answer: "CO2",
+//             },
+//           ],
+//         },
+//       ];
+//       fakeQuizzes.forEach((quiz) => {
+//         store.add(quiz); // Không cần ID, tự động tạo
+//       });
+//       transaction.oncomplete = () => resolve("Fake data added!");
+//       transaction.onerror = () => reject("Error adding fake data!");
+//     };
+//     countRequest.onerror = () => reject("Error checking database count!");
+//   });
+// }
 // Khi tải trang, thêm dữ liệu giả
 document.addEventListener("DOMContentLoaded", async () => {
   await addFakeData().catch(console.error);

@@ -65,8 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     // Show loading animation
-    quizOutput.innerHTML = `<div class="loading"><img src="../assets/images/loading.png" alt="Loading" /></div>`;
+    quizOutput.innerHTML = `<div class="loading"><img src="../assets/gif/LoadingRings.gif" alt="Loading" /></div>`;
     quizOutput.classList.remove("hidden");
+    quizOutput.classList.add("show");
     // quizOutput.classList.s;
 
     try {
