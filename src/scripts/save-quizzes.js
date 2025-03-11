@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const quizzes = await getSavedQuizzes();
-  if (quizzes.length === 0) {
-    await addFakeData(); // Thêm dữ liệu giả nếu database trống
-  }
+  // const quizzes = await getSavedQuizzes();
+  // if (quizzes.length === 0) {
+  //   await addFakeData(); // Thêm dữ liệu giả nếu database trống
+  // }
   renderQuizzes(); // Hiển thị danh sách quiz
 });
 

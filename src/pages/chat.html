@@ -9,7 +9,7 @@
         body {
             background: #A2D2FF;
             font-family: 'Orbitron', sans-serif;
-            overflow-y: hidden;
+            /* overflow-y: hidden; */
         }
 
         .hidden {
@@ -37,7 +37,8 @@
 
         .container {
             max-width: 1100px;
-            margin: auto;
+            margin-top: 40px;
+            /* margin: auto; */
         }
 
         .quiz-card {
@@ -51,9 +52,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
-            font-size: 20px;
-            font-weight: bold;
+            height: 200px;
+            width: 200px;
+            margin: auto;
+            margin-top: 15%;
         }
 
         .form-container,
@@ -137,7 +139,7 @@
     <link href="../output.css" rel="stylesheet">
 </head>
 
-<body class="flex justify-center items-center min-h-screen mt-5">
+<body class="flex justify-center items-center min-h-screen mt-15 px-2">
     <div
         class="container flex flex-col md:flex-row justify-center items-center space-x-0 md:space-x-10 space-y-6 md:space-y-0">
         <div id="formContainer" class="form-container w-full md:w-1/3 quiz-card transition-transform transform">
@@ -193,9 +195,29 @@
 
         <div id="quizOutput" class="quiz-container w-full md:w-2/3 quiz-card hidden fixed-height fade-in">
         </div>
+
+        <button id="backToTop" 
+        class="w-25 h-25 fixed bottom-6 right-6 bg-no-repeat bg-contain bg-center hidden" 
+        style="background-image: url('../assets/svg/top-btn.svg');">
+        </button>
+
     </div>
 
     <script src="../scripts/chat.js"></script>
+    <script>
+        const backToTopButton = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
 </body>
 
 </html>
