@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 🟢 Default selected level
-  let selectedLevel = "Easy";
+  let selectedLevel = "Medium";
 
   /** 📌 Handle Level Selection */
   const levelButtons = document.querySelectorAll(".levelBtn");
-  levelButtons[0].classList.add("selected-button");
+  levelButtons[1].classList.add("selected-button");
 
   levelButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
