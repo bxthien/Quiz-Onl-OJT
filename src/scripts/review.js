@@ -1,21 +1,65 @@
 document.addEventListener("DOMContentLoaded", function () {
   const quizData = JSON.parse(localStorage.getItem("quiz")) || [];
   const userAnswers = JSON.parse(localStorage.getItem("quiz-answers")) || [];
+  if (!quizData || !userAnswers) {
+    window.location.href = "../index.html";
+  }
   const resultContainer = document.querySelector("#total-answer");
   const questionContainer = document.querySelector(".bg-white");
-  const saveButton = document.querySelector("#savedata-btn");
+  const saveButton = document.querySelector("#save");
   const modal = document.querySelector("#modal");
   const titleInput = document.querySelector("#title");
-
+  const quizId = localStorage.getItem("quiz-id");
+  localStorage.clear();
   let correctCount = 0;
   let totalQuestions = quizData.length;
+  const openModal = document.getElementById("open-save-btn");
+  const closeModal = document.getElementById("close-save-btn");
+  const modalUpdate = document.getElementById("update-modal");
+  const closeUpdateModal = document.getElementById("close-update-btn");
+  const updateToNewBtn = document.getElementById("switch-to-new");
+  const updateBtn = document.getElementById("update");
+  openModal.addEventListener("click", () => {
+    if (quizId) {
+      modalUpdate.classList.remove("hidden");
+    } else {
+      modal.classList.remove("hidden");
+    }
+  });
 
+  closeModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+  closeUpdateModal.addEventListener("click", () => {
+    modalUpdate.classList.add("hidden");
+  });
+  updateToNewBtn.addEventListener("click", () => {
+    modalUpdate.classList.add("hidden");
+    modal.classList.remove("hidden");
+  });
+
+  const backToTopButton = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.remove("hidden");
+    } else {
+      backToTopButton.classList.add("hidden");
+    }
+  });
+
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
   questionContainer.innerHTML = "";
 
   quizData.forEach((questionData, index) => {
-    const { question, answers, correct_answers, short_explain_for_answer } = questionData;
+    const { question, answers, correct_answers, short_explain_for_answer } =
+      questionData;
     const userAnswer = userAnswers[index] || [];
-    const isCorrect = arraysEqual(new Set(userAnswer), new Set(correct_answers));
+    const isCorrect = arraysEqual(
+      new Set(userAnswer),
+      new Set(correct_answers)
+    );
 
     if (isCorrect) correctCount++;
 
@@ -51,7 +95,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 <p class="text-lg font-semibold">${question}</p>
                 <div class="flex justify-between">
                   <ul class="mt-2">${answerHtml}</ul>
-                    <img src="../assets/svg/${isCorrect ? "good-review-icon.svg" : "bad-review-icon.svg"}" 
+                    <img src="../assets/svg/${
+                      isCorrect ? "good-review-icon.svg" : "bad-review-icon.svg"
+                    }" 
                     class="ml-4 my-auto w-25 h-25 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-25 lg:h-25" />
                 </div>
                 <p class="text-green-600 mt-2 ml-5"><strong>Explain:</strong></p>
@@ -65,10 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   resultContainer.textContent = `You answered ${correctCount}/${totalQuestions} questions correctly!`;
 
-  // 🚀 XÓA DỮ LIỆU LOCALSTORAGE SAU KHI HIỂN THỊ XONG
-  localStorage.removeItem("quiz");
-  localStorage.removeItem("quiz-answers");
-
   saveButton.addEventListener("click", function () {
     console.log("Save button clicked");
     const quizTitle = titleInput.value.trim();
@@ -76,12 +118,17 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please enter a title for this quiz!");
       return;
     }
-    saveQuizToIndexedDB(quizTitle, quizData, correctCount, totalQuestions);
+    saveNewQuiz(quizTitle, quizData, correctCount, totalQuestions);
     modal.classList.add("hidden");
+  });
+  updateBtn.addEventListener("click", function () {
+    console.log("Update button clicked");
+    updateQuiz(quizId, correctCount, totalQuestions);
+    modalUpdate.classList.add("hidden");
   });
 });
 
-function saveQuizToIndexedDB(title, questions, score, totalQuestions) {
+function saveNewQuiz(title, questions, score, totalQuestions) {
   const dbRequest = indexedDB.open("QuizDB", 1);
 
   dbRequest.onupgradeneeded = function (event) {
@@ -99,58 +146,89 @@ function saveQuizToIndexedDB(title, questions, score, totalQuestions) {
     const db = event.target.result;
     const transaction = db.transaction("quizzes", "readwrite");
     const store = transaction.objectStore("quizzes");
-    
-    const getAllRequest = store.getAll();
-    getAllRequest.onsuccess = function () {
-      const existingQuiz = getAllRequest.result.find(q => q.title === title);
 
-      if (existingQuiz) {
-        existingQuiz.score = score;
-        existingQuiz.submitted_at = new Date().toISOString();
-        existingQuiz.totalQuestions = totalQuestions;
-
-        const updateRequest = store.put(existingQuiz);
-        updateRequest.onsuccess = function () {
-          console.log("Quiz updated successfully!");
-          window.location.href = "../pages/saved-quizzes.html";
-        };
-        updateRequest.onerror = function () {
-          console.error("Failed to update quiz!");
-        };
-      } else {
-        const newQuiz = {
-          title: title,
-          questions: questions,
-          score: score,
-          submitted_at: new Date().toISOString(),
-          totalQuestions: totalQuestions,
-        };
-
-        const addRequest = store.add(newQuiz);
-        addRequest.onsuccess = function () {
-          console.log("Quiz saved successfully!");
-          window.location.href = "../pages/saved-quizzes.html";
-        };
-        addRequest.onerror = function () {
-          console.error("Failed to save quiz!");
-        };
-      }
+    const newQuiz = {
+      title: title,
+      questions: questions,
+      score: score,
+      totalQuestions: totalQuestions,
+      submitted_at: new Date().toISOString(),
     };
 
-    getAllRequest.onerror = function () {
-      console.error("Failed to check existing quiz!");
+    const addRequest = store.add(newQuiz);
+
+    addRequest.onsuccess = function () {
+      console.log("✅ Quiz saved successfully!");
+      showPopup("Success!", "✅ Quiz saved successfully!.");
     };
 
-    transaction.onerror = function () {
-      console.error("Failed to save/update quiz!");
+    addRequest.onerror = function (error) {
+      console.error("❌ Failed to save quiz:", error);
+      showPopup("Error!", "❌ Failed to save quiz");
+    };
+
+    transaction.onerror = function (error) {
+      console.error("❌ Transaction failed:", error);
+      showPopup("Error!", "❌ Transaction failed");
     };
   };
 
-  dbRequest.onerror = function () {
-    console.error("Failed to open IndexedDB!");
+  dbRequest.onerror = function (error) {
+    console.error("❌ Failed to open IndexedDB:", error);
+    showPopup("Error!", "❌ Failed to open IndexedDB");
+  };
+}
+function updateQuiz(id, score, totalQuestions) {
+  const dbRequest = indexedDB.open("QuizDB", 1);
+
+  dbRequest.onsuccess = function (event) {
+    const db = event.target.result;
+    const transaction = db.transaction("quizzes", "readwrite");
+    const store = transaction.objectStore("quizzes");
+
+    const getRequest = store.get(Number(id));
+
+    getRequest.onsuccess = function () {
+      const existingQuiz = getRequest.result;
+      if (existingQuiz) {
+        existingQuiz.score = score;
+        existingQuiz.totalQuestions = totalQuestions;
+        existingQuiz.submitted_at = new Date().toISOString();
+
+        const updateRequest = store.put(existingQuiz);
+
+        updateRequest.onsuccess = function () {
+          console.log("✅ Quiz updated successfully!");
+          showPopup("Success!", "✅ Quiz updated successfully!");
+        };
+
+        updateRequest.onerror = function (error) {
+          console.error("❌ Failed to update quiz:", error);
+          showPopup("Error!", "❌ Failed to update quiz!");
+        };
+      } else {
+        console.warn("⚠️ No existing quiz found with ID:", id);
+        showPopup("Wanning!", "⚠️ No existing quiz found with ID!");
+      }
+    };
+
+    getRequest.onerror = function (error) {
+      console.error("❌ Failed to retrieve quiz for update:", error);
+      showPopup("Error!", "❌ Failed to retrieve quiz for update");
+    };
+
+    transaction.onerror = function (error) {
+      console.error("❌ Transaction failed:", error);
+      showPopup("Error!", "❌ Transaction failed");
+    };
+  };
+
+  dbRequest.onerror = function (error) {
+    console.error("❌ Failed to open IndexedDB:", error);
+    showPopup("Error!", "❌ Failed to open IndexedDB");
   };
 }
 
 function arraysEqual(setA, setB) {
-  return setA.size === setB.size && [...setA].every(value => setB.has(value));
+  return setA.size === setB.size && [...setA].every((value) => setB.has(value));
 }

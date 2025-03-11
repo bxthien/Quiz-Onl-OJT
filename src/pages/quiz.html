@@ -6,9 +6,22 @@
     <link rel="stylesheet" href="../output.css" />
     <title>Quiz UI</title>
   </head>
+
   <body
     class="flex items-center justify-center h-screen w-screen bg-[#191a1c] px-2 sm:mt-0 overflow-hidden"
   >
+    <button
+      id="toggle-music"
+      class="z-20 text-xl md:text-3xl hover:bg-gray-600 transition absolute top-3 left-0"
+    >
+      🔇
+    </button>
+    <button
+      id="toggle-button-sound"
+      class="z-20 text-xl md:text-3xl hover:bg-gray-600 transition absolute top-3 left-10"
+    >
+      🎛
+    </button>
     <div
       class="sm:mt-0 relative flex items-center max-w-[863px] w-full sm:grid-cols-1"
     >
@@ -106,26 +119,35 @@
           >
             <button
               id="answer-A"
-              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[40px] md:min-h-[80px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[40px] md:min-h-[80px] active:bg-green-500 transition pl-8 min-w-full overflow-hidden"
             >
               <span class="absolute top-2 left-2 font-bold text-blue-700"
                 >A</span
               >
+              <span
+                class="absolute inset-0 bg-blue-700 opacity-0 hover:opacity-30 transition overflow-hidden"
+              ></span>
               <p class="inline-block sm:text-sx md:text-base">a1</p>
             </button>
             <button
               id="answer-B"
-              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] active:bg-green-500 transition pl-8 min-w-full overflow-hidden"
             >
               <span class="absolute top-2 left-2 font-bold text-blue-700"
                 >B</span
               >
+              <span
+                class="absolute inset-0 bg-blue-700 opacity-0 hover:opacity-30 transition overflow-hidden"
+              ></span>
               <p class="inline-block sm:text-sx md:text-base">a2</p>
             </button>
             <button
               id="answer-C"
-              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] active:bg-green-500 transition pl-8 min-w-full overflow-hidden"
             >
+              <span
+                class="absolute inset-0 bg-blue-700 opacity-0 hover:opacity-30 transition overflow-hidden"
+              ></span>
               <span class="absolute top-2 left-2 font-bold text-blue-700"
                 >C</span
               >
@@ -133,11 +155,14 @@
             </button>
             <button
               id="answer-D"
-              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] active:bg-green-500 transition pl-8 min-w-full overflow-hidden"
             >
               <span class="absolute top-2 left-2 font-bold text-blue-700"
                 >D</span
               >
+              <span
+                class="absolute inset-0 bg-blue-700 opacity-0 hover:opacity-30 transition overflow-hidden"
+              ></span>
               <p class="inline-block sm:text-sx md:text-base">a4</p>
             </button>
           </div>
@@ -189,13 +214,13 @@
         class="bg-[#A2D2FF] rounded-lg p-6 text-center max-w-sm border-blue-400 shadow-lg border-4 animate-fade-in glow-effect"
       >
         <img
-          src="/src/assets/svg/robot-alert.svg"
+          src="../assets/svg/robot-alert.svg"
           alt="Alert"
           class="w-28 mx-auto mb-4"
         />
         <p class="font-bold text-lg mb-4">
-          Looks like your quiz isn’t done yet. Are you sure you want to leave
-          now?
+          It looks like you haven't completed the quiz yet. Are you sure you
+          want to submit it now?
         </p>
         <div class="flex justify-center gap-4">
           <button
@@ -280,7 +305,6 @@
     </div>
     <audio id="background-music" loop>
       <source src="../assets/sounds/background-music.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
     </audio>
   </body>
   <script type="module" src="../scripts/quiz.js"></script>

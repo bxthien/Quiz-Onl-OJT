@@ -116,10 +116,10 @@ function showQuestion() {
       answerButtons[key] = document.getElementById(`answer-${key}`);
 
       answerButtons[key].addEventListener("click", () => {
-        playButtonSound();
         if (
           selectedAnswers[currentQuestionIndex] != null &&
-          selectedAnswers[currentQuestionIndex].includes(key)
+          selectedAnswers[currentQuestionIndex].includes(key) &&
+          quizAnswer[currentQuestionIndex].length !== 1
         ) {
           answerButtons[key].classList.remove("bg-blue-400", "bg-green-700");
           answerButtons[key].classList.add("bg-blue-200");
@@ -144,13 +144,13 @@ function showQuestion() {
     );
   } else {
     questionText.innerHTML =
-      '<div class="text-[35px] font-bold text-green-900 neon-text">🎉 Bạn đã hoàn thành bài kiểm tra!</div><div class="text-sm font-bold text-amber-600 neon-text">🎉 Cùng xem kết quả nào!!!</div>';
+      '<div class="text-[35px] font-bold text-green-900 neon-text">🎉 You have completed the quiz!</div><div class="text-sm font-bold text-amber-600 neon-text">🎉 Let\'s check the results!!!</div>';
 
     Object.values(answerButtons).forEach((button) =>
       button.classList.add("hidden")
     );
     back.classList.add("hidden");
-    next.classList.toggle("hidden");
+    next.classList.add("hidden");
     document.getElementById("number-answer-div").classList.add("hidden");
     document.getElementById("review-quiz").classList.remove("hidden");
     document.getElementById("back-from-finish").classList.remove("hidden");
@@ -219,16 +219,37 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "../index.html";
   }
   const audio = document.getElementById("background-music");
-  audio.volume = 0.5; // Set âm lượng (0.0 - 1.0)
+  const toggleBtn = document.getElementById("toggle-music");
+  const toggleSoundBtn = document.getElementById("toggle-button-sound");
+  audio.volume = 0.5;
+  let isBackgroundPlaying = false;
+  let isVFXPlaying = true;
 
-  // Bắt buộc user click vào web để phát nhạc (vì autoplay bị chặn trên nhiều trình duyệt)
-  document.body.addEventListener("click", function playAudio() {
-    audio.play();
-    document.body.removeEventListener("click", playAudio); // Chỉ chạy 1 lần
+  toggleBtn.addEventListener("click", function () {
+    if (isBackgroundPlaying) {
+      audio.pause();
+      toggleBtn.textContent = "🔇";
+    } else {
+      audio.play();
+      toggleBtn.textContent = "🔊";
+    }
+    isBackgroundPlaying = !isBackgroundPlaying;
   });
-  document.querySelectorAll("button").forEach((button) => {
-    button.addEventListener("click", playButtonSound);
+  toggleSoundBtn.addEventListener("click", function () {
+    if (isVFXPlaying) {
+      document.querySelectorAll("button").forEach((button) => {
+        button.removeEventListener("click", playButtonSound);
+      });
+      toggleSoundBtn.textContent = "🎛";
+    } else {
+      document.querySelectorAll("button").forEach((button) => {
+        button.addEventListener("click", playButtonSound);
+      });
+      toggleSoundBtn.textContent = "🔛";
+    }
+    isVFXPlaying = !isVFXPlaying;
   });
+
   const techDots = document.querySelector(".tech-dots");
   const chars = "0123456789ABCDEF#%@&$";
 
@@ -337,7 +358,7 @@ function saveToLocal() {
   }
 }
 
-setInterval(saveToLocal, 3000);
+setInterval(saveToLocal, 5000);
 
 window.addEventListener("beforeunload", () => {
   saveToLocal();

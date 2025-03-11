@@ -45,7 +45,14 @@ async function getSavedQuizzes() {
     const transaction = db.transaction(STORE_NAME, "readonly");
     const store = transaction.objectStore(STORE_NAME);
     const request = store.getAll();
-    request.onsuccess = () => resolve(request.result);
+
+    request.onsuccess = () => {
+      const sortedData = request.result.sort(
+        (a, b) => new Date(a.submitted_at) - new Date(b.submitted_at)
+      ).reverse();
+      resolve(sortedData);
+    };
+
     request.onerror = () => reject("Error fetching quizzes!");
   });
 }
@@ -136,6 +143,6 @@ async function deleteQuiz(quizId) {
 //   });
 // }
 // Khi tải trang, thêm dữ liệu giả
-document.addEventListener("DOMContentLoaded", async () => {
-  await addFakeData().catch(console.error);
-});
+// document.addEventListener("DOMContentLoaded", async () => {
+//   await addFakeData().catch(console.error);
+// });
