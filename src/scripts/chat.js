@@ -72,9 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
       Ensure the response is a **valid JSON array** without additional explanations, comments, or text.
 `;
 
-    // 🔹 Show loading animation
-    quizOutput.innerHTML = `<div class="loading"><img src="../assets/images/loading.png" alt="Loading" /></div>`;
+    // Show loading animation
+    quizOutput.innerHTML = `<div class="loading"><img src="../assets/gif/LoadingRings.gif" alt="Loading" /></div>`;
     quizOutput.classList.remove("hidden");
+    quizOutput.classList.add("show");
+    // quizOutput.classList.s;
 
     try {
       const response = await fetch(

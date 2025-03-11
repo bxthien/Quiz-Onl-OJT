@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (historyButton) {
     historyButton.addEventListener("click", function () {
-      window.location.href = "./pages/quiz-history.html"; // Thay bằng trang đích của bạn
+      window.location.href = "./pages/saved-quizzes.html"; // Thay bằng trang đích của bạn
     });
   }
 });

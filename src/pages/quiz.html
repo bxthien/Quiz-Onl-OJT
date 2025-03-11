@@ -7,13 +7,13 @@
     <title>Quiz UI</title>
   </head>
   <body
-    class="flex items-center justify-center min-h-screen bg-[#A2D2FF] px-2 sm:mt-0"
+    class="flex items-center justify-center min-h-screen bg-[#191a1c] px-2 sm:mt-0 overflow-hidden"
   >
     <div
-      class="sm:mt-0 relative flex items-center max-w-[863px] sm:h-10 sm:min-h-[66vh] sm:grid-cols-1"
+      class="sm:mt-0 relative flex items-center max-w-[863px] w-full sm:grid-cols-1"
     >
       <div
-        class="w-full bg-gray-200 rounded-full absolute top-[-100px] h-8 dark:bg-gray-700"
+        class="w-full bg-gray-400 border-4 border-b-blue-800 border-t-gray-600 rounded-full absolute top-[-100px] h-10 dark:bg-gray-700"
       >
         <div
           class="bg-blue-500 rounded-full h-8"
@@ -24,31 +24,27 @@
       <div
         class="text-center w-full rounded-full absolute top-[-100px] h-2.5 justify-between"
       >
-        <span class="text-amber-950 font-bold text-2xl" id="current-text"
-          >0</span
-        >
-        <span class="text-amber-950 font-bold text-2xl">/</span>
-        <span class="text-amber-950 font-bold text-2xl" id="total-text"
-          >3
-        </span>
+        <span class="text-white font-bold text-2xl" id="current-text">0</span>
+        <span class="text-white font-bold text-2xl">/</span>
+        <span class="text-white font-bold text-2xl" id="total-text">3 </span>
       </div>
       <div
-        class="text-center w-full rounded-full absolute top-[-50px] h-2.5 justify-between animate-[bounce_4s_ease-in-out_infinite]"
+        class="z-11 text-center w-full rounded-full absolute top-[-40px] md:top-[-45px] h-2.5 justify-between neon-text"
         id="number-answer-div"
       >
-        <span class="text-blue-950 font-bold text-3xl" id="current-text"
-          >Chọn</span
+        <span class="text-white font-bold text-3xl" id="current-text"
+          >Choose</span
         >
-        <span class="text-blue-950 font-bold text-3xl" id="number-of-answer"
+        <span class="text-white font-bold text-3xl" id="number-of-answer"
           >/</span
         >
-        <span class="text-blue-950 font-bold text-3xl" id="total-text">
-          Đáp án
+        <span class="text-white font-bold text-3xl" id="total-text">
+          answers
         </span>
       </div>
       <div
         id="mobile-nav"
-        class="flex justify-between absolute top-[-50px] w-screen px-1"
+        class="flex justify-between absolute top-[-50px] px-1 w-full"
       >
         <button
           title="Back Mobile"
@@ -72,59 +68,75 @@
       ></button>
 
       <!-- Khung câu hỏi -->
-      <div
-        id="question"
-        class="z-10 w-full sm:mt-4 md:max-w-[800px] md:min-w-[800px] bg-white p-10 shadow-[6px_6px_10px_rgba(0,0,0,0.2)] rounded-lg border-8 border-[#BDE0FE] flex flex-col justify-center"
-      >
-        <p
-          class="font-semibold text-center sm:text-xs md:text-2xl mt-4 mb-4"
-          id="question-text"
-        >
-          Quest
-        </p>
-        <button
-          id="review-quiz"
-          class="hidden w-60 h-20 bg-no-repeat bg-contain bg-center transition-transform duration-300 hover:scale-110 active:scale-90 animate-bounce self-center mt-12"
-          style="background-image: url('../assets/svg/review-btn.svg')"
-        ></button>
-        <button
-          id="back-from-finish"
-          class="hidden bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow bg-no-repeat bg-contain bg-center transition-transform duration-300 hover:scale-110 active:scale-90 animate-bounce self-center mt-4"
-        >
-          Back to last question
-        </button>
+      <div id="question-board" class="w-full">
         <div
-          id="answers"
-          class="grid md:grid-cols-2 sm:grid-cols-1 gap-4 mt-8 relative"
+          id="question"
+          class="z-10 min-w-full sm:mt-4 md:min-w-[800px] bg-white shadow-[6px_6px_10px_rgba(0,0,0,0.2)] rounded-lg border-8 border-[#BDE0FE] flex flex-col justify-center"
         >
-          <button
-            id="answer-A"
-            class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-[#539AF8] active:bg-green-500 transition pl-8 "
+          <p
+            class="font-semibold text-center sm:text-xs md:text-2xl md:mb-20 md:mt-15 mb-10 mt-4"
+            id="question-text"
           >
-            <span class="absolute top-2 left-2 font-bold text-blue-700">A</span>
-            <p class="inline-block sm:text-sx md:text-base">a1</p>
-          </button>
+            Quest
+          </p>
           <button
-            id="answer-B"
-            class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-[#539AF8] active:bg-green-500 transition pl-8 "
-          >
-            <span class="absolute top-2 left-2 font-bold text-blue-700">B</span>
-            <p class="inline-block sm:text-sx md:text-base">a2</p>
-          </button>
+            title="Review"
+            id="review-quiz"
+            class="hidden w-60 h-20 bg-no-repeat bg-contain bg-center transition-transform duration-300 hover:scale-110 active:scale-90 animate-bounce self-center mt-12"
+            style="background-image: url('../assets/svg/review-btn.svg')"
+          ></button>
           <button
-            id="answer-C"
-            class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-[#539AF8] active:bg-green-500 transition pl-8 "
+            title="Back from finish"
+            id="back-from-finish"
+            class="hidden transition-transform duration-300 hover:scale-110 active:scale-90 animate-bounce self-center"
           >
-            <span class="absolute top-2 left-2 font-bold text-blue-700">C</span>
-            <p class="inline-block sm:text-sx md:text-base">a3</p>
+            <img
+              src="../assets/svg/back-from-last.svg"
+              alt="Back"
+              class="w-full h-full"
+            />
           </button>
-          <button
-            id="answer-D"
-            class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-[#539AF8] active:bg-green-500 transition pl-8"
+          <div
+            id="answers"
+            class="grid md:grid-cols-2 sm:grid-cols-1 gap-4 mx-3 md:mx-10 mb-10 relative"
           >
-            <span class="absolute top-2 left-2 font-bold text-blue-700">D</span>
-            <p class="inline-block sm:text-sx md:text-base">a4</p>
-          </button>
+            <button
+              id="answer-A"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[80px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
+            >
+              <span class="absolute top-2 left-2 font-bold text-blue-700"
+                >A</span
+              >
+              <p class="inline-block sm:text-sx md:text-base">a1</p>
+            </button>
+            <button
+              id="answer-B"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
+            >
+              <span class="absolute top-2 left-2 font-bold text-blue-700"
+                >B</span
+              >
+              <p class="inline-block sm:text-sx md:text-base">a2</p>
+            </button>
+            <button
+              id="answer-C"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
+            >
+              <span class="absolute top-2 left-2 font-bold text-blue-700"
+                >C</span
+              >
+              <p class="inline-block sm:text-sx md:text-base">a3</p>
+            </button>
+            <button
+              id="answer-D"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] hover:bg-blue-500 active:bg-green-500 transition pl-8 min-w-full"
+            >
+              <span class="absolute top-2 left-2 font-bold text-blue-700"
+                >D</span
+              >
+              <p class="inline-block sm:text-sx md:text-base">a4</p>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -142,14 +154,14 @@
     >
       <!-- Hình ảnh nhân vật trên nút submit -->
       <img
-        alt="boy"
-        src="../assets/svg/boy-on-submit-btn.svg"
+        alt="robot"
+        src="../assets/svg/robot-quiz-right.svg"
         class="w-24 sm:w-[8vw] md:w-[12vw] h-auto transition-transform duration-300 hover:scale-110 active:scale-90"
         id="character"
       />
       <!-- Nút Submit -->
       <button
-        class="w-60 h-20 bg-no-repeat bg-contain bg-center mt-[-2px] transition-transform duration-300 hover:scale-110 active:scale-90"
+        class="w-60 h-20 bg-no-repeat bg-contain bg-center mt-[-2px] transition-transform duration-300 hover:scale-110 active:scale-90 rounded-3xl"
         style="background-image: url('../assets/svg/button-submit.svg')"
         title="Submit"
         id="submit-quiz"
@@ -158,8 +170,8 @@
 
     <div class="absolute bottom-4 left-14 flex flex-col items-center">
       <img
-        alt="boy quiz left"
-        src="../assets/svg/boy-quiz-left.svg"
+        alt="robot quiz left"
+        src="../assets/svg/robot-quiz-left.svg"
         class="w-24 sm:w-[8vw] md:w-[12vw] h-auto transition-transform duration-300 hover:scale-110 active:scale-90 animate-[bounce_4s_ease-in-out_infinite]"
         id="character-left"
       />
@@ -167,46 +179,47 @@
     <!-- Modal Submit Box -->
     <div
       id="submit-modal"
-      class="z-20 fixed inset-0 flex items-center justify-center bg-transparent bg-opacity-50 shadow-2xl shadow-black hidden"
+      class="z-20 fixed inset-0 flex items-center justify-center bg-gradient-to-b from-transparent via-blue-300 to-transparent hidden transition-opacity duration-300 ease-in-out"
     >
       <div
-        class="bg-[#A2D2FF] rounded-lg p-6 text-center max-w-sm border-blue-400 shadow-[6px_6px_10px_rgba(0,0,0,0.2)] border-4"
+        class="bg-[#A2D2FF] rounded-lg p-6 text-center max-w-sm border-blue-400 shadow-lg border-4 animate-fade-in glow-effect"
       >
         <img
-          src="../assets/svg/boy-submit-modal.svg"
+          src="/src/assets/svg/robot-alert.svg"
           alt="Alert"
           class="w-28 mx-auto mb-4"
         />
         <p class="font-bold text-lg mb-4">
-          Look like your quiz haven't done yet. Are you sure you want to leave
-          the quiz now?
+          Looks like your quiz isn’t done yet. Are you sure you want to leave
+          now?
         </p>
         <div class="flex justify-center gap-4">
           <button
             id="cancel-submit"
-            class="bg-red-500 text-white px-4 py-2 rounded-full w-30"
+            class="bg-red-500 text-white px-4 py-2 rounded-full w-30 hover:shadow-red-500/50 transition-shadow"
           >
             Cancel
           </button>
           <button
             id="confirm-submit"
-            class="bg-blue-500 text-white px-4 py-2 rounded-full w-30"
+            class="bg-blue-500 text-white px-4 py-2 rounded-full w-30 hover:shadow-blue-500/50 transition-shadow"
           >
             Sure
           </button>
         </div>
       </div>
     </div>
+
     <!-- Modal Review Box -->
     <div
       id="review-modal"
-      class="z-20 fixed inset-0 w-screen flex items-center justify-center bg-transparent bg-opacity-50 shadow-2xl shadow-black hidden"
+      class="z-20 fixed inset-0 flex items-center justify-center bg-gradient-to-b from-transparent via-purple-300 to-transparent hidden transition-opacity duration-300 ease-in-out"
     >
       <div
-        class="bg-[#A2D2FF] rounded-lg p-6 text-center max-w-sm border-blue-400 shadow-[6px_6px_10px_rgba(0,0,0,0.2)] border-4"
+        class="bg-[#A2D2FF] rounded-lg p-6 text-center max-w-sm border-blue-400 shadow-lg border-4 animate-fade-in glow-effect"
       >
         <img
-          src="../assets/svg/boy-quiz-left.svg"
+          src="../assets/svg/robot-writing.svg"
           alt="Alert Review"
           class="w-28 mx-auto mb-4"
         />
@@ -217,19 +230,54 @@
         <div class="flex justify-center gap-4">
           <button
             id="cancel-review"
-            class="bg-red-500 text-white px-4 py-2 rounded-full w-30"
+            class="bg-red-500 text-white px-4 py-2 rounded-full w-30 hover:shadow-red-500/50 transition-shadow"
           >
             Cancel
           </button>
           <button
             id="confirm-review"
-            class="bg-blue-500 text-white px-4 py-2 rounded-full w-30"
+            class="bg-blue-500 text-white px-4 py-2 rounded-full w-30 hover:shadow-blue-500/50 transition-shadow"
           >
             Sure
           </button>
         </div>
       </div>
     </div>
+
+    <div
+      class="absolute top-0 left-0 w-full h-full overflow-hidden bg-amber-800 z-[-1] cyber-bg"
+    >
+      <!-- Gradient Moving Background -->
+      <div
+        class="absolute w-full h-full bg-gradient-to-r from-blue-800 via-purple-600 to-black animate-gradient"
+      ></div>
+      <div class="gradient-overlay"></div>
+
+      <!-- Ký tự công nghệ dạng đốm sáng -->
+      <div class="tech-dots"></div>
+      <!-- Glowing Flash Effect -->
+      <div class="absolute inset-0 bg-black opacity-10 animate-flash"></div>
+
+      <!-- Moving Waves -->
+      <div
+        class="absolute bottom-0 left-0 w-full h-40 bg-blue-500 opacity-30 blur-2xl animate-wave"
+      ></div>
+      <div
+        class="absolute bottom-10 left-0 w-full h-32 bg-blue-400 opacity-20 blur-3xl animate-wave-slow"
+      ></div>
+
+      <!-- Floating Dots (Randomly Positioned) -->
+      <div class="dot top-[10%] left-[5%]"></div>
+      <div class="dot top-[15%] left-[30%]"></div>
+      <div class="dot top-[25%] right-[20%]"></div>
+      <div class="dot bottom-[20%] left-[10%]"></div>
+      <div class="dot bottom-[25%] right-[30%]"></div>
+      <div class="dot bottom-[40%] right-[10%]"></div>
+    </div>
+    <audio id="background-music" loop>
+      <source src="../assets/sounds/background-music.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
   </body>
   <script type="module" src="../scripts/quiz.js"></script>
   <style>
