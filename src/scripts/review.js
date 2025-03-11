@@ -46,17 +46,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     questionContainer.innerHTML += `
       <div class="bg_card_inner mb-2 p-2 rounded-lg shadow-lg">
-        <div class="flex items-start">
-          <div class="flex-1">
-            <p class="text-lg font-semibold">${question}</p>
-            <ul class="mt-2">${answerHtml}</ul>
-            <p class="text-green-600 mt-2 ml-5"><strong>Explain:</strong></p>
-            <p class="ml-5">${explanation}</p>
+            <div class="flex items-start">
+              <div class="flex-1">
+                <p class="text-lg font-semibold">${question}</p>
+                <div class="flex justify-between">
+                  <ul class="mt-2">${answerHtml}</ul>
+                    <img src="../assets/svg/${isCorrect ? "good-review-icon.svg" : "bad-review-icon.svg"}" 
+                    class="ml-4 my-auto w-25 h-25 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-25 lg:h-25" />
+                </div>
+                <p class="text-green-600 mt-2 ml-5"><strong>Explain:</strong></p>
+                <p class="ml-5">${explanation}</p>
+              </div>
+            </div>
           </div>
-          <img src="../assets/svg/${isCorrect ? "good-review-icon.svg" : "bad-review-icon.svg"}" 
-               class="ml-4 my-auto w-25 h-25 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-25 lg:h-25" />
-        </div>
-      </div>`;
+      
+      `;
   });
 
   resultContainer.textContent = `You answered ${correctCount}/${totalQuestions} questions correctly!`;
