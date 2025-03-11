@@ -9,7 +9,6 @@
         body {
             background: #A2D2FF;
             font-family: 'Orbitron', sans-serif;
-            overflow-y: hidden;
         }
 
         .hidden {
@@ -115,14 +114,15 @@
             color: #CAF0F8;
         }
 
-        #generateBtn {
+        #generateBtn,
+        #startBtn {
             font-weight: bold;
-            min-width: 160px;
+            max-width: 200px;
             color: #CAF0F8;
             margin-top: 5px;
             background-color: #0077B6;
             padding: 10px;
-            border-radius: 30px
+            border-radius: 15px;
         }
 
         label {
@@ -186,13 +186,17 @@
                     <button type="submit" id="generateBtn" class="flex items-center justify-center font-bold">Generate
                         <span class="ml-2"><img src="../assets/images/render.png" alt="Render"
                                 width="25" /></span></button>
-
+                    <button type="button" id="startBtn" class="ml-2 flex justify-center items-center !hidden">
+                        Start
+                        <span class="ml-2"><img src="../assets/images/Start Up.png" alt="Render" width="25" /></span>
+                    </button>
                 </div>
             </form>
         </div>
 
         <div id="quizOutput" class="quiz-container w-full md:w-2/3 quiz-card hidden fixed-height fade-in">
         </div>
+
     </div>
 
     <script src="../scripts/chat.js"></script>
