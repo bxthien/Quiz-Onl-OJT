@@ -1,17 +1,611 @@
 @import "tailwindcss";
 
 .bg_light_blue {
-    background-color: #A2D2FF;
+  background-color: #a2d2ff;
 }
 
 .bg_dark_blue {
-    background-color: #0077B6;
+  background-color: #0077b6;
 }
 
 .bg_card_blue {
-    background-color: #BDE0FE;
+  background-color: #bde0fe;
 }
 
 .bg_card_inner {
-    background-color: #CAF0F8;
+  background-color: #caf0f8;
+}
+
+@layer utilities {
+  @keyframes dimlight {
+    0%,
+    18%,
+    20%,
+    50.1%,
+    60%,
+    65.1%,
+    80%,
+    90.1%,
+    92% {
+      color: #0e3742;
+      box-shadow: none;
+    }
+    18.1%,
+    20.1%,
+    30%,
+    50%,
+    60.1%,
+    65%,
+    80.1%,
+    90%,
+    92.1%,
+    100% {
+      color: #fff;
+      text-shadow: 0 0 10px #03bcf4;
+    }
+  }
+
+  .animate-dimlight {
+    animation: dimlight 5s infinite;
+  }
+
+  .box-reflect {
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+  }
+}
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Áp dụng animation */
+.slide-in-right {
+  animation: slideInFromRight 0.5s ease-out forwards;
+}
+
+.slide-out-left {
+  animation: slideOutToLeft 0.5s ease-in forwards;
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 0.5s ease-out forwards;
+}
+
+.slide-out-right {
+  animation: slideOutToRight 0.5s ease-in forwards;
+}
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes move {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes moveSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-15px) translateX(10px);
+  }
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes twinkleSlow {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-gradient {
+  animation: gradientMove 10s infinite linear alternate;
+  background-size: 300% 300%;
+}
+
+.animate-flash {
+  animation: flash 3s infinite ease-in-out;
+}
+
+.animate-move {
+  animation: move 6s infinite ease-in-out;
+}
+
+.animate-move-slow {
+  animation: moveSlow 8s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: float 4s infinite ease-in-out;
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s infinite ease-in-out;
+}
+
+.animate-twinkle {
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+.animate-twinkle-slow {
+  animation: twinkleSlow 3s infinite ease-in-out;
+}
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes move {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes moveSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-15px) translateX(10px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes waveSlow {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes cloud {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes cloudSlow {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(80vw);
+  }
+}
+
+.animate-gradient {
+  animation: gradientMove 10s infinite linear alternate;
+  background-size: 300% 300%;
+}
+
+.animate-flash {
+  animation: flash 3s infinite ease-in-out;
+}
+
+.animate-wave {
+  animation: wave 8s infinite ease-in-out;
+}
+
+.animate-wave-slow {
+  animation: waveSlow 12s infinite ease-in-out;
+}
+
+.animate-cloud {
+  animation: cloud 20s linear infinite;
+}
+
+.animate-cloud-slow {
+  animation: cloudSlow 30s linear infinite;
+}
+
+/* Dots */
+.dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: float 5s infinite ease-in-out;
+}
+
+/* Random sizes */
+.dot:nth-child(odd) {
+  width: 6px;
+  height: 6px;
+  animation-duration: 4s;
+}
+
+.dot:nth-child(even) {
+  width: 8px;
+  height: 8px;
+  animation-duration: 6s;
+}
+/* Gradient nền công nghệ */
+.cyber-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(120deg, #001122, #003366, #0066cc);
+  background-size: 400% 400%;
+  animation: bg-animation 10s infinite alternate;
+}
+
+/* Gradient di chuyển */
+@keyframes bg-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Hiệu ứng ánh sáng công nghệ */
+.gradient-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.1) 10%,
+    rgba(0, 0, 0, 0.8) 80%
+  );
+  opacity: 0.7;
+  mix-blend-mode: overlay;
+}
+
+/* Container chứa các ký tự công nghệ */
+.tech-dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Ký tự công nghệ bay */
+.tech-char {
+  position: absolute;
+  font-size: calc(8px + 1vw);
+  font-family: "Courier New", monospace;
+  color: rgba(0, 255, 255, 0.8);
+  text-shadow: 0 0 5px rgba(0, 255, 255, 1), 0 0 10px rgba(0, 255, 255, 0.8);
+  opacity: 0.5;
+  animation: float 10s infinite ease-in-out alternate, flicker 1.5s infinite;
+}
+
+/* Hiệu ứng bay */
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(30px) translateX(-15px);
+    opacity: 1;
+  }
+}
+
+/* Hiệu ứng chớp nhẹ */
+@keyframes flicker {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+/* Hiệu ứng nền động cho bảng câu hỏi */
+#question {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #bde0fe, #93c5fd, #539af8);
+  background-size: 400% 400%;
+  animation: bg-shift 8s infinite alternate;
+  box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+}
+#submit-quiz {
+  overflow: hidden;
+  box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+}
+
+/* Gradient chuyển động */
+@keyframes bg-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Hiệu ứng ánh sáng phản chiếu */
+#question::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.2) 10%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  animation: light-flicker 3s infinite alternate;
+}
+
+/* Ánh sáng chớp nhẹ */
+@keyframes light-flicker {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Container chứa ký tự công nghệ */
+.question-tech-dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Ký tự công nghệ bay */
+.question-tech-char {
+  position: absolute;
+  font-size: calc(8px + 1vw);
+  font-family: "Courier New", monospace;
+  color: rgba(181, 162, 232, 0.8);
+  text-shadow: 0 0 5px rgb(77, 226, 179), 0 0 10px rgba(238, 244, 244, 0.8);
+  opacity: 1;
+  animation: float 10s infinite ease-in-out alternate, flicker 1.5s infinite;
+}
+
+/* Hiệu ứng bay */
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(30px) translateX(-15px);
+    opacity: 1;
+  }
+}
+
+/* Hiệu ứng chớp nhẹ */
+@keyframes flicker {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+@keyframes neonGlow {
+  0% {
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+  }
+  50% {
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+  }
+  100% {
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+  }
+}
+.neon-text {
+  font-family: "Orbitron", sans-serif;
+  color: #052a44;
+  text-shadow: 0 0 5px #c6d4d1, 0 0 10px #ec2d2d, 0 0 20px #cbe508,
+    0 0 40px #00ffcc;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.glow-effect {
+  box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 25px rgba(0, 162, 255, 0.7);
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6;
+  }
+  50% {
+    box-shadow: 0 0 15px #3b82f6, 0 0 30px #3b82f6;
+  }
+  100% {
+    box-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6;
+  }
+}
+
+#progress-bar {
+  border-radius: "full";
+  border-width: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 15px #3b82f6;
 }
