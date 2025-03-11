@@ -1,82 +1,73 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Helpers.js</title>
-  </head>
-  <body>
-    <h1>Test Helper Functions</h1>
-    <button onclick="testHelpers()">Chạy Test</button>
-    <script type="module">
-      import {
-        formatQuizData,
-        shuffleArray,
-        isCorrectAnswer,
-        formatDateTime,
-        calculateProgress,
-        isQuizCompleted,
-        gradeQuiz,
-        generateFeedback,
-        formatScore,
-        formatDate,
-        formatTime,
-      } from "./utils/helpers.js";
 
-      function testHelpers() {
-        console.log("=== Test formatQuizData ===");
-        const aiResponse = {
-          questions: [
-            {
-              text: "What is 2 + 2?",
-              options: ["3", "4", "5", "6"],
-              answer: "4",
-            },
-            {
-              text: "What is the capital of France?",
-              options: ["London", "Berlin", "Paris", "Rome"],
-              answer: "Paris",
-            },
-          ],
-        };
-        console.log(formatQuizData(aiResponse));
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz AI</title>
 
-        console.log("\n=== Test shuffleArray ===");
-        console.log(shuffleArray([1, 2, 3, 4, 5]));
+    <style>
+        #icon-1 {
+            position: relative;
+            right: 45px;
+            top: 0;
+            z-index: 1;
+        }
 
-        console.log("\n=== Test isCorrectAnswer ===");
-        console.log(isCorrectAnswer("4", "4")); // true
-        console.log(isCorrectAnswer("3", "4")); // false
+        #icon-2 {
+            position: relative;
+            right: -85px;
+            top: 0;
+            z-index: 1;
+        }
 
-        console.log("\n=== Test calculateProgress ===");
-        const userAnswers = { 1: "4", 2: "Paris" };
-        console.log(calculateProgress(userAnswers, 5)); // 40% (2/5)
+        .menuCard {
+            padding: 20px;
+            border-radius: 10px;
+            border: 5px solid #BDE0FE;
+            box-shadow: 10px 10px 4px rgb(0, 0, 4);
+        }
+    </style>
 
-        console.log("\n=== Test isQuizCompleted ===");
-        console.log(isQuizCompleted(userAnswers, 5)); // false
-        console.log(isQuizCompleted(userAnswers, 2)); // true
+    <link href="./output.css" rel="stylesheet" />
+</head>
 
-        console.log("\n=== Test gradeQuiz ===");
-        const correctAnswers = { 1: "4", 2: "Paris" };
-        console.log(gradeQuiz(userAnswers, correctAnswers)); // 2
+<body class="bg-blue-200 flex justify-around items-center min-h-screen">
+    <div class="text-center">
+        <img src="../src/assets/img/logo.png" class="mx-auto mb-4" height="200" width="200" />
+        <h1 class="text-6xl font-bold text-white mb-2">Welcome to</h1>
+        <h1 class="text-6xl font-bold text-white">QUIZ AI</h1>
+    </div>
 
-        console.log("\n=== Test generateFeedback ===");
-        console.log(generateFeedback(2, 2)); // 🌟 Xuất sắc!
-        console.log(generateFeedback(1, 2)); // 👍 Tốt lắm!
+    <div class="mt-8 space-y-6">
+        <!-- Nút Quiz Generator -->
+        <div class="bg-white flex items-center space-x-4 menuCard">
+            <img src="../src/assets/img/image 1.png" id="icon-1" height="60" width="60" />
+            <div>
+                <p class="text-lg font-bold text-center">A.I. Generate a quiz from any subject</p>
+                <button id="quiz-generator"
+                    class="mt-2 bg-contain bg-no-repeat text-white px-4 py-2 flex items-center w-full h-16 absolute mt-[40px]"
+                    style="background-image: url('/src/assets/svg/button-to-chat-AI.svg');">
+                </button>
+            </div>
+        </div>
 
-        console.log("\n=== Test formatScore ===");
-        console.log(formatScore(2, 3)); // 2/3 (66.7%)
+        <!-- Nút Saved Quiz History -->
+        <div class="bg-white flex items-center space-x-4 menuCard mt-20">
+            <div>
+                <p class="text-lg font-bold">Play again whenever you want</p>
+                <button id="saved-quiz-history"
+                    class="mt-2 bg-contain bg-no-repeat text-white px-4 py-2 flex items-center w-full h-16 absolute mt-[40px] ml-[75px]"
+                    style="background-image: url('/src/assets/svg/button-to-history.svg');">
 
-        console.log("\n=== Test formatDate ===");
-        console.log(formatDate("10/3/2025 14:00")); // Ngày giờ hiện tại
-        console.log("\n=== Test formatDateTime ===");
-        console.log(formatDateTime("10/3/2025 14:00")); // 2:05
+                </button>
+            </div>
+            <img src="../src/assets/img/image 2.png" id="icon-2" height="80" width="80" />
+        </div>
+    </div>
 
-        console.log("\n=== Test formatTime ===");
-        console.log(formatTime(125)); // 2:05
-      }
+    <!-- Import JavaScript -->
+    <script src="/src/scripts/app.js"></script>
+</body>
 
-      window.testHelpers = testHelpers; // Đưa vào scope global để gọi từ button
-    </script>
-  </body>
 </html>
