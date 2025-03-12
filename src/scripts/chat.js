@@ -33,43 +33,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const amount = document.getElementById("amountInput").value;
 
     // 🔹 Prompt format for Gemini AI
-    const quizPromptFormat = `
-      Create a multiple-choice quiz on the topic of ${topic}.
-      The quiz should have ${amount} questions, each with four answer choices (A, B, C, and D).
-      - 70% of the questions should have **only one correct answer**.
-      - 30% of the questions should have **exactly three or two answers** (e.g., "A, B, and C" or "B, C, and D").
-      
-      For each question:
-      - Provide four answer choices (A, B, C, and D).
-      - Clearly indicate all correct answers (either one or exactly three choices).
-      - Provide a short explanation for why each correct answer is correct.
-
-      Ensure the questions are at a difficulty level of ${selectedLevel}.
-      Format the output as a **valid JSON array** with this structure:
-      [
-        {
-          "question": "Question text",
-          "answers": { "A": "Option 1", "B": "Option 2", "C": "Option 3", "D": "Option 4" },
-          "correct_answers": ["A"],  // For single-correct-answer questions
-          "short_explain_for_answer": {
-            "A": "Explanation for A"
-          }
-        },
-        {
-          "question": "Question text",
-          "answers": { "A": "Option 1", "B": "Option 2", "C": "Option 3", "D": "Option 4" },
-          "correct_answers": ["A", "B", "C"],  // For multiple-correct-answer questions
-          "short_explain_for_answer": {
-            "A": "Explanation for A",
-            "B": "Explanation for B",
-            "C": "Explanation for C"
-          }
+    const quizPromptFormat = `Create a concise multiple-choice quiz on ${topic}. Aim for fast generation.
+    Number of questions: ${amount}. Each question has 4 answer choices (A, B, C, D).
+    Question types:
+        - 70% - Single correct answer.
+        - 30% - Two or three correct answers.
+        - Make sure questions are unique, not repetitive, and cover different aspects of the topic.
+    For each question:
+        - Provide answer choices A, B, C, and D. Keep answers brief.
+        - Clearly indicate all correct answer options.
+        - Write very short explanations (1 sentence max) for each correct answer, focusing on the core reason.
+    
+    Difficulty level: ${selectedLevel} (e.g., beginner, intermediate, advanced. Beginner=basic facts, Advanced=complex concepts).
+    Output format:  A valid JSON array structured as follows:
+    [
+      {
+        "question": "Question text (brief)",
+        "answers": { "A": "Option 1 (short)", "B": "Option 2 (short)", "C": "Option 3 (short)", "D": "Option 4 (short)" },
+        "correct_answers": ["A"],
+        "short_explain_for_answer": {
+          "A": "Explanation for A (very short)"
         }
-      ]
-
-      Generate the quiz in ${language}.
-      Ensure the response is a **valid JSON array** without additional explanations, comments, or text.
-`;
+      },
+      {
+        "question": "Question text (brief)",
+        "answers": { "A": "Option 1 (short)", "B": "Option 2 (short)", "C": "Option 3 (short)", "D": "Option 4 (short)" },
+        "correct_answers": ["A", "B", "C"],
+        "short_explain_for_answer": {
+          "A": "Explanation for A (very short)",
+          "B": "Explanation for B (very short)",
+          "C": "Explanation for C (very short)"
+        }
+      }
+    ]
+    
+    Generate the quiz in ${language}.
+    IMPORTANT:  Return ONLY a valid JSON array. No extra text, no explanations outside the JSON, no comments. Ensure fast response.
+    `;
 
     // Show loading animation
     quizOutput.innerHTML = `<div class="loading"><img src="../assets/gif/LoadingRings.gif" alt="Loading" /></div>`;
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDo1cfNF63tLw9DGhrGEQYvWlp-Sdi2XIE`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDJV4wzXwBB1sHnWZqQz8F_yoWhfd_-3fs`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -145,6 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   generateBtn.addEventListener("click", function () {
     generateBtn.innerHTML = `Regenerate <span class="ml-2"><img src="../assets/images/render.png" alt="Render" width="25" /></span>`;
+    startBtn.classList.add("!hidden");
   });
 
   startBtn.addEventListener("click", function () {
