@@ -7,9 +7,13 @@
     <title>Chat AI</title>
     <style>
         body {
-            background: #A2D2FF;
             font-family: 'Orbitron', sans-serif;
             /* overflow-y: hidden; */
+            background-image: url('../assets//images/background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+
         }
 
         .hidden {
@@ -150,11 +154,9 @@ style="background-image: url('/assets/images/background-real.png'); background-p
             </div>
 
             <form id="quizForm">
-                <div class="mb-3">
-                    <label class="block font-bold mb-2">Topic:</label>
-                    <textarea id="topic" class="border p-2 w-full rounded bg-white"
-                        placeholder="Enter topic..."></textarea>
-                </div>
+                <label class="block font-bold mb-2" for="topic">Topic:</label>
+                <textarea id="topic" class="border p-2 w-full rounded bg-white"
+                    placeholder="Enter topic for quiz, for example: Math, History, Physics, ....." required></textarea>
 
                 <div class="mb-3">
                     <label class="block font-bold mb-2">Levels:</label>
