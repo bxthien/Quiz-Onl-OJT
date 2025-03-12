@@ -1,5 +1,11 @@
 const isMd = window.matchMedia("(min-width: 768px)").matches;
 const buttonSound = new Audio("../assets/sounds/funny_button_pressin_quiz.mp3");
+const audio = document.getElementById("background-music");
+const toggleBtn = document.getElementById("toggle-music");
+const toggleSoundBtn = document.getElementById("toggle-button-sound");
+audio.volume = 0.5;
+let isBackgroundPlaying = false;
+let isVFXPlaying = false;
 const finishQuizSound = new Audio("../assets/sounds/finish-quiz.mp3");
 let backId = isMd ? "back-button" : "moblie-prev";
 let back = document.getElementById(backId);
@@ -51,6 +57,7 @@ function boardSwipe(direction) {
       questionBoard.classList.remove(animIn(direction));
       isAnimating = false; // Reset flag sau animation
     }, 500);
+    Object.values(answerButtons).forEach((btn) => (btn.disabled = false));
   }, 500);
 }
 function toggleButtonsVisibility() {
@@ -93,6 +100,7 @@ function showQuestion() {
 
     Object.keys(answerButtons).forEach((key) => {
       const button = answerButtons[key];
+      button.disabled = false;
       if (currentQuestion.answers[key]) {
         button.querySelector("p.inline-block").textContent =
           currentQuestion.answers[key];
@@ -116,10 +124,14 @@ function showQuestion() {
       answerButtons[key] = document.getElementById(`answer-${key}`);
 
       answerButtons[key].addEventListener("click", () => {
-        playButtonSound();
+        console.log(isVFXPlaying);
+        if (isVFXPlaying) {
+          playButtonSound();
+        }
         if (
           selectedAnswers[currentQuestionIndex] != null &&
-          selectedAnswers[currentQuestionIndex].includes(key)
+          selectedAnswers[currentQuestionIndex].includes(key) &&
+          quizAnswer[currentQuestionIndex].length !== 1
         ) {
           answerButtons[key].classList.remove("bg-blue-400", "bg-green-700");
           answerButtons[key].classList.add("bg-blue-200");
@@ -144,13 +156,13 @@ function showQuestion() {
     );
   } else {
     questionText.innerHTML =
-      '<div class="text-[35px] font-bold text-green-900 neon-text">🎉 Bạn đã hoàn thành bài kiểm tra!</div><div class="text-sm font-bold text-amber-600 neon-text">🎉 Cùng xem kết quả nào!!!</div>';
+      '<div class="text-[35px] font-bold text-green-900 neon-text">🎉 You have completed the quiz!</div><div class="text-sm font-bold text-amber-600 neon-text">🎉 Let\'s check the results!!!</div>';
 
     Object.values(answerButtons).forEach((button) =>
       button.classList.add("hidden")
     );
     back.classList.add("hidden");
-    next.classList.toggle("hidden");
+    next.classList.add("hidden");
     document.getElementById("number-answer-div").classList.add("hidden");
     document.getElementById("review-quiz").classList.remove("hidden");
     document.getElementById("back-from-finish").classList.remove("hidden");
@@ -170,6 +182,9 @@ function handleAnswer(selected) {
     if (selectedList[0]) {
       answerButtons[selectedList[0]].classList.remove("bg-blue-400");
     }
+    Object.keys(answerButtons).forEach((key) => {
+      answerButtons[key].disabled = false;
+    });
     selectedList = [selected];
   }
   selectedAnswers[currentQuestionIndex] = selectedList;
@@ -197,7 +212,6 @@ function handleAnswer(selected) {
       currentQuestionIndex + 1;
     setTimeout(() => {
       boardSwipe("next");
-      Object.values(answerButtons).forEach((btn) => (btn.disabled = false));
     }, 1000);
   } else {
     next.classList.toggle(
@@ -215,20 +229,31 @@ function playButtonSound() {
   buttonSound.play();
 }
 document.addEventListener("DOMContentLoaded", () => {
-  if (!quizData) {
-    window.location.href = "../index.html";
-  }
-  const audio = document.getElementById("background-music");
-  audio.volume = 0.5; // Set âm lượng (0.0 - 1.0)
+  toggleBtn.addEventListener("click", function () {
+    if (isBackgroundPlaying) {
+      audio.pause();
+      toggleBtn.textContent = "🔇";
+    } else {
+      audio.play();
+      toggleBtn.textContent = "🔊";
+    }
+    isBackgroundPlaying = !isBackgroundPlaying;
+  });
+  toggleSoundBtn.addEventListener("click", function () {
+    if (isVFXPlaying) {
+      document.querySelectorAll("button").forEach((button) => {
+        button.removeEventListener("click", playButtonSound);
+      });
+      toggleSoundBtn.textContent = "🎛";
+    } else {
+      document.querySelectorAll("button").forEach((button) => {
+        button.addEventListener("click", playButtonSound);
+      });
+      toggleSoundBtn.textContent = "🔛";
+    }
+    isVFXPlaying = !isVFXPlaying;
+  });
 
-  // Bắt buộc user click vào web để phát nhạc (vì autoplay bị chặn trên nhiều trình duyệt)
-  document.body.addEventListener("click", function playAudio() {
-    audio.play();
-    document.body.removeEventListener("click", playAudio); // Chỉ chạy 1 lần
-  });
-  document.querySelectorAll("button").forEach((button) => {
-    button.addEventListener("click", playButtonSound);
-  });
   const techDots = document.querySelector(".tech-dots");
   const chars = "0123456789ABCDEF#%@&$";
 
@@ -337,7 +362,7 @@ function saveToLocal() {
   }
 }
 
-setInterval(saveToLocal, 3000);
+setInterval(saveToLocal, 5000);
 
 window.addEventListener("beforeunload", () => {
   saveToLocal();

@@ -105,7 +105,7 @@ document.addEventListener("click", (event) => {
 
   if (event.target.closest(".retake-btn")) {
     const quizId = event.target.closest(".retake-btn").getAttribute("data-id");
-    retakeQuiz(quizId);
+    showRetakePopup(quizId);
   }
 });
 async function retakeQuiz(quizId) {
@@ -126,7 +126,7 @@ async function retakeQuiz(quizId) {
 
     // Lưu quiz vào localStorage để làm lại
     localStorage.setItem("quiz", JSON.stringify(quizToRetake.questions));
-    localStorage.setItem("quiz-title", quizToRetake.title);
+    localStorage.setItem("quiz-id", quizToRetake.id);
     localStorage.removeItem("quiz-answers"); // Xóa đáp án cũ
     localStorage.removeItem("quiz-current"); // Reset trạng thái câu hỏi hiện tại
 
@@ -186,5 +186,36 @@ async function showDeletePopup(quizId) {
       });
   } catch (error) {
     console.error("❌ Error loading delete-popup:", error);
+  }
+}
+async function showRetakePopup(quizId) {
+  try {
+    const response = await fetch("retake-popup.html");
+    if (!response.ok) throw new Error("Failed to load retake-popup.html");
+
+    const popupHtml = await response.text();
+
+    let popupContainer = document.getElementById("popupContainer");
+    if (!popupContainer) {
+      popupContainer = document.createElement("div");
+      popupContainer.id = "popupContainer";
+      document.body.appendChild(popupContainer);
+    }
+
+    popupContainer.innerHTML = popupHtml;
+
+    // Thêm sự kiện cho nút Cancel
+    document.getElementById("cancelRetake").addEventListener("click", () => {
+      popupContainer.innerHTML = ""; // Đóng popup
+    });
+
+    document
+      .getElementById("confirmRetake")
+      .addEventListener("click", async () => {
+        await retakeQuiz(quizId);
+        popupContainer.innerHTML = "";
+      });
+  } catch (error) {
+    console.error("❌ Error loading retake-popup:", error);
   }
 }
