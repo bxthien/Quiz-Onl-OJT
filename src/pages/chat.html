@@ -7,9 +7,13 @@
     <title>Chat AI</title>
     <style>
         body {
-            background: #A2D2FF;
             font-family: 'Orbitron', sans-serif;
             /* overflow-y: hidden; */
+            background-image: url('../assets//images/background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+
         }
 
         .hidden {
@@ -140,8 +144,9 @@
     <link href="../output.css" rel="stylesheet">
 </head>
 
-<body class="flex justify-center items-center min-h-screen mt-15 px-2" 
+<body class="flex justify-center items-center min-h-screen mt-15 px-2 lg:mt-0 px-2 lg:overflow-hidden" 
 style="background-image: url('/src/assets/images/background-real.png'); background-position-x: center;">
+
     <div
         class="container flex flex-col md:flex-row justify-center items-center space-x-0 md:space-x-10 space-y-6 md:space-y-0">
         <div id="formContainer" class="form-container w-full md:w-1/3 quiz-card transition-transform transform">
@@ -150,11 +155,9 @@ style="background-image: url('/src/assets/images/background-real.png'); backgrou
             </div>
 
             <form id="quizForm">
-                <div class="mb-3">
-                    <label class="block font-bold mb-2">Topic:</label>
-                    <textarea id="topic" class="border p-2 w-full rounded bg-white"
-                        placeholder="Enter topic..."></textarea>
-                </div>
+                <label class="block font-bold mb-2" for="topic">Topic:</label>
+                <textarea id="topic" class="border p-2 w-full rounded bg-white"
+                    placeholder="Enter topic for quiz, for example: Math, History, Physics, ....." required></textarea>
 
                 <div class="mb-3">
                     <label class="block font-bold mb-2">Levels:</label>
