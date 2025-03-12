@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../output.css" />
+    <title>Quiz UI</title>
+  </head>
+
+  <body
+    class="flex items-center justify-center h-screen w-screen bg-[#191a1c] px-2 sm:mt-0 overflow-hidden"
+  >
+    <button
+      id="toggle-music"
+      class="z-20 text-xl md:text-3xl hover:bg-gray-600 transition absolute top-3 left-0"
+    >
+      🔇
+    </button>
+    <button
+      id="toggle-button-sound"
+      class="z-20 text-xl md:text-3xl hover:bg-gray-600 transition absolute top-3 left-10"
+    >
+      🎛
+    </button>
+    <div
+      class="sm:mt-0 relative flex items-center max-w-[863px] w-full sm:grid-cols-1"
+    >
+      <div
+        class="w-full bg-gray-400 border-4 border-b-blue-800 border-t-gray-600 rounded-full absolute top-[-100px] h-10 dark:bg-gray-700"
+      >
+        <div
+          class="bg-blue-500 rounded-full h-8"
+          id="progress-bar"
+          style="width: 0%"
+        ></div>
+      </div>
+      <div
+        class="text-center w-full rounded-full absolute top-[-100px] h-2.5 justify-between"
+      >
+        <span class="text-white font-bold text-2xl" id="current-text">0</span>
+        <span class="text-white font-bold text-2xl">/</span>
+        <span class="text-white font-bold text-2xl" id="total-text">3 </span>
+      </div>
+      <div
+        class="z-11 text-center w-full rounded-full absolute top-[-40px] md:top-[-45px] h-2.5 justify-between neon-text"
+        id="number-answer-div"
+      >
+        <span
+          class="text-white font-bold text-2xl md:text-3xl"
+          id="current-text"
+          >Choose</span
+        >
+        <span
+          class="text-white font-bold text-2xl md:text-3xl"
+          id="number-of-answer"
+          >/</span
+        >
+        <span class="text-white font-bold text-2xl md:text-3xl" id="total-text">
+          answers
+        </span>
+      </div>
+      <div
+        id="mobile-nav"
+        class="flex justify-between absolute top-[-50px] px-1 w-full"
+      >
+        <button
+          title="Back Mobile"
+          id="moblie-prev"
+          class="md:hidden absolute left-3 w-12 h-12 bg-no-repeat bg-contain bg-center rounded-2xl shadow-md transition-transform transform hover:scale-110 active:scale-90"
+          style="background-image: url('../assets/svg/left-arrow.svg')"
+        ></button>
+        <button
+          title="Next Moblie"
+          id="moblie-next"
+          class="md:hidden absolute right-3 w-12 h-12 bg-no-repeat bg-contain bg-center rounded-2xl shadow-md transition-transform transform hover:scale-110 active:scale-90"
+          style="background-image: url('../assets/svg/right-arrow.svg')"
+        ></button>
+      </div>
+      <!-- Nút Previous -->
+      <button
+        title="Back"
+        class="absolute left-[-100px] w-16 h-16 bg-no-repeat bg-contain bg-center rounded-3xl shadow-md transition-transform transform hover:scale-110 active:scale-90"
+        style="background-image: url('../assets/svg/left-arrow.svg')"
+        id="back-button"
+      ></button>
+
+      <!-- Khung câu hỏi -->
+      <div id="question-board" class="w-full">
+        <div
+          id="question"
+          class="min-w-full sm:mt-4 md:min-w-[800px] bg-white shadow-[6px_6px_10px_rgba(0,0,0,0.2)] rounded-lg border-8 border-[#BDE0FE] px-4 md:px-10 flex flex-col justify-center"
+        >
+          <p
+            class="font-semibold text-center sm:text-xs md:text-2xl md:mb-20 md:mt-15 mb-10 mt-4"
+            id="question-text"
+          >
+            Quest
+          </p>
+          <button
+            title="Review"
+            id="review-quiz"
+            class="hidden w-60 h-20 bg-no-repeat bg-contain bg-center transition-transform duration-300 hover:scale-110 active:scale-90 animate-bounce self-center mt-12"
+            style="background-image: url('../assets/svg/review-btn.svg')"
+          ></button>
+          <button
+            title="Back from finish"
+            id="back-from-finish"
+            class="hidden transition-transform duration-300 hover:scale-110 active:scale-90 animate-bounce self-center"
+          >
+            <img
+              src="../assets/svg/back-from-last.svg"
+              alt="Back"
+              class="w-full h-full"
+            />
+          </button>
+          <div
+            id="answers"
+            class="grid md:grid-cols-2 sm:grid-cols-1 gap-4 mx-3 md:mx-10 mb-10 relative"
+          >
+            <button
+              id="answer-A"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[40px] md:min-h-[80px] active:bg-green-500 transition pl-8 min-w-full overflow-hidden"
+            >
+              <span class="absolute top-2 left-2 font-bold text-blue-700"
+                >A</span
+              >
+              <span
+                class="absolute inset-0 bg-blue-700 opacity-0 hover:opacity-30 transition overflow-hidden"
+              ></span>
+              <p class="inline-block sm:text-sx md:text-base">a1</p>
+            </button>
+            <button
+              id="answer-B"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] active:bg-green-500 transition pl-8 min-w-full overflow-hidden"
+            >
+              <span class="absolute top-2 left-2 font-bold text-blue-700"
+                >B</span
+              >
+              <span
+                class="absolute inset-0 bg-blue-700 opacity-0 hover:opacity-30 transition overflow-hidden"
+              ></span>
+              <p class="inline-block sm:text-sx md:text-base">a2</p>
+            </button>
+            <button
+              id="answer-C"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] active:bg-green-500 transition pl-8 min-w-full overflow-hidden"
+            >
+              <span
+                class="absolute inset-0 bg-blue-700 opacity-0 hover:opacity-30 transition overflow-hidden"
+              ></span>
+              <span class="absolute top-2 left-2 font-bold text-blue-700"
+                >C</span
+              >
+              <p class="inline-block sm:text-sx md:text-base">a3</p>
+            </button>
+            <button
+              id="answer-D"
+              class="relative bg-blue-200 text-black rounded-lg md:p-4 sm:p-1 w-full min-h-[60px] active:bg-green-500 transition pl-8 min-w-full overflow-hidden"
+            >
+              <span class="absolute top-2 left-2 font-bold text-blue-700"
+                >D</span
+              >
+              <span
+                class="absolute inset-0 bg-blue-700 opacity-0 hover:opacity-30 transition overflow-hidden"
+              ></span>
+              <p class="inline-block sm:text-sx md:text-base">a4</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nút Next -->
+      <button
+        title="Next"
+        class="absolute right-[-100px] w-16 h-16 bg-no-repeat bg-contain bg-center rounded-3xl shadow-md transition-transform transform hover:scale-110 active:scale-90"
+        style="background-image: url('../assets/svg/right-arrow.svg')"
+        id="next-button"
+      ></button>
+    </div>
+
+    <div
+      class="absolute bottom-4 right-10 flex flex-col items-center animate-[wiggle_4s_ease-in-out_infinite]"
+    >
+      <!-- Hình ảnh nhân vật trên nút submit -->
+      <img
+        alt="robot"
+        src="../assets/svg/robot-quiz-right.svg"
+        class="w-20 sm:w-[8vw] md:w-[12vw] h-auto transition-transform duration-300 hover:scale-110 md:scale-120 active:scale-90"
+        id="character"
+      />
+      <!-- Nút Submit -->
+      <button
+        class="z-10 md:w-60 md:h-20 w-30 ml-[-40] h-10 bg-no-repeat bg-contain bg-center mt-[-2px] transition-transform duration-300 hover:scale-110 active:scale-90 rounded-3xl"
+        style="background-image: url('../assets/svg/button-submit.svg')"
+        title="Submit"
+        id="submit-quiz"
+      ></button>
+    </div>
+
+    <div class="absolute bottom-4 left-14 flex flex-col items-center">
+      <img
+        alt="robot quiz left"
+        src="../assets/svg/robot-quiz-left.svg"
+        class="w-20 sm:w-[8vw] md:w-[12vw] h-auto transition-transform duration-300 hover:scale-110 md:scale-120 active:scale-30 animate-[bounce_4s_ease-in-out_infinite]"
+        id="character-left"
+      />
+    </div>
+    <!-- Modal Submit Box -->
+    <div
+      id="submit-modal"
+      class="z-20 fixed inset-0 flex items-center justify-center bg-gradient-to-b from-transparent via-blue-300 to-transparent hidden transition-opacity duration-300 ease-in-out"
+    >
+      <div
+        class="bg-[#A2D2FF] rounded-lg p-6 text-center max-w-sm border-blue-400 shadow-lg border-4 animate-fade-in glow-effect"
+      >
+        <img
+          src="../assets/svg/robot-alert.svg"
+          alt="Alert"
+          class="w-28 mx-auto mb-4"
+        />
+        <p class="font-bold text-lg mb-4">
+          It looks like you haven't completed the quiz yet. Are you sure you
+          want to submit it now?
+        </p>
+        <div class="flex justify-center gap-4">
+          <button
+            id="cancel-submit"
+            class="bg-red-500 text-white px-4 py-2 rounded-full w-30 hover:shadow-red-500/50 transition-shadow"
+          >
+            Cancel
+          </button>
+          <button
+            id="confirm-submit"
+            class="bg-blue-500 text-white px-4 py-2 rounded-full w-30 hover:shadow-blue-500/50 transition-shadow"
+          >
+            Sure
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Review Box -->
+    <div
+      id="review-modal"
+      class="z-20 fixed inset-0 flex items-center justify-center bg-gradient-to-b from-transparent via-purple-300 to-transparent hidden transition-opacity duration-300 ease-in-out"
+    >
+      <div
+        class="bg-[#A2D2FF] rounded-lg p-6 text-center max-w-sm border-blue-400 shadow-lg border-4 animate-fade-in glow-effect"
+      >
+        <img
+          src="../assets/svg/robot-writing.svg"
+          alt="Alert Review"
+          class="w-28 mx-auto mb-4"
+        />
+        <p class="font-bold text-lg mb-4">
+          Once submitted, you cannot change your answers. Do you still want to
+          proceed?
+        </p>
+        <div class="flex justify-center gap-4">
+          <button
+            id="cancel-review"
+            class="bg-red-500 text-white px-4 py-2 rounded-full w-30 hover:shadow-red-500/50 transition-shadow"
+          >
+            Cancel
+          </button>
+          <button
+            id="confirm-review"
+            class="bg-blue-500 text-white px-4 py-2 rounded-full w-30 hover:shadow-blue-500/50 transition-shadow"
+          >
+            Sure
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="absolute top-0 left-0 w-full h-full overflow-hidden bg-amber-800 z-[-1] cyber-bg"
+    >
+      <!-- Gradient Moving Background -->
+      <div
+        class="absolute w-full h-full bg-gradient-to-r from-blue-800 via-purple-600 to-black animate-gradient"
+      ></div>
+      <div class="gradient-overlay"></div>
+
+      <!-- Ký tự công nghệ dạng đốm sáng -->
+      <div class="tech-dots"></div>
+      <!-- Glowing Flash Effect -->
+      <div class="absolute inset-0 bg-black opacity-10 animate-flash"></div>
+
+      <!-- Moving Waves -->
+      <div
+        class="absolute bottom-0 left-0 w-full h-40 bg-blue-500 opacity-30 blur-2xl animate-wave"
+      ></div>
+      <div
+        class="absolute bottom-10 left-0 w-full h-32 bg-blue-400 opacity-20 blur-3xl animate-wave-slow"
+      ></div>
+
+      <!-- Floating Dots (Randomly Positioned) -->
+      <div class="dot top-[10%] left-[5%]"></div>
+      <div class="dot top-[15%] left-[30%]"></div>
+      <div class="dot top-[25%] right-[20%]"></div>
+      <div class="dot bottom-[20%] left-[10%]"></div>
+      <div class="dot bottom-[25%] right-[30%]"></div>
+      <div class="dot bottom-[40%] right-[10%]"></div>
+    </div>
+    <audio id="background-music" loop>
+      <source src="../assets/sounds/background-music.mp3" type="audio/mpeg" />
+    </audio>
+  </body>
+  <script type="module" src="../scripts/quiz.js"></script>
+  <style>
+    @keyframes wiggle {
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(5deg);
+      }
+      50% {
+        transform: rotate(-5deg);
+      }
+      75% {
+        transform: rotate(5deg);
+      }
+    }
+
+    .animate-wiggle {
+      animation: wiggle 0.5s ease-in-out;
+    }
+  </style>
+</html>

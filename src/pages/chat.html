@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat AI</title>
+    <style>
+        body {
+            background: #A2D2FF;
+            font-family: 'Orbitron', sans-serif;
+            /* overflow-y: hidden; */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fixed-height {
+            height: 500px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin-top: 40px;
+            /* margin: auto; */
+        }
+
+        .quiz-card {
+            background-color: #BDE0FE;
+            padding: 20px;
+            border-radius: 7px;
+            box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 200px;
+            margin: auto;
+            margin-top: 15%;
+        }
+
+        .form-container,
+        .quiz-container {
+            height: 500px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .shift-left {
+            transform: translateX(-10%);
+        }
+
+        .quiz-container {
+            background-color: white;
+            border: 10px solid #BDE0FE;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .quiz-container.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                transform: none !important;
+                height: auto;
+            }
+
+            .quiz-container {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        #formContainer {
+            margin-right: 0px;
+        }
+
+        #quizForm {
+            position: relative;
+            left: 0px;
+            top: -85px;
+        }
+
+        #logo-container {
+            position: relative;
+            left: 0px;
+            top: -75px;
+            z-index: 3;
+        }
+
+        .levelBtn {
+            border-radius: 8px;
+        }
+
+        .selected-button {
+            background-color: #0077B6;
+            color: #CAF0F8;
+        }
+
+        #generateBtn,
+        #startBtn {
+            font-weight: bold;
+            max-width: 200px;
+            color: #CAF0F8;
+            margin-top: 5px;
+            background-color: #0077B6;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        label {
+            color: #0077B6;
+        }
+
+
+        #amountSlider {
+            background-color: #54535F;
+        }
+    </style>
+    <link href="../output.css" rel="stylesheet">
+</head>
+
+<body class="flex justify-center items-center min-h-screen mt-15 lg:mt-0 px-2 lg:overflow-hidden">
+    <div
+        class="container flex flex-col md:flex-row justify-center items-center space-x-0 md:space-x-10 space-y-6 md:space-y-0">
+        <div id="formContainer" class="form-container w-full md:w-1/3 quiz-card transition-transform transform">
+            <div id="logo-container" class="flex justify-center mb-4">
+                <img src="../assets/images/logo.png" alt="Quiz Logo" class="w-24">
+            </div>
+
+            <form id="quizForm">
+                <label class="block font-bold mb-2" for="topic">Topic:</label>
+                <textarea id="topic" class="border p-2 w-full rounded bg-white"
+                    placeholder="Enter topic for quiz, for example: Math, History, Physics, ....." required></textarea>
+
+                <div class="mb-3">
+                    <label class="block font-bold mb-2">Levels:</label>
+                    <div class="flex justify-between">
+                        <button type="button" class="px-4 py-2 bg-white levelBtn">Easy</button>
+                        <button type="button" class="px-4 py-2 bg-white levelBtn">Medium</button>
+                        <button type="button" class="px-4 py-2 bg-white levelBtn">Hard</button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="block font-bold mb-2">Language:</label>
+                    <select title="language" id="language" class="border p-2 w-full rounded bg-white">
+                        <option value="English">English</option>
+                        <option value="Vietnamese" selected>Vietnamese</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="French">French</option>
+                    </select>
+                </div>
+
+                <div class="mb-1">
+
+                    <label for="amountSlider" class="font-bold text-gray-700">Number</lable>
+                        <input type="number" id="amountInput" min="1" max="10" value="10"
+                            class="border p-2 w-full rounded bg-white" disabled>
+
+
+                        <input type="range" id="amountSlider" min="1" max="10" step="1" value="10"
+                            class="w-full appearance-none h-2 rounded-lg cursor-pointer" />
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit" id="generateBtn" class="flex items-center justify-center font-bold">Generate
+                        <span class="ml-2"><img src="../assets/images/render.png" alt="Render"
+                                width="25" /></span></button>
+                    <button type="button" id="startBtn" class="ml-2 flex justify-center items-center !hidden">
+                        Start
+                        <span class="ml-2"><img src="../assets/images/Start Up.png" alt="Render" width="25" /></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="quizOutput" class="quiz-container w-full md:w-2/3 quiz-card hidden fixed-height fade-in">
+        </div>
+
+
+        <button id="backToTop" class="w-25 h-25 fixed bottom-6 right-6 bg-no-repeat bg-contain bg-center hidden"
+            style="background-image: url('../assets/svg/top-btn.svg');">
+        </button>
+
+    </div>
+
+    <script src="../scripts/chat.js"></script>
+    <script>
+        const backToTopButton = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+</body>
+
+</html>

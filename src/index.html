@@ -1,18 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Genie</title>
-    <link href="./output.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>Quiz AI</title>
+
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        #icon-2 {
+            position: relative;
+            right: -85px;
+            top: 0;
+            z-index: 1;
+        }
+
+        .menuCard {
+            border-radius: 10px;
+            border: 5px solid #BDE0FE;
+            box-shadow: 10px 10px 4px rgb(0, 0, 4);
+        }
+
+        .btnAction {
+            max-width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0078b7;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+
+        /* #quiz-generator {
+            top: 70px;
+            left: 5px;
+            z-index: 1;
+        } */
+
+        #quiz-generator::before {
+            content: "Quiz Generate";
+            display: inline-block;
+            width: 120px;
+
+        }
+
+        /* #saved-quiz-history {
+            position: relative;
+            top: 70px;
+            left: 60px;
+            z-index: 1;
+        } */
+
+        #saved-quiz-history::before {
+            content: "Quiz History";
+            display: inline-block;
+            width: 120px;
+        }
+
+
+        /* Mobile styles */
+        @media screen and (max-width: 768px) {
+            #icon-1 {
+                position: relative;
+                right: 30px;
+                top: 0;
+                z-index: 1;
+            }
+
+            #icon-2 {
+                position: relative;
+                right: -35px;
+                top: 0;
+                z-index: 1;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="output.css" rel="stylesheet" />
+    <link href="assets/css/custom.css" rel="stylesheet" />
 </head>
 
-<body>
-    <h1 class="text-3xl font-bold text-center">
-        Quiz Genie Application
-        Test dev
-    </h1>
+<body class="bg-blue-200 flex flex-col items-center md:flex-row md:justify-around min-h-screen ">
+    <div class="text-center">
+        <img alt="logo" src="assets/images/logo.png" class="h-40 md:h-[250px] lg:h-[250px] mx-auto mb-4" />
+        <h1 class="sigmar-text text-7xl font-bold text-white drop-shadow-[2px_2px_0_black] mb-2">Welcome to</h1>
+        <h1 class="sigmar-text text-6xl font-bold text-white drop-shadow-[2px_2px_0_black]">QUIZ AI</h1>
+    </div>
+
+    <div class="mt-8 mx-2 md:mx-0">
+        <!-- Nút Quiz Generator -->
+        <div class="relative m-4 mb-6">
+            <div>
+                <img src="assets/images/image 1.png" class="h-45 absolute left-0 top-0 z-10" />
+                <div class="bg-white flex ml-10 mr-5 items-center menuCard z-0">
+                    <div class="flex flex-col p-2">
+                        <p class="text-xl md:text-3xl text-center font-bold p-2 pl-5 m-2">A.I. Generate<br> a quiz from
+                            any subject</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ml-10">
+                <button id="quiz-generator" class="btnAction z-10 mx-auto">
+                    <i class="material-icons" style="color: yellow">bolt</i>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="relative m-4 mt-6">
+            <div>
+                <img src="assets/images/image 2.png" class="h-45 absolute -right-7 top-0 z-10" />
+                <div class="bg-white flex ml-10 mr-5 items-center menuCard z-0">
+                    <div class="flex flex-col p-2">
+                        <p class="text-xl md:text-3xl text-center font-bold p-2 pr-5 m-2">
+                            Play again<br> whenever you want
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="ml-10">
+                <button id="saved-quiz-history" class="btnAction z-10 mx-auto">
+                    <i class="material-icons" style="color: yellow;">save</i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Import JavaScript -->
+    <script src="./scripts/app.js"></script>
 </body>
 
 </html>
