@@ -10,7 +10,7 @@
 
   <body
     class="min-h-screen min-w-screen px-3 bg-no-repeat bg-cover"
-    style="background-image: url(../assets/images/background-real.png)"
+    style="background-image: url('/src/assets/images/background-real.png'); background-position-x: center;"
   >
     <!-- Header Section -->
     <div class="max-w-7xl mx-auto mb-8 mt-10">
@@ -43,6 +43,7 @@
       class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
     ></div>
     <div id="popupContainer"></div>
+    <script src="../scripts/popup.js"></script>
     <script src="../scripts/save-quizzes.js"></script>
     <script src="../services/dbService.js"></script>
   </body>

@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
         popup.classList.remove("hidden");
   
         // Ẩn popup sau 3 giây
-        setTimeout(() => {
-          popup.classList.add("hidden");
-        }, 3000);
+        // setTimeout(() => {
+        //   popup.classList.add("hidden");
+        // }, 3000);
       }
     };
   }

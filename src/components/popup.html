@@ -1,46 +1,17 @@
-<!-- popup.html -->
-<div
-  id="customPopup"
-  class="z-40 fixed top-5 right-5 w-80 bg-white shadow-lg rounded-lg p-4 flex items-start gap-3 border border-gray-200 hidden"
->
-  <!-- Icon Success -->
-  <div
-    class="flex items-center justify-center w-6 h-6 bg-green-100 rounded-full"
-  >
-    <svg
-      class="w-4 h-4 text-green-600"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M5 13l4 4L19 7"
-      ></path>
-    </svg>
-  </div>
+<div id="customPopup" class="fixed inset-0 flex items-center justify-center bg-black/50 hidden">
+  <div class="bg_dark_blue rounded-xl w-full md:w-64 m-4">
+    <div class="popup bg_light_blue shadow-lg rounded-lg p-6 m-2">
+      <div class="flex justify-center">
+        <img
+          src="../assets/svg/robot-quiz-right.svg"
+          alt="Surprised child character"
+          class="w-32 h-32 object-contain"
+        />
+      </div>
 
-  <!-- Nội dung thông báo -->
-  <div class="flex-1">
-    <p class="text-sm font-semibold text-gray-900" id="popupTitle">
-      Successfully saved!
-    </p>
-    <p class="text-sm text-gray-500" id="popupMessage">
-      Anyone with a link can now view this file.
-    </p>
+      <h2 class="text-2xl font-bold text-black mb-6 text-center" id="popupTitle">
+        Are you sure you want to <span class="delete-text" id="popupMessage">delete</span> this quiz?
+      </h2>
+    </div>  
   </div>
-
-  <!-- Nút đóng -->
-  <button id="popupCloseBtn" class="text-gray-400 hover:text-gray-600">
-    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M6 18L18 6M6 6l12 12"
-      ></path>
-    </svg>
-  </button>
 </div>

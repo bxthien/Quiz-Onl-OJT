@@ -131,7 +131,7 @@ function showQuestion() {
         if (
           selectedAnswers[currentQuestionIndex] != null &&
           selectedAnswers[currentQuestionIndex].includes(key) &&
-          quizAnswer[currentQuestionIndex].length !== 1
+          quizData[currentQuestionIndex].correct_answers.length !== 1
         ) {
           answerButtons[key].classList.remove("bg-blue-400", "bg-green-700");
           answerButtons[key].classList.add("bg-blue-200");
