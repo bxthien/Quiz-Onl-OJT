@@ -1,0 +1,46 @@
+<!-- popup.html -->
+<div
+  id="customPopup"
+  class="z-40 fixed top-5 right-5 w-80 bg-white shadow-lg rounded-lg p-4 flex items-start gap-3 border border-gray-200 hidden"
+>
+  <!-- Icon Success -->
+  <div
+    class="flex items-center justify-center w-6 h-6 bg-green-100 rounded-full"
+  >
+    <svg
+      class="w-4 h-4 text-green-600"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 13l4 4L19 7"
+      ></path>
+    </svg>
+  </div>
+
+  <!-- Nội dung thông báo -->
+  <div class="flex-1">
+    <p class="text-sm font-semibold text-gray-900" id="popupTitle">
+      Successfully saved!
+    </p>
+    <p class="text-sm text-gray-500" id="popupMessage">
+      Anyone with a link can now view this file.
+    </p>
+  </div>
+
+  <!-- Nút đóng -->
+  <button id="popupCloseBtn" class="text-gray-400 hover:text-gray-600">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"
+      ></path>
+    </svg>
+  </button>
+</div>
