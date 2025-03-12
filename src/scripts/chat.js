@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 🟢 Default selected level
-  let selectedLevel = "Easy";
+  let selectedLevel = "Medium";
+
+  const startBtn = document.getElementById("startBtn");
 
   /** 📌 Handle Level Selection */
   const levelButtons = document.querySelectorAll(".levelBtn");
-  levelButtons[0].classList.add("selected-button");
+  levelButtons[1].classList.add("selected-button");
 
   levelButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -29,9 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const topic = document.getElementById("topic").value.trim();
     const language = document.getElementById("language").value;
     const amount = document.getElementById("amountInput").value;
-
-    if (!topic) return alert("Please enter a topic.");
-    if (!selectedLevel) return alert("Please select a difficulty level.");
 
     // 🔹 Prompt format for Gemini AI
     const quizPromptFormat = `
@@ -122,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /** 📌 Render Quiz Output */
   function renderQuiz(quizData) {
     const quizOutput = document.getElementById("quizOutput");
+    startBtn.classList.remove("!hidden");
     quizOutput.innerHTML = "";
 
     quizData.forEach((item, index) => {
@@ -142,10 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /** 📌 Handle Generate & Start Button Behavior */
   const generateBtn = document.getElementById("generateBtn");
-  const startBtn = document.getElementById("startBtn");
 
   generateBtn.addEventListener("click", function () {
-    startBtn.classList.remove("!hidden");
     generateBtn.innerHTML = `Regenerate <span class="ml-2"><img src="../assets/images/render.png" alt="Render" width="25" /></span>`;
   });
 
