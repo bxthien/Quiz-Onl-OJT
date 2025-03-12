@@ -160,7 +160,11 @@ function saveNewQuiz(title, questions, score, totalQuestions) {
     addRequest.onsuccess = function () {
       console.log("✅ Quiz saved successfully!");
       showPopup("Success!", "✅ Quiz saved successfully!.");
-    };
+      
+      setTimeout(function () {
+          window.location.href = "saved-quizzes.html";
+      }, 2000);
+  };
 
     addRequest.onerror = function (error) {
       console.error("❌ Failed to save quiz:", error);
@@ -200,6 +204,10 @@ function updateQuiz(id, score, totalQuestions) {
         updateRequest.onsuccess = function () {
           console.log("✅ Quiz updated successfully!");
           showPopup("Success!", "✅ Quiz updated successfully!");
+
+          setTimeout(function () {
+            window.location.href = "saved-quizzes.html";
+        }, 2000);
         };
 
         updateRequest.onerror = function (error) {

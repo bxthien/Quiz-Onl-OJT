@@ -140,13 +140,55 @@ async function retakeQuiz(quizId) {
 // Gọi hàm này để xoá quiz theo ID
 async function handleDeleteQuiz(quizId) {
   try {
-    await deleteQuiz(Number(quizId)); // Đảm bảo ID là số
-    console.log(`Quiz ${quizId} deleted!`);
-    await renderQuizzes(); // Đợi render hoàn tất
+    await deleteQuiz(Number(quizId)); // Xóa quiz theo ID
+
+    await renderQuizzes(); // Cập nhật danh sách quiz
+
+    // Hiển thị popup thành công
+    showPopup("Delete success!", "✅ Quiz deleted successfully!");
+
+    // Ẩn popup sau 2 giây
+    setTimeout(() => {
+      hidePopup();
+    }, 2000);
+
   } catch (error) {
-    console.error("Error deleting quiz:", error);
+    console.error("❌ Lỗi khi xóa quiz:", error);
+
+    // Hiển thị popup thất bại
+    showPopup("Error!", "❌ Failed to delete quiz");
+
+    // Ẩn popup sau 2 giây
+    setTimeout(() => {
+      hidePopup();
+    }, 2000);
   }
 }
+
+// Hàm hiển thị popup
+function showPopup(title, message) {
+  const popup = document.getElementById("customPopup");
+
+  if (popup) {
+    document.getElementById("popupTitle").innerHTML = title;
+    document.getElementById("popupMessage").innerHTML = message;
+    popup.classList.remove("hidden");
+  } else {
+    console.error("❌ Không tìm thấy phần tử #customPopup!");
+  }
+}
+
+// Hàm ẩn popup
+function hidePopup() {
+  const popup = document.getElementById("customPopup");
+
+  if (popup) {
+    popup.classList.add("hidden");
+  } else {
+    console.error("❌ Không tìm thấy phần tử #customPopup để ẩn!");
+  }
+}
+
 
 function formatDateTime(timestamp) {
   return new Date(timestamp).toLocaleString("vi-VN", {
